@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.andradel.xous.home.ui.HomeFragment"
+        android:label="home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_showProfileFragment"
+            app:destination="@id/showProfileFragment">
+            <argument
+                android:name="show"
+                app:argType="com.andradel.xous.common_models.internal.Show" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/showProfileFragment"
+        android:name="com.andradel.xous.showprofile.ui.ShowProfileFragment"
+        android:label="show_profile_fragment">
+        <argument
+            android:name="show"
+            app:argType="com.andradel.xous.common_models.internal.Show" />
+
+    </fragment>
+</navigation>

@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api libraries.appCompat
+    api libraries.androidXCore
+    api libraries.navigation
+    api libraries.navigationFragment
+    implementation libraries.retrofit
+    implementation libraries.serialization
+    implementation libraries.serializationAdapter
+    implementation libraries.dagger
+    implementation libraries.okHttpInterceptor
+
+    // Unfortunately, :core needs to know about models too, to generate SafeArgs
+    implementation project(':common-models')
+    api libraries.material
+    kapt libraries.daggerAnnotations
+}

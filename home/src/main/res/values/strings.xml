@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Home</string>
+    <string name="popular">Popular</string>
+    <string name="on_the_air">On the air</string>
+    <string name="top_rated">Top rated</string>
+
+    <string name="empty_shows_state">There seems to be no shows here :(</string>
+    <string name="refresh">Refresh</string>
+</resources>

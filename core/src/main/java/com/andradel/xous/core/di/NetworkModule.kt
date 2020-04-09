@@ -1,5 +1,6 @@
 package com.andradel.xous.core.di
 
+import com.andradel.xous.core.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
@@ -27,9 +28,8 @@ class NetworkModule {
     fun provideOkHttpAPIKeyInterceptor(): Interceptor = object : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original: Request = chain.request()
-            // TODO: USE THE PROPER ONE, JUST SEEING IF IT WORKS
             val url: HttpUrl = original.url.newBuilder()
-                .addQueryParameter(API_KEY, "1362fcf614bff73571d6952adbb37701")
+                .addQueryParameter(API_KEY, BuildConfig.API_KEY)
                 .build()
             val requestBuilder: Request.Builder = original.newBuilder().url(url)
             return chain.proceed(requestBuilder.build())

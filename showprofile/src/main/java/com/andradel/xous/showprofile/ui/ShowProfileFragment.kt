@@ -34,8 +34,9 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // viewModel.getDetails()
-        setupWithExistingShow(args.show)
+        val show = args.show
+        setupWithExistingShow(show)
+        viewModel.getDetails(show)
         observe(viewModel.details) {
 
         }

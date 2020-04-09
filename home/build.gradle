@@ -35,7 +35,6 @@ dependencies {
     implementation libraries.viewModel
     implementation libraries.dagger
     implementation libraries.retrofit
-    implementation libraries.glide
     implementation libraries.flexbox
     implementation libraries.serialization
     kapt libraries.daggerAnnotations

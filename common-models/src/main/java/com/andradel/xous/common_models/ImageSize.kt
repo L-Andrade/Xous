@@ -22,9 +22,9 @@ sealed class ImageSize(val size: String) {
     object Original : ImageSize("original")
 
     companion object {
-        const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p"
+        const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/"
     }
 }
 
 fun String?.toImagePath(size: ImageSize = ImageSize.Original): String? =
-    if (this == null) null else "${ImageSize.BASE_IMAGE_URL}/${size.size}/$this"
+    if (this == null) null else "${ImageSize.BASE_IMAGE_URL}${size.size}$this"

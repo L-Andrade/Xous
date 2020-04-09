@@ -33,6 +33,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "API_KEY", localProperties.api_key
         }
     }
 
@@ -50,6 +51,7 @@ dependencies {
     implementation libraries.serializationAdapter
     implementation libraries.dagger
     implementation libraries.okHttpInterceptor
+    implementation libraries.glide
 
     // Unfortunately, :core needs to know about models too, to generate SafeArgs
     implementation project(':common-models')

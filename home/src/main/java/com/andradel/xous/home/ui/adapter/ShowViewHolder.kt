@@ -4,10 +4,9 @@ import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.home.R
 import com.andradel.xous.home.ui.model.ShowItem
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -18,10 +17,6 @@ class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.setOnClickListener {
             goToShow(showItem.show)
         }
-        showItem.show.posterUrl?.let { posterUrl ->
-            Glide.with(itemView).load(posterUrl)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(imageView)
-        } ?: Glide.with(itemView).clear(imageView)
+        imageView.loadWithFade(showItem.show.posterUrl)
     }
 }

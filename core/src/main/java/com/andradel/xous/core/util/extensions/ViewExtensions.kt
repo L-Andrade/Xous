@@ -3,6 +3,7 @@ package com.andradel.xous.core.util.extensions
 import android.view.View
 import android.widget.ImageView
 import androidx.core.view.isVisible
+import com.andradel.xous.core.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 
@@ -19,6 +20,7 @@ fun View.animateIn() {
 fun ImageView.loadWithFade(url: String?) {
     if (url != null && url.isNotBlank()) {
         Glide.with(this).load(url)
+            .placeholder(R.color.colorAccent)
             .transition(withCrossFade())
             .into(this)
     } else {

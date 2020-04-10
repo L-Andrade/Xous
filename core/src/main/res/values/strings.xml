@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="home">Home</string>
+    <string name="generic_network_error">An error occurred while processing your request.</string>
+    <string name="no_network_error">An error occurred. Are you connected to the internet?</string>
 </resources>

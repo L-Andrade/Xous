@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andradel.xous.core.models.Resource
+import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.LiveEvent
 import com.andradel.xous.home.repo.HomeRepository
 import com.andradel.xous.home.ui.model.HomeState
@@ -15,7 +16,8 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val repository: HomeRepository
+    private val repository: HomeRepository,
+    private val stringResolver: StringResolver
 ) : ViewModel() {
 
     private val _state = MutableLiveData<HomeState>(HomeState.Loading)
@@ -44,7 +46,7 @@ class HomeViewModel @Inject constructor(
                     }
                     addItemsToState(listOf(ShowItem.Header(title)) + items)
                 }
-                is Resource.Error -> _message.value = resource.message
+                is Resource.Error -> _message.value = resource.error.resolve(stringResolver)
             }
         }.onCompletion {
             if (currentItems.isEmpty()) _state.value = HomeState.Empty

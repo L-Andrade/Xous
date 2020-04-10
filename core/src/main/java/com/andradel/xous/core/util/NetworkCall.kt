@@ -1,12 +1,16 @@
 package com.andradel.xous.core.util
 
+import com.andradel.xous.core.models.NetworkError
 import com.andradel.xous.core.models.Resource
+import com.andradel.xous.core.models.Resource.Companion.failed
+import retrofit2.HttpException
+import java.io.IOException
 
-// TODO: Improve
-inline fun <T> safeApiCall(
-    success: () -> Resource<T>, error: (message: String) -> Resource<T>
-) = try {
+inline fun <T> safeApiCall(success: () -> Resource<T>) = try {
     success()
-} catch (e: Exception) {
-    error("$e")
+} catch (e: IOException) {
+    failed(NetworkError.NoNetwork<T>(e))
+} catch (e: HttpException) {
+    // This will probably get more detailed as needed using e.code()
+    failed(NetworkError.Generic<T>(e))
 }

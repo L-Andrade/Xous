@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 private inline fun safeNavigate(block: () -> Unit) {
     try {
         block()
-    } catch (e: IllegalStateException) {
+    } catch (e: IllegalArgumentException) {
         // Ignored. This is a bug with the Navigation component on double clicks
     }
 }

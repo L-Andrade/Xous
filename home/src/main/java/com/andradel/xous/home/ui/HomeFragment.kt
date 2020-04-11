@@ -3,18 +3,15 @@ package com.andradel.xous.home.ui
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
-import com.andradel.xous.core.util.exhaustive
 import com.andradel.xous.core.util.extensions.*
 import com.andradel.xous.home.R
 import com.andradel.xous.home.di.DaggerHomeComponent
 import com.andradel.xous.home.ui.adapter.ShowAdapter
-import com.andradel.xous.home.ui.model.HomeState
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import kotlinx.android.synthetic.main.home_fragment.*
@@ -41,12 +38,15 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             viewModel.getAllShows()
         }
 
-        observe(viewModel.state) {
-            when (it) {
-                HomeState.Loading -> onLoading()
-                is HomeState.ShowLists -> onSuccess(it)
-                is HomeState.Empty -> onEmpty(it)
-            }.exhaustive
+        setupObservers()
+    }
+
+    private fun setupObservers() {
+        observe(viewModel.loading) {
+            onLoading(it)
+        }
+        observe(viewModel.shows) {
+            showAdapter.submitList(it)
         }
         observe(viewModel.message) {
             showSnackbar(it)
@@ -54,15 +54,19 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         observe(viewModel.recentlyViewed) {
             showAdapter.submitRecentlyViewedList(it)
         }
+        observe(viewModel.showEmpty) {
+            onEmpty(it)
+        }
     }
 
-    private fun onLoading() {
-        emptyState.animateOut()
-        loading.animateIn()
+    private fun onLoading(state: Boolean) {
+        if (state) {
+            emptyState.animateOut()
+            loading.animateIn()
+        } else loading.animateOut()
     }
 
     private fun setupRecyclerView() {
-        // recentlyViewed.adapter = recentlyViewedAdapter
         shows.apply {
             adapter = showAdapter
             layoutManager = FlexboxLayoutManager(requireContext()).also {
@@ -71,16 +75,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         }
     }
 
-    private fun onEmpty(data: HomeState.Empty) {
-        loading.animateOut()
-        emptyState.animateIn()
-        showAdapter.submitList(data.shows)
-    }
-
-    private fun onSuccess(data: HomeState.ShowLists) {
-        loading.animateOut()
-        emptyState.isVisible = false
-        showAdapter.submitList(data.shows)
+    private fun onEmpty(state: Boolean) {
+        if (state) emptyState.animateIn() else emptyState.animateOut()
     }
 
     private fun goToShow(show: Show) {

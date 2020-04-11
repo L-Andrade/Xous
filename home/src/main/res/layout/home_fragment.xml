@@ -6,12 +6,12 @@
     tools:context=".ui.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popularShows"
+        android:id="@+id/shows"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/material_half_spacing"
-        android:clipToPadding="false"
         android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="@dimen/material_half_spacing"
         tools:itemCount="6"
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/show_viewholder"

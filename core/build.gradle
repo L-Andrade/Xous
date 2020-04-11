@@ -48,17 +48,18 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api libraries.appCompat
     api libraries.androidXCore
+    api libraries.material
     api libraries.navigation
     api libraries.navigationFragment
     implementation libraries.retrofit
     implementation libraries.serialization
     implementation libraries.serializationAdapter
     implementation libraries.dagger
+    kapt libraries.daggerAnnotations
     implementation libraries.okHttpInterceptor
     implementation libraries.glide
 
+    api project(':database')
     // Unfortunately, :core needs to know about models too, to generate SafeArgs
     implementation project(':common-models')
-    api libraries.material
-    kapt libraries.daggerAnnotations
 }

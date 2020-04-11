@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.core.models.Resource
+import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.LiveEvent
 import com.andradel.xous.showprofile.model.FullShow
 import com.andradel.xous.showprofile.repo.ShowProfileRepository
@@ -25,7 +27,10 @@ class ShowProfileViewModel @Inject constructor(
 
     fun getDetails(show: Show) {
         viewModelScope.launch {
-            repository.getDetails(show)
+            when (val details = repository.getDetails(show)) {
+                is Resource.Success -> _details.value = details.data
+                is Resource.Error -> _message.value = details.error.message
+            }
         }
     }
 }

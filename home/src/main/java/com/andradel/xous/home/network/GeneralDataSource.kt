@@ -5,21 +5,23 @@ import com.andradel.xous.core.models.NetworkError
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.models.Resource.Companion.failed
 import com.andradel.xous.core.models.Resource.Companion.success
+import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.safeApiCall
 import javax.inject.Inject
 
 class GeneralDataSource @Inject constructor(
-    private val generalAPI: GeneralAPI
+    private val generalAPI: GeneralAPI,
+    private val stringResolver: StringResolver
 ) {
-    suspend fun getPopular(): Resource<GeneralShowsResponse> = safeApiCall {
+    suspend fun getPopular(): Resource<GeneralShowsResponse> = safeApiCall(stringResolver) {
         success(generalAPI.getPopular().toInternal())
     }
 
-    suspend fun getOnTheAir(): Resource<GeneralShowsResponse> = safeApiCall {
+    suspend fun getOnTheAir(): Resource<GeneralShowsResponse> = safeApiCall(stringResolver) {
         success(generalAPI.getOnTheAir().toInternal())
     }
 
-    suspend fun getTopRated(): Resource<GeneralShowsResponse> = safeApiCall {
+    suspend fun getTopRated(): Resource<GeneralShowsResponse> = safeApiCall(stringResolver) {
         success(generalAPI.getTopRated().toInternal())
     }
 }

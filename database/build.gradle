@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdkVersion 29
@@ -16,6 +15,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.incremental": "true"]
+            }
+        }
     }
 
     buildTypes {
@@ -29,20 +34,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation libraries.constraintLayout
-    implementation libraries.androidXfragment
-    implementation libraries.viewModel
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation libraries.appCompat
+    implementation libraries.androidXCore
+    // TODO Check this better...
+    api libraries.room
+    implementation libraries.roomExtensions
+    kapt libraries.roomAnnotations
     implementation libraries.dagger
-    implementation libraries.retrofit
-    implementation libraries.serialization
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt libraries.daggerAnnotations
-    implementation project(':core')
+    implementation libraries.coroutines
     implementation project(':common-models')
     testImplementation libraries.junit
     androidTestImplementation libraries.androidXjunit
-    androidTestImplementation libraries.espresso
+    androidTestImplementation libraries.roomTesting
 }

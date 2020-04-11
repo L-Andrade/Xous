@@ -6,14 +6,11 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.exhaustive
-import com.andradel.xous.core.util.extensions.animateIn
-import com.andradel.xous.core.util.extensions.animateOut
-import com.andradel.xous.core.util.extensions.goTo
-import com.andradel.xous.core.util.extensions.observe
-import com.andradel.xous.core.util.extensions.showSnackbar
+import com.andradel.xous.core.util.extensions.*
 import com.andradel.xous.home.R
 import com.andradel.xous.home.di.DaggerHomeComponent
 import com.andradel.xous.home.ui.adapter.ShowAdapter
@@ -28,11 +25,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: HomeViewModel by viewModels { viewModelFactory }
-    private val showAdapter: ShowAdapter by lazy {
-        ShowAdapter { show ->
-            goTo(HomeFragmentDirections.actionHomeFragmentToShowProfileFragment(show))
-        }
-    }
+    private val showAdapter: ShowAdapter by lazy { ShowAdapter(::goToShow) }
+    // private val recentlyViewedAdapter: RecentlyViewedAdapter by lazy { RecentlyViewedAdapter(::goToShow) }
 
     override fun onAttach(context: Context) {
         DaggerHomeComponent.builder().coreComponent(coreComponent).build().inject(this)
@@ -51,11 +45,14 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             when (it) {
                 HomeState.Loading -> onLoading()
                 is HomeState.ShowLists -> onSuccess(it)
-                HomeState.Empty -> onEmpty()
+                is HomeState.Empty -> onEmpty(it)
             }.exhaustive
         }
         observe(viewModel.message) {
             showSnackbar(it)
+        }
+        observe(viewModel.recentlyViewed) {
+            showAdapter.submitRecentlyViewedList(it)
         }
     }
 
@@ -65,7 +62,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     }
 
     private fun setupRecyclerView() {
-        popularShows.apply {
+        // recentlyViewed.adapter = recentlyViewedAdapter
+        shows.apply {
             adapter = showAdapter
             layoutManager = FlexboxLayoutManager(requireContext()).also {
                 it.justifyContent = JustifyContent.CENTER
@@ -73,14 +71,19 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         }
     }
 
-    private fun onEmpty() {
+    private fun onEmpty(data: HomeState.Empty) {
         loading.animateOut()
         emptyState.animateIn()
+        showAdapter.submitList(data.shows)
     }
 
     private fun onSuccess(data: HomeState.ShowLists) {
         loading.animateOut()
         emptyState.isVisible = false
         showAdapter.submitList(data.shows)
+    }
+
+    private fun goToShow(show: Show) {
+        goTo(HomeFragmentDirections.actionHomeFragmentToShowProfileFragment(show))
     }
 }

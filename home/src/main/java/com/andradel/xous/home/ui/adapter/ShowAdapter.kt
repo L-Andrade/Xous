@@ -13,18 +13,20 @@ class ShowAdapter(
     private val goToShow: (Show) -> Unit
 ) : ListAdapter<ShowItem, RecyclerView.ViewHolder>(diffUtils) {
 
+    private val recentlyViewedAdapter = RecentlyViewedAdapter(goToShow)
+
     override fun getItemViewType(position: Int): Int = when (getItem(position)) {
         is ShowItem.Header -> HEADER
-        else -> SHOW
+        is ShowItem.Item -> SHOW
+        is ShowItem.RecentlyViewedList -> RECENTLY_VIEWED
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
-            HEADER ->
-                HeaderViewHolder(layoutInflater.inflate(R.layout.header_viewholder, parent, false))
-            SHOW ->
-                ShowViewHolder(layoutInflater.inflate(R.layout.show_viewholder, parent, false))
+            HEADER -> HeaderViewHolder(view)
+            SHOW -> ShowViewHolder(view)
+            RECENTLY_VIEWED -> RecentlyViewedViewHolder(view)
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -33,13 +35,19 @@ class ShowAdapter(
         val item = getItem(position)
         when (holder) {
             is HeaderViewHolder -> holder.bind(item as ShowItem.Header)
-            is ShowViewHolder -> holder.bind(item as ShowItem.Item, goToShow)
+            is ShowViewHolder -> holder.bind((item as ShowItem.Item).show, goToShow)
+            is RecentlyViewedViewHolder -> holder.bind(recentlyViewedAdapter)
         }
     }
 
+    fun submitRecentlyViewedList(list: List<Show>) {
+        recentlyViewedAdapter.submitList(list)
+    }
+
     companion object {
-        const val HEADER = 1
-        private const val SHOW = 2
+        private val HEADER = R.layout.header_viewholder
+        private val SHOW = R.layout.show_viewholder
+        private val RECENTLY_VIEWED = R.layout.recently_viewed_viewholder
         private val diffUtils =
             object : DiffUtil.ItemCallback<ShowItem>() {
                 override fun areItemsTheSame(oldItem: ShowItem, newItem: ShowItem): Boolean =

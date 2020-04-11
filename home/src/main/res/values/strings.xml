@@ -7,4 +7,5 @@
 
     <string name="empty_shows_state">There seems to be no shows here :(</string>
     <string name="refresh">Refresh</string>
+    <string name="recently_viewed">Recently viewed</string>
 </resources>

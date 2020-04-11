@@ -31,7 +31,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation libraries.constraintLayout
-    implementation libraries.lifecycleExtensions
+    implementation libraries.androidXfragment
+    implementation libraries.lifecycleLiveData
     implementation libraries.viewModel
     implementation libraries.dagger
     implementation libraries.retrofit

@@ -1,9 +1,7 @@
 package com.andradel.xous.home.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.LiveEvent
@@ -16,8 +14,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val repository: HomeRepository,
-    private val stringResolver: StringResolver
+    private val repository: HomeRepository
 ) : ViewModel() {
 
     private val _state = MutableLiveData<HomeState>(HomeState.Loading)
@@ -28,12 +25,14 @@ class HomeViewModel @Inject constructor(
     val message: LiveData<String>
         get() = _message
 
+    val recentlyViewed: LiveData<List<Show>> = repository.getRecentlyViewedShows().asLiveData()
+
     init {
         getAllShows()
     }
 
     private val currentItems
-        get() = (_state.value as? HomeState.ShowLists)?.shows.orEmpty()
+        get() = (_state.value as? HomeState.ShowLists)?.shows ?: listOf(ShowItem.RecentlyViewedList)
 
     fun getAllShows() {
         _state.value = HomeState.Loading
@@ -42,14 +41,15 @@ class HomeViewModel @Inject constructor(
             when (resource) {
                 is Resource.Success -> {
                     val items = resource.data.items.map { show ->
-                        ShowItem.Item(show)
+                        ShowItem.Item(title, show)
                     }
                     addItemsToState(listOf(ShowItem.Header(title)) + items)
                 }
-                is Resource.Error -> _message.value = resource.error.resolve(stringResolver)
+                is Resource.Error -> _message.value = resource.error.message
             }
         }.onCompletion {
-            if (currentItems.isEmpty()) _state.value = HomeState.Empty
+            // We are empty only in web content. User still might have recently viewed
+            if (currentItems.size == 1) _state.value = HomeState.Empty(currentItems)
         }.launchIn(viewModelScope)
     }
 

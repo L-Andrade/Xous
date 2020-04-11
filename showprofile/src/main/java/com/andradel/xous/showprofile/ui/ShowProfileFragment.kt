@@ -9,6 +9,8 @@ import androidx.navigation.fragment.navArgs
 import com.andradel.xous.common_models.internal.BaseShow
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
+import com.andradel.xous.core.models.Resource
+import com.andradel.xous.core.util.exhaustive
 import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
@@ -40,7 +42,6 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         setupShow(show)
         viewModel.getDetails(show)
         observe(viewModel.details) {
-            setupWithDetails(it)
         }
 
         observe(viewModel.message) {

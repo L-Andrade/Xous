@@ -7,21 +7,30 @@ import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
-fun View.goTo(@IdRes action: Int) {
+private inline fun safeNavigate(block: () -> Unit) {
+    try {
+        block()
+    } catch (e: IllegalStateException) {
+        // Ignored. This is a bug with the Navigation component on double clicks
+    }
+}
+
+fun View.goTo(@IdRes action: Int) = safeNavigate {
     findNavController().navigate(action)
 }
 
-fun View.goTo(directions: NavDirections) {
+fun View.goTo(directions: NavDirections) = safeNavigate {
     findNavController().navigate(directions)
 }
 
-fun Fragment.goTo(@IdRes action: Int) {
+fun Fragment.goTo(@IdRes action: Int) = safeNavigate {
     findNavController().navigate(action)
 }
 
-fun Fragment.goTo(directions: NavDirections) {
+fun Fragment.goTo(directions: NavDirections) = safeNavigate {
     findNavController().navigate(directions)
 }
+
 /*
 fun View.toLoginOrElse() {
     // TODO: If not authed -> Go to login

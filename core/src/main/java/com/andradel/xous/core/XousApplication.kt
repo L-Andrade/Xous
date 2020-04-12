@@ -13,7 +13,6 @@ class XousApplication : Application() {
     }
 
     companion object {
-        @JvmStatic
         fun coreComponent(context: Context) =
             (context.applicationContext as XousApplication).coreComponent
     }

@@ -23,7 +23,6 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private val viewModel: HomeViewModel by viewModels { viewModelFactory }
     private val showAdapter: ShowAdapter by lazy { ShowAdapter(::goToShow) }
-    // private val recentlyViewedAdapter: RecentlyViewedAdapter by lazy { RecentlyViewedAdapter(::goToShow) }
 
     override fun onAttach(context: Context) {
         DaggerHomeComponent.builder().coreComponent(coreComponent).build().inject(this)

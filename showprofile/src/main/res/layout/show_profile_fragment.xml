@@ -60,7 +60,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="@dimen/material_single_spacing"
+        android:paddingVertical="@dimen/material_single_spacing"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -166,6 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/material_single_spacing"
+                android:nestedScrollingEnabled="false"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -190,6 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/material_single_spacing"
+                android:nestedScrollingEnabled="false"
                 android:paddingHorizontal="@dimen/material_single_spacing"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -215,6 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/material_single_spacing"
+                android:nestedScrollingEnabled="false"
                 android:paddingHorizontal="@dimen/material_single_spacing"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"

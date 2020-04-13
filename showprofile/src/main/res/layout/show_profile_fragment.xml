@@ -7,15 +7,34 @@
     tools:context=".ui.ShowProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/backdrop_height">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/backdrop_height"
             app:contentScrim="?attr/colorPrimaryDark"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/posterCard"
+                android:layout_width="@dimen/default_show_width"
+                android:layout_height="@dimen/default_show_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/material_double_spacing"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="@dimen/material_half_spacing"
+                app:layout_scrollFlags="scroll">
+
+                <ImageView
+                    android:id="@+id/poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:id="@+id/backdrop"
@@ -30,8 +49,179 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                android:elevation="@dimen/material_single_spacing"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/material_single_spacing"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/startGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/material_double_spacing" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/material_double_spacing" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_stars_black_24dp"
+                android:drawableTint="?attr/colorControlNormal"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@id/numberOfSeasons"
+                app:layout_constraintHorizontal_weight="0.6"
+                app:layout_constraintStart_toEndOf="@id/firstAired"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="7.8" />
+
+            <TextView
+                android:id="@+id/firstAired"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/rating"
+                app:layout_constraintEnd_toStartOf="@id/rating"
+                app:layout_constraintHorizontal_weight="1.7"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                tools:text="Aired in 10-10-2010" />
+
+            <TextView
+                android:id="@+id/numberOfSeasons"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintBaseline_toBaselineOf="@id/rating"
+                app:layout_constraintEnd_toStartOf="@id/numberOfEpisodes"
+                app:layout_constraintHorizontal_weight=".9"
+                app:layout_constraintStart_toEndOf="@id/rating"
+                tools:text="6 seasons" />
+
+            <TextView
+                android:id="@+id/numberOfEpisodes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintBaseline_toBaselineOf="@id/rating"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintHorizontal_weight=".9"
+                app:layout_constraintStart_toEndOf="@id/numberOfSeasons"
+                tools:text="10 episodes" />
+
+            <TextView
+                android:id="@+id/overviewTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/material_single_spacing"
+                android:text="@string/overview"
+                android:textSize="@dimen/not_as_big_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/rating" />
+
+            <TextView
+                android:id="@+id/overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/overviewTitle"
+                tools:text="@tools:sample/lorem/random" />
+
+            <TextView
+                android:id="@+id/creatorsTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/material_single_spacing"
+                android:text="@string/creators"
+                android:textSize="@dimen/not_as_big_text_size"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/overview"
+                tools:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/creators"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/material_single_spacing"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/creatorsTitle"
+                tools:itemCount="1"
+                tools:listitem="@layout/creator_viewholder" />
+
+            <TextView
+                android:id="@+id/seasonsTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/material_single_spacing"
+                android:text="@string/seasons"
+                android:textSize="@dimen/not_as_big_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/creators" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/seasons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/material_single_spacing"
+                android:paddingHorizontal="@dimen/material_single_spacing"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/seasonsTitle"
+                tools:itemCount="1"
+                tools:listitem="@layout/season_viewholder" />
+
+            <TextView
+                android:id="@+id/similarShowsTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/material_single_spacing"
+                android:text="@string/similar_shows"
+                android:textSize="@dimen/not_as_big_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/seasons" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/similarShows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/material_single_spacing"
+                android:paddingHorizontal="@dimen/material_single_spacing"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/similarShowsTitle"
+                tools:itemCount="1"
+                tools:listitem="@layout/similar_show_viewholder" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

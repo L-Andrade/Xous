@@ -11,7 +11,7 @@ class ShowProfileDataSource @Inject constructor(
     private val showProfileAPI: ShowProfileAPI,
     private val stringResolver: StringResolver
 ) {
-    suspend fun getShow(showId: Long): Resource<FullShow> = safeApiCall(stringResolver) {
+    suspend fun getShow(showId: Int): Resource<FullShow> = safeApiCall(stringResolver) {
         success(showProfileAPI.getShow(showId).toInternal())
     }
 }

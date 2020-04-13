@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="number_of_seasons"><![CDATA[<b>%d</b> seasons]]></string>
+    <string name="number_of_episodes"><![CDATA[<b>%d</b> episodes]]></string>
+    <string name="first_aired"><![CDATA[Aired in <b>%s</b>]]></string>
+    <string name="overview">Overview</string>
+    <string name="creators">Creators</string>
+    <string name="similar_shows">Similar shows</string>
+    <string name="seasons">Seasons</string>
+</resources>

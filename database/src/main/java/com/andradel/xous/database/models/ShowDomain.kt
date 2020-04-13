@@ -3,12 +3,12 @@ package com.andradel.xous.database.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.andradel.xous.common_models.internal.Show
-import java.util.*
+import java.util.Date
 
 @Entity(tableName = "shows")
 data class ShowDomain(
     @PrimaryKey
-    val id: Long,
+    val id: Int,
     val name: String,
     val posterPath: String?,
     val rating: Float,

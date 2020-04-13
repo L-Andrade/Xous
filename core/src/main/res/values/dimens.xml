@@ -2,7 +2,9 @@
 <resources>
     <dimen name="bottom_navigation_height">56dp</dimen>
     <!-- Font sizes -->
-    <dimen name="bigTextSize">20sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
+    <dimen name="not_as_big_text_size">16sp</dimen>
+    <dimen name="big_text_size">20sp</dimen>
 
     <!-- Spacings (margins/padding) -->
     <dimen name="material_quarter_spacing">2dp</dimen>

@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/empty_shows_state"
-            android:textSize="@dimen/bigTextSize"
+            android:textSize="@dimen/big_text_size"
             android:textStyle="bold" />
 
         <Button

@@ -27,4 +27,4 @@ sealed class ImageSize(val size: String) {
 }
 
 fun String?.toImagePath(size: ImageSize = ImageSize.Original): String? =
-    if (this == null) null else "${ImageSize.BASE_IMAGE_URL}${size.size}$this"
+    if (this == null || this.isBlank()) null else "${ImageSize.BASE_IMAGE_URL}${size.size}$this"

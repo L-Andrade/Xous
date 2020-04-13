@@ -1,5 +1,6 @@
 package com.andradel.xous.showprofile.model
 
+import com.andradel.xous.common_models.external.GeneralShowsResponseExternal
 import com.andradel.xous.common_models.orFalse
 import com.andradel.xous.common_models.orZero
 import kotlinx.serialization.SerialName
@@ -7,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class FullShowExternal(
-    @SerialName("id") val id: Long?,
+    @SerialName("id") val id: Int?,
     @SerialName("name") val name: String?,
     @SerialName("backdrop_path") val backdropPath: String?,
     @SerialName("poster_path") val posterPath: String?,
@@ -20,7 +21,9 @@ data class FullShowExternal(
     @SerialName("overview") val overview: String?,
     @SerialName("status") val status: String?,
     @SerialName("type") val type: String?,
-    @SerialName("vote_average") val rating: Float?
+    @SerialName("vote_average") val rating: Float?,
+    @SerialName("similar") val similarShows: GeneralShowsResponseExternal,
+    @SerialName("seasons") val seasons: List<SeasonExternal>?
 ) {
     fun toInternal(): FullShow =
         FullShow(
@@ -37,13 +40,15 @@ data class FullShowExternal(
             overview = overview.orEmpty(),
             status = status.orEmpty(),
             type = type.orEmpty(),
-            rating = rating.orZero()
+            rating = rating.orZero(),
+            similarShows = similarShows.toInternal(),
+            seasons = seasons.orEmpty().map { it.toInternal() }
         )
 }
 
 @Serializable
 data class CreatorExternal(
-    @SerialName("id") val id: Long?,
+    @SerialName("id") val id: Int?,
     @SerialName("name") val name: String?,
     @SerialName("profile_path") val profilePath: String?
 ) {
@@ -53,4 +58,23 @@ data class CreatorExternal(
             name = name.orEmpty(),
             profilePath = profilePath
         )
+}
+
+@Serializable
+data class SeasonExternal(
+    @SerialName("id") val id: Int?,
+    @SerialName("season_number") val number: Int?,
+    @SerialName("name") val name: String?,
+    @SerialName("poster_path") val posterPath: String?,
+    @SerialName("episode_count") val numberOfEpisodes: Int?,
+    @SerialName("overview") val overview: String?
+) {
+    fun toInternal(): Season = Season(
+        id = id.orZero(),
+        number = number.orZero(),
+        name = name.orEmpty(),
+        posterPath = posterPath.orEmpty(),
+        numberOfEpisodes = numberOfEpisodes.orZero(),
+        overview = overview.orEmpty()
+    )
 }

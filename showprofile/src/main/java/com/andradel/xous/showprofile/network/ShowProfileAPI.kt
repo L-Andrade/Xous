@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ShowProfileAPI {
-    @GET("3/tv/{tv_id}")
-    suspend fun getShow(@Path("tv_id") showId: Long): FullShowExternal
+    @GET("3/tv/{tv_id}?append_to_response=images,similar")
+    suspend fun getShow(@Path("tv_id") showId: Int): FullShowExternal
 }

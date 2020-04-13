@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/recently_viewed"
-        android:textSize="@dimen/bigTextSize" />
+        android:textSize="@dimen/big_text_size" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

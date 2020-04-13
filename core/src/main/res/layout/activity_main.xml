@@ -8,7 +8,7 @@
 
     <!--
     This is the root view for snackbar messages.
-    We have it as separate from the bottom nav so messages doesn't appear in front of it
+    We have it as separate from the bottom nav so messages don't appear in front of it
     -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

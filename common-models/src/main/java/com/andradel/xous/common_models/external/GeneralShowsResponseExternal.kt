@@ -25,7 +25,7 @@ data class GeneralShowsResponseExternal(
 
 @Serializable
 data class ShowExternal(
-    @SerialName("id") val id: Long?,
+    @SerialName("id") val id: Int?,
     @SerialName("name") val name: String?,
     @SerialName("poster_path") val posterPath: String?,
     @SerialName("vote_average") val rating: Float?,

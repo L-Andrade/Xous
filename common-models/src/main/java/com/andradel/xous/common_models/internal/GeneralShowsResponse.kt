@@ -14,7 +14,7 @@ data class GeneralShowsResponse(
 
 @Parcelize
 data class Show(
-    override val id: Long,
+    override val id: Int,
     override val name: String,
     override val posterPath: String?,
     override val backdropPath: String?,
@@ -24,7 +24,7 @@ data class Show(
 ) : BaseShow, Parcelable
 
 interface BaseShow {
-    val id: Long
+    val id: Int
     val name: String
     val posterPath: String?
     val backdropPath: String?

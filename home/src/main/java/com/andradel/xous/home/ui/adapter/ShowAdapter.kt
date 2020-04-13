@@ -1,11 +1,11 @@
 package com.andradel.xous.home.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.home.R
 import com.andradel.xous.home.ui.model.ShowItem
 
@@ -22,7 +22,7 @@ class ShowAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val view = parent.context.inflate(viewType, parent)
         return when (viewType) {
             HEADER -> HeaderViewHolder(view)
             SHOW -> ShowViewHolder(view)

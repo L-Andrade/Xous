@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ShowsDao {
-    @Query("SELECT * FROM shows WHERE type = :type ORDER BY createdAt DESC")
+    @Query("SELECT * FROM shows WHERE type = :type ORDER BY createdAt DESC LIMIT 20")
     fun getShowsByType(type: ShowType): Flow<List<ShowDomain>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

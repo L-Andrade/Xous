@@ -1,4 +1,4 @@
-package com.andradel.xous.showprofile.ui.adapter
+package com.andradel.xous.showprofile.ui.adapter.viewholders
 
 import android.view.View
 import android.widget.ImageView

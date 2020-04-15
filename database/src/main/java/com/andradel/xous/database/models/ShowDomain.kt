@@ -3,16 +3,16 @@ package com.andradel.xous.database.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.andradel.xous.common_models.internal.Show
-import java.util.Date
+import java.util.*
 
 @Entity(tableName = "shows")
 data class ShowDomain(
     @PrimaryKey
     val id: Int,
     val name: String,
-    val posterPath: String?,
+    val posterUrl: String?,
     val rating: Float,
-    val backdropPath: String?,
+    val backdropUrl: String?,
     val firstAired: String,
     val overview: String,
     val type: ShowType,
@@ -22,9 +22,9 @@ data class ShowDomain(
         Show(
             id = id,
             name = name,
-            posterPath = posterPath,
+            posterUrl = posterUrl,
             rating = rating,
-            backdropPath = backdropPath,
+            backdropUrl = backdropUrl,
             firstAired = firstAired,
             overview = overview
         )
@@ -34,9 +34,9 @@ fun Show.toDomain(type: ShowType) =
     ShowDomain(
         id = id,
         name = name,
-        posterPath = posterPath,
+        posterUrl = posterUrl,
         rating = rating,
-        backdropPath = backdropPath,
+        backdropUrl = backdropUrl,
         firstAired = firstAired,
         overview = overview,
         type = type

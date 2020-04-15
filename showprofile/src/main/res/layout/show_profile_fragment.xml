@@ -36,14 +36,19 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/backdrop"
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/indicator_height"
+                android:layout_gravity="bottom|center_horizontal"
+                android:elevation="@dimen/material_quarter_spacing"
+                app:layout_collapseMode="parallax" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/backdropPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

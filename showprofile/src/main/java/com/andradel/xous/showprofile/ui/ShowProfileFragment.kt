@@ -20,6 +20,8 @@ import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
 import com.andradel.xous.showprofile.model.FullShow
+import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
+import com.andradel.xous.showprofile.ui.adapter.BackdropParallax
 import com.andradel.xous.showprofile.ui.adapter.ProfileViewAdapter
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.show_profile_fragment.*
@@ -36,6 +38,8 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     private val viewModel: ShowProfileViewModel by viewModels {
         viewModelFactory
     }
+
+    private val backdropAdapter = BackdropAdapter()
 
     private val args: ShowProfileFragmentArgs by navArgs()
 
@@ -71,9 +75,14 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+        backdropPager.adapter = backdropAdapter
+        indicator.setViewPager(backdropPager)
+        backdropAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
+        backdropPager.setPageTransformer(BackdropParallax)
     }
 
     private fun setupWithDetails(fullShow: FullShow) {
+        backdropAdapter.submitList(fullShow.backdrops)
         recyclerView.apply {
             adapter = ProfileViewAdapter(fullShow, stringResolver, ::goToShow)
             layoutManager = LinearLayoutManager(requireContext())
@@ -81,7 +90,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     }
 
     private fun setupShow(show: BaseShow) {
-        backdrop.loadWithFade(show.backdropUrl)
+        backdropAdapter.submitList(listOf(show.backdropUrl))
         poster.loadWithFade(show.posterUrl)
         toolbar.title = show.name
 

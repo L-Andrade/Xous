@@ -9,8 +9,7 @@
         android:id="@+id/headerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/material_single_spacing"
-        android:paddingHorizontal="@dimen/material_double_spacing"
+        android:padding="@dimen/material_single_spacing"
         android:textSize="@dimen/not_as_big_text_size"
         android:textStyle="bold"
         tools:text="Header title" />
@@ -20,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/material_single_spacing"
+        android:layout_marginVertical="@dimen/material_single_spacing"
         android:nestedScrollingEnabled="false"
         tools:itemCount="1" />
 </LinearLayout>

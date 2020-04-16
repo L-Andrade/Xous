@@ -20,7 +20,8 @@ data class FullShow(
     val type: String,
     val similarShows: GeneralShowsResponse,
     val seasons: List<Season>,
-    val backdrops: List<String>
+    val backdrops: List<String>,
+    val allImages: List<String>
 ) : BaseShow
 
 data class Creator(

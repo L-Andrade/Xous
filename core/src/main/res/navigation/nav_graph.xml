@@ -30,8 +30,21 @@
             <argument
                 android:name="show"
                 app:argType="com.andradel.xous.common_models.internal.Show" />
-
         </action>
+        <action
+            android:id="@+id/showProfileToGallery"
+            app:destination="@id/galleryFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.andradel.xous.showprofile.ui.ImageGalleryFragment"
+        android:label="gallery_fragment">
+        <argument
+            android:name="images"
+            app:argType="string[]" />
+        <argument
+            android:name="selectedImage"
+            app:argType="string" />
     </fragment>
 </navigation>

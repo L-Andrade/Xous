@@ -32,4 +32,8 @@ class ShowProfileViewModel @Inject constructor(
             }
         }
     }
+
+    val images: Array<String>
+        get() = (_details.value?.allImages.orEmpty()).toTypedArray()
+
 }

@@ -39,7 +39,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         viewModelFactory
     }
 
-    private val backdropAdapter = BackdropAdapter()
+    private val backdropAdapter by lazy { BackdropAdapter(::goToGallery) }
 
     private val args: ShowProfileFragmentArgs by navArgs()
 
@@ -93,6 +93,9 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         backdropAdapter.submitList(listOf(show.backdropUrl))
         poster.loadWithFade(show.posterUrl)
         toolbar.title = show.name
+        poster.setOnClickListener {
+            goToGallery(show.posterUrl.orEmpty())
+        }
 
         recyclerView.apply {
             adapter = ProfileViewAdapter(show, stringResolver, ::goToShow)
@@ -102,5 +105,9 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     private fun goToShow(show: Show) {
         goTo(ShowProfileFragmentDirections.showProfileToShowProfile(show))
+    }
+
+    private fun goToGallery(clickedImage: String) {
+        goTo(ShowProfileFragmentDirections.showProfileToGallery(viewModel.images, clickedImage))
     }
 }

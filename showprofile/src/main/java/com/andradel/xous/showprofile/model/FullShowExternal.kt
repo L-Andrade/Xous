@@ -48,6 +48,11 @@ data class FullShowExternal(
             seasons = seasons.orEmpty().map { it.toInternal() },
             backdrops = images.backdrops.orEmpty().mapNotNull {
                 it.path.orEmpty().toImagePath(ImageSize.Backdrop.Medium)
+            },
+            allImages = images.backdrops.orEmpty().mapNotNull {
+                it.path.orEmpty().toImagePath()
+            } + images.posters.orEmpty().mapNotNull {
+                it.path.orEmpty().toImagePath()
             }
         )
 }
@@ -87,10 +92,11 @@ data class SeasonExternal(
 
 @Serializable
 data class ImagesExternal(
-    @SerialName("backdrops") val backdrops: List<BackdropExternal>?
+    @SerialName("backdrops") val backdrops: List<ImageExternal>?,
+    @SerialName("posters") val posters: List<ImageExternal>?
 )
 
 @Serializable
-data class BackdropExternal(
+data class ImageExternal(
     @SerialName("file_path") val path: String?
 )

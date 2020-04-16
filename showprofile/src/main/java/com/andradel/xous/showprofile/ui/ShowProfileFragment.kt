@@ -90,7 +90,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     }
 
     private fun setupShow(show: BaseShow) {
-        backdropAdapter.submitList(listOf(show.backdropUrl))
+        if (show.backdropUrl != null) backdropAdapter.submitList(listOf(show.backdropUrl))
         poster.loadWithFade(show.posterUrl)
         toolbar.title = show.name
         poster.setOnClickListener {

@@ -1,8 +1,10 @@
 package com.andradel.xous.showprofile.model
 
+import com.andradel.xous.common_models.ImageSize
 import com.andradel.xous.common_models.external.GeneralShowsResponseExternal
 import com.andradel.xous.common_models.orFalse
 import com.andradel.xous.common_models.orZero
+import com.andradel.xous.common_models.toImagePath
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -23,14 +25,15 @@ data class FullShowExternal(
     @SerialName("type") val type: String?,
     @SerialName("vote_average") val rating: Float?,
     @SerialName("similar") val similarShows: GeneralShowsResponseExternal,
-    @SerialName("seasons") val seasons: List<SeasonExternal>?
+    @SerialName("seasons") val seasons: List<SeasonExternal>?,
+    @SerialName("images") val images: ImagesExternal
 ) {
     fun toInternal(): FullShow =
         FullShow(
             id = id.orZero(),
             name = name.orEmpty(),
-            backdropPath = backdropPath,
-            posterPath = posterPath,
+            backdropUrl = backdropPath.toImagePath(ImageSize.Backdrop.Medium),
+            posterUrl = posterPath.toImagePath(ImageSize.Poster.Medium),
             createdBy = createdBy.orEmpty().map { it.toInternal() },
             firstAired = firstAired.orEmpty(),
             lastAired = lastAired.orEmpty(),
@@ -42,7 +45,10 @@ data class FullShowExternal(
             type = type.orEmpty(),
             rating = rating.orZero(),
             similarShows = similarShows.toInternal(),
-            seasons = seasons.orEmpty().map { it.toInternal() }
+            seasons = seasons.orEmpty().map { it.toInternal() },
+            backdrops = images.backdrops.orEmpty().mapNotNull {
+                it.path.orEmpty().toImagePath(ImageSize.Backdrop.Medium)
+            }
         )
 }
 
@@ -56,7 +62,7 @@ data class CreatorExternal(
         Creator(
             id = id.orZero(),
             name = name.orEmpty(),
-            profilePath = profilePath
+            profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium)
         )
 }
 
@@ -73,8 +79,18 @@ data class SeasonExternal(
         id = id.orZero(),
         number = number.orZero(),
         name = name.orEmpty(),
-        posterPath = posterPath.orEmpty(),
+        posterUrl = posterPath.toImagePath(ImageSize.Poster.Medium),
         numberOfEpisodes = numberOfEpisodes.orZero(),
         overview = overview.orEmpty()
     )
 }
+
+@Serializable
+data class ImagesExternal(
+    @SerialName("backdrops") val backdrops: List<BackdropExternal>?
+)
+
+@Serializable
+data class BackdropExternal(
+    @SerialName("file_path") val path: String?
+)

@@ -1,8 +1,6 @@
 package com.andradel.xous.common_models.internal
 
 import android.os.Parcelable
-import com.andradel.xous.common_models.ImageSize
-import com.andradel.xous.common_models.toImagePath
 import kotlinx.android.parcel.Parcelize
 
 data class GeneralShowsResponse(
@@ -16,8 +14,8 @@ data class GeneralShowsResponse(
 data class Show(
     override val id: Int,
     override val name: String,
-    override val posterPath: String?,
-    override val backdropPath: String?,
+    override val posterUrl: String?,
+    override val backdropUrl: String?,
     override val overview: String,
     override val firstAired: String,
     override val rating: Float
@@ -26,15 +24,9 @@ data class Show(
 interface BaseShow {
     val id: Int
     val name: String
-    val posterPath: String?
-    val backdropPath: String?
+    val posterUrl: String?
+    val backdropUrl: String?
     val overview: String
     val firstAired: String
     val rating: Float
-
-    val posterUrl: String?
-        get() = posterPath.toImagePath(ImageSize.Poster.Medium)
-
-    val backdropUrl: String?
-        get() = backdropPath.toImagePath(ImageSize.Backdrop.Medium)
 }

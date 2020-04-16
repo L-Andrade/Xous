@@ -1,8 +1,10 @@
 package com.andradel.xous.common_models.external
 
+import com.andradel.xous.common_models.ImageSize
 import com.andradel.xous.common_models.internal.GeneralShowsResponse
 import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.common_models.orZero
+import com.andradel.xous.common_models.toImagePath
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -37,9 +39,9 @@ data class ShowExternal(
         return Show(
             id = id.orZero(),
             name = name.orEmpty(),
-            posterPath = posterPath,
+            posterUrl = posterPath.toImagePath(ImageSize.Poster.Medium),
             rating = rating.orZero(),
-            backdropPath = backdropPath,
+            backdropUrl = backdropPath.toImagePath(ImageSize.Backdrop.Medium),
             firstAired = firstAired.orEmpty(),
             overview = overview.orEmpty()
         )

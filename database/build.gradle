@@ -37,7 +37,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation libraries.appCompat
     implementation libraries.androidXCore
-    // TODO Check this better...
     api libraries.room
     implementation libraries.roomExtensions
     kapt libraries.roomAnnotations

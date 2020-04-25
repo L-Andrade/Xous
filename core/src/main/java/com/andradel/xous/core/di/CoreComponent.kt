@@ -3,7 +3,7 @@ package com.andradel.xous.core.di
 import android.app.Application
 import com.andradel.xous.core.models.Schedulers
 import com.andradel.xous.core.stringresolver.StringResolver
-import com.andradel.xous.database.daos.ShowsDao
+import com.andradel.xous.database.datasources.RecentlyViewedDataSource
 import com.andradel.xous.database.di.DatabaseModule
 import dagger.BindsInstance
 import dagger.Component
@@ -26,5 +26,5 @@ interface CoreComponent {
     fun provideTMDBRetrofit(): Retrofit
     fun provideSchedulers(): Schedulers
     fun provideStringResolver(): StringResolver
-    fun provideShowsDao(): ShowsDao
+    fun provideRecentlyViewedDataSource(): RecentlyViewedDataSource
 }

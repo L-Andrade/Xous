@@ -108,6 +108,8 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     }
 
     private fun goToGallery(clickedImage: String) {
-        goTo(ShowProfileFragmentDirections.showProfileToGallery(viewModel.images, clickedImage))
+        val images = viewModel.images
+        if (images.isNotEmpty())
+            goTo(ShowProfileFragmentDirections.showProfileToGallery(images, clickedImage))
     }
 }

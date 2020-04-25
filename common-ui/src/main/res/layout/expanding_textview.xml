@@ -19,6 +19,8 @@
         android:layout_gravity="center_horizontal"
         android:padding="8dp"
         android:text="@string/show_more"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </LinearLayout>

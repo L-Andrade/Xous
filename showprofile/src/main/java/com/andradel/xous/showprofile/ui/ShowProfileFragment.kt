@@ -69,8 +69,8 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, offset ->
             val totalScroll = appBarLayout.totalScrollRange.toFloat()
             val alpha = (totalScroll + offset) / totalScroll
-            posterCard.alpha = alpha
-            toolbar.navigationIcon?.alpha = ((1 - alpha) * 255).toInt()
+            posterCard?.alpha = alpha
+            toolbar?.navigationIcon?.alpha = ((1 - alpha) * 255).toInt()
         })
         toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
 import androidx.transition.TransitionManager.beginDelayedTransition
 import com.andradel.xous.common_ui.R
@@ -54,8 +55,8 @@ class ExpandingTextView : LinearLayout {
 
     var text: String = ""
         set(value) {
-            expandableText.text = value
-            this.post {
+            doOnLayout {
+                expandableText.text = value
                 showMoreOrLess.isVisible = expandableText.isEllipsized
             }
             field = value

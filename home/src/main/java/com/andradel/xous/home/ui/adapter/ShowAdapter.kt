@@ -48,6 +48,7 @@ class ShowAdapter(
         private val HEADER = R.layout.header_viewholder
         private val SHOW = R.layout.show_viewholder
         private val RECENTLY_VIEWED = R.layout.recently_viewed_viewholder
+
         private val diffUtils =
             object : DiffUtil.ItemCallback<ShowItem>() {
                 override fun areItemsTheSame(oldItem: ShowItem, newItem: ShowItem): Boolean =

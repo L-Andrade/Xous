@@ -4,13 +4,14 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.BaseShow
+import com.andradel.xous.common_ui.views.ExpandingTextView
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.FullShow
 
 class OverviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val overview: TextView = itemView.findViewById(R.id.overview)
+    private val overview: ExpandingTextView = itemView.findViewById(R.id.overview)
     private val rating: TextView = itemView.findViewById(R.id.rating)
     private val numberOfEpisodes: TextView = itemView.findViewById(R.id.numberOfEpisodes)
     private val numberOfSeasons: TextView = itemView.findViewById(R.id.numberOfSeasons)

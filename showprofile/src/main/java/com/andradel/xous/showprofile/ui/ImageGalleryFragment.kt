@@ -25,7 +25,7 @@ class ImageGalleryFragment : Fragment(R.layout.image_gallery_fragment) {
         backdropAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
 
         backdropAdapter.submitList(images) {
-            val currentIndex = images.indexOfFirst {
+            val currentIndex = savedInstanceState?.getInt(CURRENT_INDEX) ?: images.indexOfFirst {
                 it.split(SEPARATOR).last() == selectedImage
             }
             pager.setCurrentItem(if (currentIndex > 0) currentIndex else 0, false)
@@ -34,7 +34,13 @@ class ImageGalleryFragment : Fragment(R.layout.image_gallery_fragment) {
         pager.setPageTransformer(BackdropParallax)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(CURRENT_INDEX, pager.currentItem)
+    }
+
     companion object {
+        private const val CURRENT_INDEX = "CURRENT_INDEX"
         private const val SEPARATOR = "/"
     }
 }

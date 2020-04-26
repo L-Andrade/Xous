@@ -25,6 +25,7 @@ class ShowProfileViewModel @Inject constructor(
         get() = _message
 
     fun getDetails(show: Show) {
+        if (_details.value != null) return
         viewModelScope.launch {
             when (val details = repository.getDetails(show)) {
                 is Resource.Success -> _details.value = details.data

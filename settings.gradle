@@ -1,8 +1,0 @@
-rootProject.name='Xous'
-include ':app'
-include ':core'
-include ':home'
-include ':showprofile'
-include ':common-models'
-include ':database'
-include ':common-ui'

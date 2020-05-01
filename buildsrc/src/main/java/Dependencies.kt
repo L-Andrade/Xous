@@ -1,7 +1,6 @@
 object Versions {
     const val kotlin = "1.3.72"
     const val gradle = "3.6.3"
-
     const val appCompat = "1.1.0"
     const val androidX = "1.0.2"
     const val constraintLayout = "1.1.3"
@@ -41,10 +40,10 @@ object Libraries {
 
     object Android {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-        const val androidXCore = "androidx.core:core-ktx:${Versions.androidX}"
+        const val core = "androidx.core:core-ktx:${Versions.androidX}"
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-        const val androidXfragment = "androidx.fragment:fragment-ktx:${Versions.androidXfragment}"
+        const val fragment = "androidx.fragment:fragment-ktx:${Versions.androidXfragment}"
         const val material = "com.google.android.material:material:${Versions.material}"
 
         const val lifecycleLiveData =
@@ -63,9 +62,9 @@ object Libraries {
 
     object Room {
         const val room = "androidx.room:room-runtime:${Versions.room}"
-        const val roomAnnotations = "androidx.room:room-compiler:${Versions.room}"
-        const val roomExtensions = "androidx.room:room-ktx:${Versions.room}"
-        const val roomTesting = "androidx.room:room-testing:${Versions.room}"
+        const val annotations = "androidx.room:room-compiler:${Versions.room}"
+        const val extensions = "androidx.room:room-ktx:${Versions.room}"
+        const val testing = "androidx.room:room-testing:${Versions.room}"
     }
 
     object Network {

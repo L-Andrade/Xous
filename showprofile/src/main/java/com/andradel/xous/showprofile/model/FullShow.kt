@@ -11,7 +11,8 @@ data class FullShow(
     override val overview: String,
     override val rating: Float,
     override val firstAired: String,
-    val createdBy: List<Creator>,
+    val crew: List<CrewMember>,
+    val cast: List<CastMember>,
     val lastAired: String,
     val inProduction: Boolean,
     val numberOfEpisodes: Int,
@@ -24,11 +25,26 @@ data class FullShow(
     val allImages: List<String>
 ) : BaseShow
 
-data class Creator(
-    val id: Int,
-    val name: String,
+data class CrewMember(
+    override val id: Int,
+    override val name: String,
+    override val profileUrl: String?,
+    val job: String?,
+    val isCreator: Boolean
+) : Person
+
+data class CastMember(
+    override val id: Int,
+    override val name: String,
+    override val profileUrl: String?,
+    val character: String
+) : Person
+
+interface Person {
+    val id: Int
+    val name: String
     val profileUrl: String?
-)
+}
 
 data class Season(
     val id: Int,

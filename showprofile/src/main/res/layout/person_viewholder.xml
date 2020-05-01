@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="@dimen/material_single_spacing"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/person_default"
+        android:layout_height="@dimen/person_default"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_account_circle_24dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginVertical="@dimen/material_quarter_spacing"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/max_creator_width"
+        android:singleLine="true"
+        android:textSize="@dimen/small_text_size"
+        tools:text="Creator name" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/max_creator_width"
+        android:singleLine="true"
+        android:textSize="@dimen/small_text_size"
+        android:textStyle="italic"
+        tools:text="Title" />
+</LinearLayout>

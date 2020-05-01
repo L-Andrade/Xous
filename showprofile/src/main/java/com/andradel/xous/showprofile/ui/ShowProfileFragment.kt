@@ -43,6 +43,8 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     private val args: ShowProfileFragmentArgs by navArgs()
 
+    private val profileAdapter by lazy { ProfileViewAdapter(stringResolver, ::goToShow) }
+
     override fun onAttach(context: Context) {
         DaggerShowProfileComponent.builder().coreComponent(coreComponent).build().inject(this)
         super.onAttach(context)
@@ -83,10 +85,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     private fun setupWithDetails(fullShow: FullShow) {
         backdropAdapter.submitList(fullShow.backdrops)
-        recyclerView.apply {
-            adapter = ProfileViewAdapter(fullShow, stringResolver, ::goToShow)
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+        profileAdapter.setShow(fullShow)
     }
 
     private fun setupShow(show: BaseShow) {
@@ -98,7 +97,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         }
 
         recyclerView.apply {
-            adapter = ProfileViewAdapter(show, stringResolver, ::goToShow)
+            adapter = profileAdapter.also { it.setShow(show) }
             layoutManager = LinearLayoutManager(requireContext())
         }
     }

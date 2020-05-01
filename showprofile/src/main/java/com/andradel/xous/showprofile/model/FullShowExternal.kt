@@ -26,7 +26,8 @@ data class FullShowExternal(
     @SerialName("vote_average") val rating: Float?,
     @SerialName("similar") val similarShows: GeneralShowsResponseExternal,
     @SerialName("seasons") val seasons: List<SeasonExternal>?,
-    @SerialName("images") val images: ImagesExternal
+    @SerialName("images") val images: ImagesExternal?,
+    @SerialName("credits") val credits: CreditsExternal?
 ) {
     fun toInternal(): FullShow =
         FullShow(
@@ -34,7 +35,9 @@ data class FullShowExternal(
             name = name.orEmpty(),
             backdropUrl = backdropPath.toImagePath(ImageSize.Backdrop.Medium),
             posterUrl = posterPath.toImagePath(ImageSize.Poster.Medium),
-            createdBy = createdBy.orEmpty().map { it.toInternal() },
+            crew = createdBy.orEmpty().map { it.toInternal() } +
+                    credits?.crew.orEmpty().map { it.toInternal() },
+            cast = credits?.cast.orEmpty().sortedBy { it.order }.map { it.toInternal() },
             firstAired = firstAired.orEmpty(),
             lastAired = lastAired.orEmpty(),
             inProduction = inProduction.orFalse(),
@@ -46,16 +49,22 @@ data class FullShowExternal(
             rating = rating.orZero(),
             similarShows = similarShows.toInternal(),
             seasons = seasons.orEmpty().map { it.toInternal() },
-            backdrops = images.backdrops.orEmpty().mapNotNull {
+            backdrops = images?.backdrops.orEmpty().mapNotNull {
                 it.path.orEmpty().toImagePath(ImageSize.Backdrop.Medium)
             },
-            allImages = images.backdrops.orEmpty().mapNotNull {
+            allImages = images?.backdrops.orEmpty().mapNotNull {
                 it.path.orEmpty().toImagePath()
-            } + images.posters.orEmpty().mapNotNull {
+            } + images?.posters.orEmpty().mapNotNull {
                 it.path.orEmpty().toImagePath()
             }
         )
 }
+
+@Serializable
+data class CreditsExternal(
+    @SerialName("cast") val cast: List<CastMemberExternal>?,
+    @SerialName("crew") val crew: List<CrewMemberExternal>?
+)
 
 @Serializable
 data class CreatorExternal(
@@ -63,12 +72,47 @@ data class CreatorExternal(
     @SerialName("name") val name: String?,
     @SerialName("profile_path") val profilePath: String?
 ) {
-    fun toInternal(): Creator =
-        Creator(
+    fun toInternal(): CrewMember =
+        CrewMember(
             id = id.orZero(),
             name = name.orEmpty(),
-            profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium)
+            job = null,
+            profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium),
+            isCreator = true
         )
+}
+
+@Serializable
+data class CrewMemberExternal(
+    @SerialName("id") val id: Int?,
+    @SerialName("name") val name: String?,
+    @SerialName("profile_path") val profilePath: String?,
+    @SerialName("job") val job: String?
+) {
+    fun toInternal(): CrewMember =
+        CrewMember(
+            id = id.orZero(),
+            name = name.orEmpty(),
+            job = job.orEmpty(),
+            profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium),
+            isCreator = false
+        )
+}
+
+@Serializable
+data class CastMemberExternal(
+    @SerialName("id") val id: Int?,
+    @SerialName("name") val name: String?,
+    @SerialName("profile_path") val profilePath: String?,
+    @SerialName("character") val character: String?,
+    @SerialName("order") val order: Int?
+) {
+    fun toInternal(): CastMember = CastMember(
+        id = id.orZero(),
+        name = name.orEmpty(),
+        profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium),
+        character = character.orEmpty()
+    )
 }
 
 @Serializable

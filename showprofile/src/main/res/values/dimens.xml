@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="backdrop_height">200dp</dimen>
-    <dimen name="creator_default">60dp</dimen>
-    <dimen name="creator_viewholder_height">80dp</dimen>
+    <dimen name="person_default">60dp</dimen>
     <dimen name="season_viewholder_height">164dp</dimen>
     <dimen name="max_creator_width">90dp</dimen>
     <dimen name="indicator_height">24dp</dimen>

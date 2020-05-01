@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ShowProfileFragment">
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/backdrop_height"
             app:contentScrim="?attr/colorPrimaryDark"
@@ -20,8 +22,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/posterCard"
-                android:layout_width="@dimen/default_show_width"
-                android:layout_height="@dimen/default_show_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/material_double_spacing"
                 app:cardBackgroundColor="@android:color/transparent"
@@ -30,9 +32,10 @@
 
                 <ImageView
                     android:id="@+id/poster"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/default_show_width"
+                    android:layout_height="@dimen/default_show_height"
                     android:contentDescription="@null"
+                    android:scaleType="centerCrop"
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
             </androidx.cardview.widget.CardView>
 
@@ -66,5 +69,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:itemCount="1"
+        tools:listitem="@layout/overview_viewholder" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

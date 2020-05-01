@@ -3,6 +3,7 @@ package com.andradel.xous.core.util.extensions
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import com.andradel.xous.core.R
 import com.bumptech.glide.Glide
@@ -19,10 +20,13 @@ fun View.animateIn() {
     this.animate().alpha(1f)
 }
 
-fun ImageView.loadWithFade(url: String?) {
+fun View.getString(@StringRes id: Int) = this.resources.getString(id)
+
+// Image loading could be better
+fun ImageView.loadWithFade(url: String?, @DrawableRes placeholder: Int? = null) {
     if (url != null && url.isNotBlank()) {
         Glide.with(this).load(url)
-            .placeholder(R.color.colorAccent)
+            .placeholder(placeholder ?: R.color.colorAccent)
             .transition(withCrossFade())
             .into(this)
     } else {
@@ -30,13 +34,13 @@ fun ImageView.loadWithFade(url: String?) {
     }
 }
 
-fun ImageView.loadCircleWithFade(url: String?, @DrawableRes fallback: Int? = null) {
+fun ImageView.loadCircleWithFade(url: String?, @DrawableRes placeholder: Int? = null) {
     if (url != null && url.isNotBlank()) {
-        val base = Glide.with(this).load(url)
+        Glide.with(this).load(url)
+            .placeholder(placeholder ?: R.color.colorAccent)
             .transition(withCrossFade())
             .apply(circleCropTransform())
-
-        if (fallback == null) base.into(this) else base.fallback(fallback).into(this)
+            .into(this)
     } else {
         Glide.with(this).clear(this)
     }

@@ -12,23 +12,21 @@ import com.andradel.xous.showprofile.ui.adapter.viewholders.ListViewHolder
 import com.andradel.xous.showprofile.ui.adapter.viewholders.OverviewViewHolder
 
 class ProfileViewAdapter(
-    show: BaseShow,
-    resolver: StringResolver,
-    goToShow: (Show) -> Unit
+    private val resolver: StringResolver,
+    private val goToShow: (Show) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val data: List<ProfileItem> = buildFromFullShow(show, resolver, goToShow)
+    private val data: MutableList<ProfileItem> = mutableListOf()
 
-    private fun buildFromFullShow(
-        show: BaseShow,
-        resolver: StringResolver,
-        goToShow: (Show) -> Unit
-    ): List<ProfileItem> {
-        return when (show) {
+    fun setShow(show: BaseShow) {
+        if (data.size > 1) return
+        data.clear()
+        val newData = when (show) {
             is Show -> listOf(ProfileItem.Overview(show))
             is FullShow -> listOf(
                 ProfileItem.Overview(show),
-                ProfileItem.Content.Creators(resolver[R.string.creators], show.createdBy),
+                ProfileItem.Content.People(resolver[R.string.creators_and_crew], show.crew),
+                ProfileItem.Content.People(resolver[R.string.cast], show.cast),
                 ProfileItem.Content.Seasons(resolver[R.string.seasons], show.seasons),
                 ProfileItem.Content.SimilarShows(
                     resolver[R.string.similar_shows],
@@ -38,6 +36,8 @@ class ProfileViewAdapter(
             )
             else -> throw IllegalArgumentException("Unknown show type")
         }
+        data.addAll(newData)
+        notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int = when (data[position]) {

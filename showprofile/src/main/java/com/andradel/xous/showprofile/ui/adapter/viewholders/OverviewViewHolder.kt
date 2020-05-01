@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.BaseShow
 import com.andradel.xous.common_ui.views.ExpandingTextView
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
+import com.andradel.xous.core.util.extensions.getString
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.FullShow
 
@@ -21,7 +22,8 @@ class OverviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val c = itemView.context
         rating.text = show.rating.toString()
         firstAired.text = c.getHtmlSpannedString(R.string.first_aired, show.firstAired)
-        overview.text = show.overview
+        overview.text = if (show.overview.isNotEmpty())
+            show.overview else itemView.getString(R.string.empty_overview)
 
         if (show is FullShow) {
             numberOfSeasons.text =

@@ -18,7 +18,6 @@ dependencies {
     kapt(Libraries.daggerAnnotations)
     implementation(Libraries.Network.retrofit)
     implementation(Libraries.Network.serialization)
-    implementation(Libraries.indicator)
     implementation(project(Modules.core))
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonModels))

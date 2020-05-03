@@ -2,7 +2,6 @@ package com.andradel.xous.core.util.extensions
 
 import android.text.Spanned
 import androidx.annotation.StringRes
-import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -18,5 +17,3 @@ fun Fragment.showSnackbar(message: String, duration: Int = BaseTransientBottomBa
 
 fun Fragment.getHtmlSpannedString(@StringRes id: Int, vararg args: Any): Spanned =
     getString(id, *args).toHtmlSpan()
-
-fun String.toHtmlSpan(): Spanned = HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)

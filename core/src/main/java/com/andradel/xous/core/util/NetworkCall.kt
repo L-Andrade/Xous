@@ -4,12 +4,13 @@ import com.andradel.xous.core.R
 import com.andradel.xous.core.models.NetworkError
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.models.Resource.Companion.failed
+import com.andradel.xous.core.models.Resource.Companion.success
 import com.andradel.xous.core.stringresolver.StringResolver
 import retrofit2.HttpException
 import java.io.IOException
 
-inline fun <T> safeApiCall(resolver: StringResolver, success: () -> Resource<T>) = try {
-    success()
+inline fun <T> safeApiCall(resolver: StringResolver, call: () -> T): Resource<T> = try {
+    success(call())
 } catch (e: IOException) {
     failed(NetworkError.NoNetwork<T>(resolver[R.string.no_network_error]))
 } catch (e: HttpException) {

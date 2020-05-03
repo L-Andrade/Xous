@@ -2,6 +2,7 @@ package com.andradel.xous.showprofile.model
 
 import com.andradel.xous.common_models.ImageSize
 import com.andradel.xous.common_models.external.GeneralShowsResponseExternal
+import com.andradel.xous.common_models.internal.Season
 import com.andradel.xous.common_models.orFalse
 import com.andradel.xous.common_models.orZero
 import com.andradel.xous.common_models.toImagePath

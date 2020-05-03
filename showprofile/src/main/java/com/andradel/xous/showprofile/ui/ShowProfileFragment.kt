@@ -9,7 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.common_models.internal.BaseShow
+import com.andradel.xous.common_models.internal.Season
 import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.common_ui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.stringresolver.StringResolver
@@ -23,11 +25,10 @@ import com.andradel.xous.showprofile.model.FullShow
 import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
 import com.andradel.xous.showprofile.ui.adapter.BackdropParallax
 import com.andradel.xous.showprofile.ui.adapter.ProfileViewAdapter
-import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.show_profile_fragment.*
+import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
-class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
+class ShowProfileFragment : Fragment(R.layout.profile_fragment) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -35,15 +36,15 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     @Inject
     lateinit var stringResolver: StringResolver
 
-    private val viewModel: ShowProfileViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: ShowProfileViewModel by viewModels { viewModelFactory }
 
     private val backdropAdapter by lazy { BackdropAdapter(::goToGallery) }
 
     private val args: ShowProfileFragmentArgs by navArgs()
 
-    private val profileAdapter by lazy { ProfileViewAdapter(stringResolver, ::goToShow) }
+    private val profileAdapter by lazy {
+        ProfileViewAdapter(stringResolver, ::goToShow, ::goToSeason)
+    }
 
     override fun onAttach(context: Context) {
         DaggerShowProfileComponent.builder().coreComponent(coreComponent).build().inject(this)
@@ -68,19 +69,15 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     }
 
     private fun setupView() {
-        appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, offset ->
-            val totalScroll = appBarLayout.totalScrollRange.toFloat()
-            val alpha = (totalScroll + offset) / totalScroll
-            posterCard?.alpha = alpha
-            toolbar?.navigationIcon?.alpha = ((1 - alpha) * 255).toInt()
-        })
-        toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+        appBar.addOnOffsetChangedListener(ProfileAppBarOffsetListener)
+        toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+
+        backdropPager.apply {
+            adapter = backdropAdapter
+            setPageTransformer(BackdropParallax)
         }
-        backdropPager.adapter = backdropAdapter
-        indicator.setViewPager(backdropPager)
-        backdropAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
-        backdropPager.setPageTransformer(BackdropParallax)
+
+        indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)
     }
 
     private fun setupWithDetails(fullShow: FullShow) {
@@ -110,5 +107,9 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         val images = viewModel.images
         if (images.isNotEmpty())
             goTo(ShowProfileFragmentDirections.showProfileToGallery(images, clickedImage))
+    }
+
+    private fun goToSeason(season: Season) {
+        goTo(ShowProfileFragmentDirections.showProfileToSeason(args.show, season))
     }
 }

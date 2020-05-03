@@ -1,4 +1,4 @@
-package com.andradel.xous.showprofile.ui
+package com.andradel.xous.showprofile.ui.gallery
 
 import android.os.Bundle
 import android.view.View
@@ -25,9 +25,8 @@ class ImageGalleryFragment : Fragment(R.layout.image_gallery_fragment) {
         backdropAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
 
         backdropAdapter.submitList(images) {
-            val currentIndex = savedInstanceState?.getInt(CURRENT_INDEX) ?: images.indexOfFirst {
-                it.split(SEPARATOR).last() == selectedImage
-            }
+            val currentIndex = savedInstanceState?.getInt(CURRENT_INDEX)
+                ?: images.indexOfFirst { image -> image.split(SEPARATOR).last() == selectedImage }
             pager.setCurrentItem(if (currentIndex > 0) currentIndex else 0, false)
         }
 

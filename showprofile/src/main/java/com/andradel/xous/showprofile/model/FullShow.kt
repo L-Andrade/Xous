@@ -2,6 +2,7 @@ package com.andradel.xous.showprofile.model
 
 import com.andradel.xous.common_models.internal.BaseShow
 import com.andradel.xous.common_models.internal.GeneralShowsResponse
+import com.andradel.xous.common_models.internal.Season
 
 data class FullShow(
     override val id: Int,
@@ -45,12 +46,3 @@ interface Person {
     val name: String
     val profileUrl: String?
 }
-
-data class Season(
-    val id: Int,
-    val number: Int,
-    val name: String,
-    val posterUrl: String?,
-    val numberOfEpisodes: Int,
-    val overview: String
-)

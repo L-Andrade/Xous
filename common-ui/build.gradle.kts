@@ -12,4 +12,5 @@ dependencies {
     implementation(Libraries.Android.appCompat)
     implementation(Libraries.Android.core)
     implementation(Libraries.Android.material)
+    api(Libraries.indicator)
 }

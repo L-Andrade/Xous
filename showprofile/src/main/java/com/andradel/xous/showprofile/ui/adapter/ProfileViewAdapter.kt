@@ -3,6 +3,7 @@ package com.andradel.xous.showprofile.ui.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.BaseShow
+import com.andradel.xous.common_models.internal.Season
 import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.extensions.inflate
@@ -13,7 +14,8 @@ import com.andradel.xous.showprofile.ui.adapter.viewholders.OverviewViewHolder
 
 class ProfileViewAdapter(
     private val resolver: StringResolver,
-    private val goToShow: (Show) -> Unit
+    private val goToShow: (Show) -> Unit,
+    private val goToSeason: (Season) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val data: MutableList<ProfileItem> = mutableListOf()
@@ -27,7 +29,7 @@ class ProfileViewAdapter(
                 ProfileItem.Overview(show),
                 ProfileItem.Content.People(resolver[R.string.creators_and_crew], show.crew),
                 ProfileItem.Content.People(resolver[R.string.cast], show.cast),
-                ProfileItem.Content.Seasons(resolver[R.string.seasons], show.seasons),
+                ProfileItem.Content.Seasons(resolver[R.string.seasons], show.seasons, goToSeason),
                 ProfileItem.Content.SimilarShows(
                     resolver[R.string.similar_shows],
                     show.similarShows.items,

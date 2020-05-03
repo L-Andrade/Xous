@@ -1,30 +1,19 @@
 package com.andradel.xous.showprofile.ui.adapter.subadapters
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.andradel.xous.common_models.internal.Season
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.showprofile.R
-import com.andradel.xous.showprofile.model.Season
 import com.andradel.xous.showprofile.ui.adapter.viewholders.SeasonViewHolder
 
-class SeasonAdapter() : ListAdapter<Season, SeasonViewHolder>(diffUtils) {
+class SeasonAdapter(
+    private val goToSeason: (Season) -> Unit
+) : ListAdapter<Season, SeasonViewHolder>(SeasonDiffUtils) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonViewHolder =
-        SeasonViewHolder(
-            parent.context.inflate(R.layout.season_viewholder, parent)
-        )
+        SeasonViewHolder(parent.context.inflate(R.layout.season_viewholder, parent))
 
     override fun onBindViewHolder(holder: SeasonViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
-
-    companion object {
-        private val diffUtils = object : DiffUtil.ItemCallback<Season>() {
-            override fun areItemsTheSame(oldItem: Season, newItem: Season): Boolean =
-                oldItem.id == newItem.id
-
-            override fun areContentsTheSame(oldItem: Season, newItem: Season): Boolean =
-                oldItem == newItem
-        }
+        holder.bind(getItem(position), goToSeason)
     }
 }

@@ -8,5 +8,8 @@ data class SeasonDetails(
 
 data class Episode(
     val id: Int,
+    val name: String,
+    val overview: String,
+    val stillUrl: String?,
     val rating: Float
 )

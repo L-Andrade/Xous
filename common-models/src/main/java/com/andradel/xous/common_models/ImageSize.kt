@@ -19,7 +19,15 @@ sealed class ImageSize(val size: String) {
         object Big : Profile("h632")
     }
 
+    sealed class Still(size: String) : ImageSize(size) {
+        object Small : Still("w92")
+        object Medium : Still("w185")
+        object Big : Still("w300")
+    }
+
     object Original : ImageSize("original")
+
+    override fun toString(): String = size
 
     companion object {
         const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/"
@@ -27,4 +35,4 @@ sealed class ImageSize(val size: String) {
 }
 
 fun String?.toImagePath(size: ImageSize = ImageSize.Original): String? =
-    if (this == null || this.isBlank()) null else "${ImageSize.BASE_IMAGE_URL}${size.size}$this"
+    if (this == null || this.isBlank()) null else "${ImageSize.BASE_IMAGE_URL}$size$this"

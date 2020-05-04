@@ -26,7 +26,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_stars_black_24dp"
-        android:drawableTint="?attr/colorControlNormal"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/numberOfSeasons"
         app:layout_constraintHorizontal_weight="0.6"

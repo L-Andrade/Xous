@@ -1,6 +1,10 @@
 package com.andradel.xous.home.ui
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
@@ -56,7 +60,7 @@ class HomeViewModel @Inject constructor(
             }
         }.onCompletion {
             _loading.value = false
-            _showEmpty.value = currentItems.isEmpty()
+            _showEmpty.value = currentItems.size <= 1
         }.launchIn(viewModelScope)
     }
 

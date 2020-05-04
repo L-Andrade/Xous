@@ -86,9 +86,10 @@ class ShowProfileFragment : Fragment(R.layout.profile_fragment) {
         toolbar.title = show.name
         poster.setOnClickListener { goToGallery(show.posterUrl.orEmpty()) }
 
-        when (show) {
-            is Show -> backdropAdapter.submitList(listOf(show.backdropUrl))
-            is FullShow -> backdropAdapter.submitList(show.backdrops)
+        when {
+            show is Show && show.backdropUrl != null ->
+                backdropAdapter.submitList(listOf(show.backdropUrl))
+            show is FullShow -> backdropAdapter.submitList(show.backdrops)
         }
     }
 

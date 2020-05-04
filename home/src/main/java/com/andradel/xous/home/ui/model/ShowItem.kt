@@ -1,20 +1,13 @@
 package com.andradel.xous.home.ui.model
 
 import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.core.util.diffs.Item
 
-sealed class ShowItem {
-    abstract val id: String
+sealed class ShowItem(override val id: String) : Item {
 
-    data class Header(val title: String) : ShowItem() {
-        override val id = title
-    }
+    data class Header(val title: String) : ShowItem(title)
 
-    data class Item(val title: String, val show: Show) : ShowItem() {
-        // Because there might be shows in two different categories
-        override val id = "$title${show.id}"
-    }
+    data class Item(val title: String, val show: Show) : ShowItem("$title${show.id}")
 
-    object RecentlyViewedList : ShowItem() {
-        override val id: String = "RECENTLY_VIEWED"
-    }
+    object RecentlyViewedList : ShowItem("RECENTLY_VIEWED")
 }

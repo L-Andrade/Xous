@@ -10,5 +10,6 @@ data class Season(
     val name: String,
     val posterUrl: String?,
     val numberOfEpisodes: Int,
-    val overview: String
+    val overview: String,
+    val firstAired: String
 ) : Parcelable

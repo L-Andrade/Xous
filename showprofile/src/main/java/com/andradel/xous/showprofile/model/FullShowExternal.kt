@@ -123,7 +123,8 @@ data class SeasonExternal(
     @SerialName("name") val name: String?,
     @SerialName("poster_path") val posterPath: String?,
     @SerialName("episode_count") val numberOfEpisodes: Int?,
-    @SerialName("overview") val overview: String?
+    @SerialName("overview") val overview: String?,
+    @SerialName("air_date") val firstAired: String?
 ) {
     fun toInternal(): Season = Season(
         id = id.orZero(),
@@ -131,7 +132,8 @@ data class SeasonExternal(
         name = name.orEmpty(),
         posterUrl = posterPath.toImagePath(ImageSize.Poster.Medium),
         numberOfEpisodes = numberOfEpisodes.orZero(),
-        overview = overview.orEmpty()
+        overview = overview.orEmpty(),
+        firstAired = firstAired.orEmpty()
     )
 }
 

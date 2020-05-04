@@ -1,17 +1,17 @@
 package com.andradel.xous.home.ui.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.core.util.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.home.R
 import com.andradel.xous.home.ui.model.ShowItem
 
 class ShowAdapter(
     private val goToShow: (Show) -> Unit
-) : ListAdapter<ShowItem, RecyclerView.ViewHolder>(diffUtils) {
+) : ListAdapter<ShowItem, RecyclerView.ViewHolder>(ItemDiffUtils<ShowItem>()) {
 
     private val recentlyViewedAdapter = RecentlyViewedAdapter(goToShow)
 
@@ -48,14 +48,5 @@ class ShowAdapter(
         private val HEADER = R.layout.header_viewholder
         private val SHOW = R.layout.show_viewholder
         private val RECENTLY_VIEWED = R.layout.recently_viewed_viewholder
-
-        private val diffUtils =
-            object : DiffUtil.ItemCallback<ShowItem>() {
-                override fun areItemsTheSame(oldItem: ShowItem, newItem: ShowItem): Boolean =
-                    oldItem.id == newItem.id
-
-                override fun areContentsTheSame(oldItem: ShowItem, newItem: ShowItem): Boolean =
-                    oldItem == newItem
-            }
     }
 }

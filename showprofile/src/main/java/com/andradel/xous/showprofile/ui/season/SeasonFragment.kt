@@ -14,11 +14,14 @@ import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.loadWithFade
+import com.andradel.xous.core.util.extensions.observe
+import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
 import com.andradel.xous.showprofile.ui.ProfileAppBarOffsetListener
 import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
 import com.andradel.xous.showprofile.ui.adapter.BackdropParallax
+import com.andradel.xous.showprofile.ui.season.adapter.SeasonProfileAdapter
 import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
@@ -28,6 +31,8 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val backdropAdapter by lazy { BackdropAdapter(::goToGallery) }
+
+    private val seasonProfileAdapter by lazy { SeasonProfileAdapter() }
 
     private val viewModel: SeasonViewModel by viewModels { viewModelFactory }
 
@@ -40,8 +45,15 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val season = args.season
+
         setupView()
-        setupSeason(args.season)
+        setupSeason(season)
+        viewModel.getDetails(args.show, season)
+
+        observe(viewModel.details) { seasonProfileAdapter.setSeason(season, it) }
+
+        observe(viewModel.message) { showSnackbar(it) }
     }
 
     private fun setupSeason(season: Season) {
@@ -50,11 +62,7 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
         poster.setOnClickListener {
             goToGallery(season.posterUrl.orEmpty())
         }
-
-        recyclerView.apply {
-            // adapter = profileAdapter.also { it.setShow(show) }
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+        seasonProfileAdapter.setSeason(season)
     }
 
     private fun setupView() {
@@ -67,6 +75,11 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
         }
 
         indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)
+
+        recyclerView.apply {
+            adapter = seasonProfileAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 
     private fun goToGallery(clickedImage: String) {

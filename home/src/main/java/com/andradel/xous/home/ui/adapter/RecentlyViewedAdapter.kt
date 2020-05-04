@@ -19,13 +19,12 @@ class RecentlyViewedAdapter(
     }
 
     companion object {
-        private val diffUtils =
-            object : DiffUtil.ItemCallback<Show>() {
-                override fun areItemsTheSame(oldItem: Show, newItem: Show): Boolean =
-                    oldItem.id == newItem.id
+        private val diffUtils = object : DiffUtil.ItemCallback<Show>() {
+            override fun areItemsTheSame(oldItem: Show, newItem: Show): Boolean =
+                oldItem.id == newItem.id
 
-                override fun areContentsTheSame(oldItem: Show, newItem: Show): Boolean =
-                    oldItem == newItem
-            }
+            override fun areContentsTheSame(oldItem: Show, newItem: Show): Boolean =
+                oldItem == newItem
+        }
     }
 }

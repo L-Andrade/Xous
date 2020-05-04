@@ -56,16 +56,11 @@ class ShowProfileFragment : Fragment(R.layout.profile_fragment) {
 
         val show = args.show
         setupView()
-        setupShow(show)
         viewModel.getDetails(show)
 
-        observe(viewModel.details) {
-            setupWithDetails(it)
-        }
+        observe(viewModel.show) { setupShow(it) }
 
-        observe(viewModel.message) {
-            showSnackbar(it)
-        }
+        observe(viewModel.message) { showSnackbar(it) }
     }
 
     private fun setupView() {
@@ -78,24 +73,22 @@ class ShowProfileFragment : Fragment(R.layout.profile_fragment) {
         }
 
         indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)
-    }
 
-    private fun setupWithDetails(fullShow: FullShow) {
-        backdropAdapter.submitList(fullShow.backdrops)
-        profileAdapter.setShow(fullShow)
+        recyclerView.apply {
+            adapter = profileAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 
     private fun setupShow(show: BaseShow) {
-        if (show.backdropUrl != null) backdropAdapter.submitList(listOf(show.backdropUrl))
+        profileAdapter.setShow(show)
         poster.loadWithFade(show.posterUrl)
         toolbar.title = show.name
-        poster.setOnClickListener {
-            goToGallery(show.posterUrl.orEmpty())
-        }
+        poster.setOnClickListener { goToGallery(show.posterUrl.orEmpty()) }
 
-        recyclerView.apply {
-            adapter = profileAdapter.also { it.setShow(show) }
-            layoutManager = LinearLayoutManager(requireContext())
+        when (show) {
+            is Show -> backdropAdapter.submitList(listOf(show.backdropUrl))
+            is FullShow -> backdropAdapter.submitList(show.backdrops)
         }
     }
 

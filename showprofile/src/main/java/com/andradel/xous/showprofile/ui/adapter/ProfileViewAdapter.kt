@@ -1,11 +1,13 @@
 package com.andradel.xous.showprofile.ui.adapter
 
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.common_models.internal.BaseShow
 import com.andradel.xous.common_models.internal.Season
 import com.andradel.xous.common_models.internal.Show
 import com.andradel.xous.core.stringresolver.StringResolver
+import com.andradel.xous.core.util.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.FullShow
@@ -16,14 +18,10 @@ class ProfileViewAdapter(
     private val resolver: StringResolver,
     private val goToShow: (Show) -> Unit,
     private val goToSeason: (Season) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val data: MutableList<ProfileItem> = mutableListOf()
+) : ListAdapter<ProfileItem, RecyclerView.ViewHolder>(ItemDiffUtils<ProfileItem>()) {
 
     fun setShow(show: BaseShow) {
-        if (data.size > 1) return
-        data.clear()
-        val newData = when (show) {
+        val list = when (show) {
             is Show -> listOf(ProfileItem.Overview(show))
             is FullShow -> listOf(
                 ProfileItem.Overview(show),
@@ -38,11 +36,10 @@ class ProfileViewAdapter(
             )
             else -> throw IllegalArgumentException("Unknown show type")
         }
-        data.addAll(newData)
-        notifyDataSetChanged()
+        submitList(list)
     }
 
-    override fun getItemViewType(position: Int): Int = when (data[position]) {
+    override fun getItemViewType(position: Int): Int = when (getItem(position)) {
         is ProfileItem.Overview -> OVERVIEW
         is ProfileItem.Content -> LIST
     }
@@ -56,10 +53,8 @@ class ProfileViewAdapter(
         }
     }
 
-    override fun getItemCount(): Int = data.size
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         when {
             holder is OverviewViewHolder -> holder.bind((item as ProfileItem.Overview).show)
             holder is ListViewHolder && item is ProfileItem.Content -> holder.bind(

@@ -3,6 +3,7 @@ package com.andradel.xous.showprofile.model
 import com.andradel.xous.common_models.internal.BaseShow
 import com.andradel.xous.common_models.internal.GeneralShowsResponse
 import com.andradel.xous.common_models.internal.Season
+import com.andradel.xous.core.util.diffs.Item
 
 data class FullShow(
     override val id: Int,
@@ -41,8 +42,8 @@ data class CastMember(
     val character: String
 ) : Person
 
-interface Person {
-    val id: Int
+interface Person : Item {
+    override val id: Int
     val name: String
     val profileUrl: String?
 }

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/default_show_width"
     android:layout_height="@dimen/default_show_height"
-    android:layout_marginHorizontal="@dimen/material_quarter_spacing"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_marginHorizontal="@dimen/material_quarter_spacing">
 
     <ImageView
         android:id="@+id/poster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
+        android:foreground="?attr/selectableItemBackground"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 </FrameLayout>

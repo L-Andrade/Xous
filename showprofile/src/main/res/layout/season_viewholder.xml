@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_show_height"
         android:contentDescription="@null"
+        android:foreground="?attr/selectableItemBackground"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView

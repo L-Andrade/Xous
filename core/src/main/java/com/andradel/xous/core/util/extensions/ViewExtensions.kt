@@ -23,25 +23,27 @@ fun View.animateIn() {
 fun View.getString(@StringRes id: Int) = this.resources.getString(id)
 
 // Image loading could be better
-fun ImageView.loadWithFade(url: String?, @DrawableRes placeholder: Int? = null) {
-    if (url != null && url.isNotBlank()) {
-        Glide.with(this).load(url)
-            .placeholder(placeholder ?: R.color.colorAccent)
-            .transition(withCrossFade())
-            .into(this)
-    } else {
-        Glide.with(this).clear(this)
-    }
+fun ImageView.loadWithFade(
+    url: String?,
+    @DrawableRes placeholder: Int = R.color.colorAccent,
+    @DrawableRes error: Int = placeholder
+) {
+    Glide.with(this).load(url)
+        .placeholder(placeholder)
+        .error(error)
+        .transition(withCrossFade())
+        .into(this)
 }
 
-fun ImageView.loadCircleWithFade(url: String?, @DrawableRes placeholder: Int? = null) {
-    if (url != null && url.isNotBlank()) {
-        Glide.with(this).load(url)
-            .placeholder(placeholder ?: R.color.colorAccent)
-            .transition(withCrossFade())
-            .apply(circleCropTransform())
-            .into(this)
-    } else {
-        Glide.with(this).clear(this)
-    }
+fun ImageView.loadCircleWithFade(
+    url: String?,
+    @DrawableRes placeholder: Int = R.color.colorAccent,
+    @DrawableRes error: Int = placeholder
+) {
+    Glide.with(this).load(url)
+        .placeholder(placeholder)
+        .error(error)
+        .transition(withCrossFade())
+        .apply(circleCropTransform())
+        .into(this)
 }

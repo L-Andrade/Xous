@@ -14,7 +14,7 @@ class SeasonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val seasonPoster: ImageView = itemView.findViewById(R.id.seasonPoster)
 
     fun bind(season: Season, goToSeason: (Season) -> Unit) {
-        itemView.setOnClickListener {
+        seasonPoster.setOnClickListener {
             goToSeason(season)
         }
         seasonName.text = season.name

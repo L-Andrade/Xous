@@ -10,51 +10,57 @@
         android:label="home_fragment">
         <action
             android:id="@+id/homeToShowProfile"
-            app:destination="@id/showProfileFragment" />
+            app:destination="@id/showProfile">
+            <argument
+                android:name="show"
+                app:argType="com.andradel.xous.commonmodels.internal.Show" />
+        </action>
     </fragment>
 
-    <fragment
-        android:id="@+id/showProfileFragment"
-        android:name="com.andradel.xous.showprofile.ui.ShowProfileFragment"
-        android:label="show_profile_fragment">
-        <argument
-            android:name="show"
-            app:argType="com.andradel.xous.commonmodels.internal.Show" />
-        <action
-            android:id="@+id/showProfileToShowProfile"
-            app:destination="@id/showProfileFragment" />
-        <action
-            android:id="@+id/showProfileToGallery"
-            app:destination="@id/galleryFragment" />
-        <action
-            android:id="@+id/showProfileToSeason"
-            app:destination="@id/seasonFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/galleryFragment"
-        android:name="com.andradel.xous.showprofile.ui.gallery.ImageGalleryFragment"
-        android:label="gallery_fragment">
-        <argument
-            android:name="images"
-            app:argType="string[]" />
-        <argument
-            android:name="selectedImage"
-            app:argType="string" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/seasonFragment"
-        android:name="com.andradel.xous.showprofile.ui.season.SeasonFragment"
-        android:label="season_fragment">
-        <argument
-            android:name="show"
-            app:argType="com.andradel.xous.commonmodels.internal.Show" />
-        <argument
-            android:name="season"
-            app:argType="com.andradel.xous.commonmodels.internal.Season" />
-        <action
-            android:id="@+id/seasonToGallery"
-            app:destination="@id/galleryFragment" />
-    </fragment>
+    <navigation
+        android:id="@+id/showProfile"
+        app:startDestination="@id/showProfileFragment">
+        <fragment
+            android:id="@+id/showProfileFragment"
+            android:name="com.andradel.xous.showprofile.ui.ShowProfileFragment"
+            android:label="show_profile_fragment">
+            <argument
+                android:name="show"
+                app:argType="com.andradel.xous.commonmodels.internal.Show" />
+            <action
+                android:id="@+id/showProfileToShowProfile"
+                app:destination="@id/showProfileFragment" />
+            <action
+                android:id="@+id/showProfileToGallery"
+                app:destination="@id/galleryFragment" />
+            <action
+                android:id="@+id/showProfileToSeason"
+                app:destination="@id/seasonFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/galleryFragment"
+            android:name="com.andradel.xous.showprofile.ui.gallery.ImageGalleryFragment"
+            android:label="gallery_fragment">
+            <argument
+                android:name="images"
+                app:argType="string[]" />
+            <argument
+                android:name="selectedImage"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/seasonFragment"
+            android:name="com.andradel.xous.showprofile.ui.season.SeasonFragment"
+            android:label="season_fragment">
+            <argument
+                android:name="show"
+                app:argType="com.andradel.xous.commonmodels.internal.Show" />
+            <argument
+                android:name="season"
+                app:argType="com.andradel.xous.commonmodels.internal.Season" />
+            <action
+                android:id="@+id/seasonToGallery"
+                app:destination="@id/galleryFragment" />
+        </fragment>
+    </navigation>
 </navigation>

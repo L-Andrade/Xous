@@ -27,8 +27,8 @@ object Versions {
 object Modules {
     const val app = ":app"
     const val core = ":core"
-    const val commonModels = ":common-models"
-    const val commonUi = ":common-ui"
+    const val commonModels = ":commonmodels"
+    const val commonUi = ":commonui"
     const val db = ":database"
 
     // Features

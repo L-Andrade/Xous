@@ -2,8 +2,8 @@ package com.andradel.xous.database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.andradel.xous.common_models.internal.Show
-import java.util.*
+import com.andradel.xous.commonmodels.internal.Show
+import java.util.Date
 
 @Entity(tableName = "shows")
 internal data class ShowDomain(

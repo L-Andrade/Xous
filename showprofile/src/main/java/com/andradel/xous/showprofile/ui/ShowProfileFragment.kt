@@ -8,10 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.andradel.xous.common_models.internal.BaseShow
-import com.andradel.xous.common_models.internal.Season
-import com.andradel.xous.common_models.internal.Show
-import com.andradel.xous.common_ui.indicator.setViewPagerAndAdapter
+import com.andradel.xous.commonmodels.internal.BaseShow
+import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.stringresolver.StringResolver

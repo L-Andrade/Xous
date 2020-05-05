@@ -11,7 +11,7 @@ object Config {
         "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
     )
 
-    // Flavors
+    // Variants
     const val release = "release"
     const val debug = "debug"
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andradel.xous.common_models.internal.BaseShow
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.BaseShow
+import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
 import com.andradel.xous.showprofile.model.FullShow
@@ -38,5 +38,4 @@ class ShowProfileViewModel @Inject constructor(
 
     val images: Array<String>
         get() = ((_show.value as? FullShow)?.allImages.orEmpty()).toTypedArray()
-
 }

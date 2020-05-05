@@ -8,8 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.andradel.xous.common_models.internal.Season
-import com.andradel.xous.common_ui.indicator.setViewPagerAndAdapter
+import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.goTo
@@ -83,8 +83,8 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun goToGallery(clickedImage: String) {
-        //val images = viewModel.images
-        //if (images.isNotEmpty())
+        // val images = viewModel.images
+        // if (images.isNotEmpty())
         goTo(SeasonFragmentDirections.seasonToGallery(arrayOf(), clickedImage))
     }
 }

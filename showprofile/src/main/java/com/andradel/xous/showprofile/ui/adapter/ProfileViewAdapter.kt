@@ -3,9 +3,9 @@ package com.andradel.xous.showprofile.ui.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.common_models.internal.BaseShow
-import com.andradel.xous.common_models.internal.Season
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.BaseShow
+import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate

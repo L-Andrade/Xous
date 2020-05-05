@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
 import com.andradel.xous.home.repo.HomeRepository

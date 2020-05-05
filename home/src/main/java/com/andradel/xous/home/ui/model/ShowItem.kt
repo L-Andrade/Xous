@@ -1,6 +1,6 @@
 package com.andradel.xous.home.ui.model
 
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.util.diffs.Item
 
 sealed class ShowItem(override val id: String) : Item {

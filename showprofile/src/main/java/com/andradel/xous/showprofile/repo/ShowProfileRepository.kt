@@ -1,7 +1,7 @@
 package com.andradel.xous.showprofile.repo
 
-import com.andradel.xous.common_models.internal.Season
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.database.datasources.RecentlyViewedDataSource
 import com.andradel.xous.showprofile.model.FullShow

@@ -5,7 +5,7 @@ include(
     ":core",
     ":home",
     ":showprofile",
-    ":common-models",
+    ":commonmodels",
     ":database",
-    ":common-ui"
+    ":commonui"
 )

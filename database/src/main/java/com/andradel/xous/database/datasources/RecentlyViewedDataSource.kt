@@ -1,6 +1,6 @@
 package com.andradel.xous.database.datasources
 
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.Show
 import kotlinx.coroutines.flow.Flow
 
 interface RecentlyViewedDataSource {

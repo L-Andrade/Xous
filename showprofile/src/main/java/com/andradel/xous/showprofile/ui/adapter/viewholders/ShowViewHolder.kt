@@ -3,7 +3,7 @@ package com.andradel.xous.showprofile.ui.adapter.viewholders
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.common_models.internal.Show
+import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.showprofile.R
 

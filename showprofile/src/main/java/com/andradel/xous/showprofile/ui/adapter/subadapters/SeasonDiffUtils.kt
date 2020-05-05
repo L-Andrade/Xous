@@ -1,8 +1,7 @@
 package com.andradel.xous.showprofile.ui.adapter.subadapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.andradel.xous.common_models.internal.Season
-
+import com.andradel.xous.commonmodels.internal.Season
 
 object SeasonDiffUtils : DiffUtil.ItemCallback<Season>() {
     override fun areItemsTheSame(oldItem: Season, newItem: Season): Boolean =

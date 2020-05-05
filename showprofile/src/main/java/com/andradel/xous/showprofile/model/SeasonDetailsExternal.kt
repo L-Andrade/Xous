@@ -1,8 +1,8 @@
 package com.andradel.xous.showprofile.model
 
-import com.andradel.xous.common_models.ImageSize
-import com.andradel.xous.common_models.orZero
-import com.andradel.xous.common_models.toImagePath
+import com.andradel.xous.commonmodels.ImageSize
+import com.andradel.xous.commonmodels.orZero
+import com.andradel.xous.commonmodels.toImagePath
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

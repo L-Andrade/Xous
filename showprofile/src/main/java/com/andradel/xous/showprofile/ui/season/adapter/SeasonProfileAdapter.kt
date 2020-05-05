@@ -3,7 +3,7 @@ package com.andradel.xous.showprofile.ui.season.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.common_models.internal.Season
+import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.core.util.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.showprofile.R

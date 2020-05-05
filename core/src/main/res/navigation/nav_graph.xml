@@ -19,7 +19,7 @@
         android:label="show_profile_fragment">
         <argument
             android:name="show"
-            app:argType="com.andradel.xous.common_models.internal.Show" />
+            app:argType="com.andradel.xous.commonmodels.internal.Show" />
         <action
             android:id="@+id/showProfileToShowProfile"
             app:destination="@id/showProfileFragment" />
@@ -49,10 +49,10 @@
         android:label="season_fragment">
         <argument
             android:name="show"
-            app:argType="com.andradel.xous.common_models.internal.Show" />
+            app:argType="com.andradel.xous.commonmodels.internal.Show" />
         <argument
             android:name="season"
-            app:argType="com.andradel.xous.common_models.internal.Season" />
+            app:argType="com.andradel.xous.commonmodels.internal.Season" />
         <action
             android:id="@+id/seasonToGallery"
             app:destination="@id/galleryFragment" />

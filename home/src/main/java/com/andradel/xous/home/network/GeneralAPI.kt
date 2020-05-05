@@ -1,6 +1,6 @@
 package com.andradel.xous.home.network
 
-import com.andradel.xous.common_models.external.GeneralShowsResponseExternal
+import com.andradel.xous.commonmodels.external.GeneralShowsResponseExternal
 import retrofit2.http.GET
 
 interface GeneralAPI {

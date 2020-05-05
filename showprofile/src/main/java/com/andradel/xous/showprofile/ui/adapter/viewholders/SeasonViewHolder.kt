@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.common_models.internal.Season
+import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.showprofile.R
 

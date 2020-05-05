@@ -1,6 +1,6 @@
 package com.andradel.xous.home.network
 
-import com.andradel.xous.common_models.internal.GeneralShowsResponse
+import com.andradel.xous.commonmodels.internal.GeneralShowsResponse
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.safeApiCall

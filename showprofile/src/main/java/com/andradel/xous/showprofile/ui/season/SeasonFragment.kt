@@ -9,30 +9,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.goTo
-import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
-import com.andradel.xous.showprofile.ui.ProfileAppBarOffsetListener
-import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
-import com.andradel.xous.showprofile.ui.adapter.BackdropParallax
 import com.andradel.xous.showprofile.ui.season.adapter.SeasonProfileAdapter
-import kotlinx.android.synthetic.main.profile_fragment.*
+import kotlinx.android.synthetic.main.season_fragment.*
 import javax.inject.Inject
 
-class SeasonFragment : Fragment(R.layout.profile_fragment) {
+class SeasonFragment : Fragment(R.layout.season_fragment) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val backdropAdapter by lazy { BackdropAdapter(::goToGallery) }
-
-    private val seasonProfileAdapter by lazy { SeasonProfileAdapter() }
+    private val seasonProfileAdapter by lazy { SeasonProfileAdapter(::goToGallery) }
 
     private val viewModel: SeasonViewModel by viewModels { viewModelFactory }
 
@@ -57,24 +50,12 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun setupSeason(season: Season) {
-        poster.loadWithFade(season.posterUrl)
         toolbar.title = season.name
-        poster.setOnClickListener {
-            goToGallery(season.posterUrl.orEmpty())
-        }
         seasonProfileAdapter.setSeason(season)
     }
 
     private fun setupView() {
-        appBar.addOnOffsetChangedListener(ProfileAppBarOffsetListener)
         toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
-
-        backdropPager.apply {
-            adapter = backdropAdapter
-            setPageTransformer(BackdropParallax)
-        }
-
-        indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)
 
         recyclerView.apply {
             adapter = seasonProfileAdapter
@@ -82,9 +63,8 @@ class SeasonFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun goToGallery(clickedImage: String) {
-        // val images = viewModel.images
-        // if (images.isNotEmpty())
-        goTo(SeasonFragmentDirections.seasonToGallery(arrayOf(), clickedImage))
+    private fun goToGallery(clickedImage: String?) {
+        clickedImage ?: return
+        goTo(SeasonFragmentDirections.seasonToGallery(arrayOf(clickedImage), clickedImage))
     }
 }

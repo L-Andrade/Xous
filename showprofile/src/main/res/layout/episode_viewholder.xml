@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/material_single_spacing">
+    android:layout_marginHorizontal="@dimen/material_single_spacing"
+    android:layout_marginVertical="@dimen/material_half_spacing">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/default_show_height"
-        android:foreground="?attr/selectableItemBackground">
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:alpha="0.15"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -24,17 +24,28 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha=".85"
+            android:background="?android:attr/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="#333333" />
+
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/material_single_spacing"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="@dimen/not_as_big_text_size"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/rating"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Episode name" />
+            tools:text="Episode name (1)" />
 
         <TextView
             android:id="@+id/rating"
@@ -43,7 +54,9 @@
             android:layout_margin="@dimen/material_single_spacing"
             android:drawableEnd="@drawable/ic_stars_black_24dp"
             android:drawablePadding="@dimen/material_half_spacing"
+            android:drawableTint="@color/colorPrimaryLight"
             android:gravity="center"
+            android:textColor="@color/colorPrimaryLight"
             app:layout_constraintBaseline_toBaselineOf="@id/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,9 +65,11 @@
         <TextView
             android:id="@+id/overview"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/material_single_spacing"
             android:ellipsize="end"
+            android:maxLines="5"
+            android:textColor="@color/colorPrimaryLight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

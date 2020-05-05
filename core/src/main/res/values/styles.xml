@@ -8,9 +8,20 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fontFamily">@font/font_family</item>
+        <item name="toolbarStyle">@style/XousToolbar</item>
     </style>
 
-    <style name="CollapsingToolbarLayoutExpandedTextStyle" parent="AppTheme">
+    <style name="CollapsingToolbarLayoutTextStyle" parent="AppTheme">
         <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ExpandedToolbarLayoutTextStyle" parent="AppTheme">
+        <item name="android:textColor">?android:attr/colorForegroundInverse</item>
+    </style>
+
+    <style name="XousToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="titleTextColor">?android:attr/colorForegroundInverse</item>
+        <item name="android:background">?android:attr/colorPrimary</item>
     </style>
 </resources>

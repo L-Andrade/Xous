@@ -17,8 +17,9 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/backdrop_height"
-            app:contentScrim="?android:attr/colorPrimaryDark"
-            app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
+            app:contentScrim="?android:attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutTextStyle"
+            app:collapsedTitleTextAppearance="@style/ExpandedToolbarLayoutTextStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <androidx.cardview.widget.CardView
@@ -58,10 +59,11 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
+                android:background="@null"
                 android:elevation="@dimen/material_single_spacing"
-                app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
+                app:navigationIcon="@drawable/ic_arrow_back_24dp"
+                tools:title="Title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

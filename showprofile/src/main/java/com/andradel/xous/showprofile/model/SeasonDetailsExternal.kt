@@ -22,13 +22,15 @@ data class EpisodeExternal(
     @SerialName("vote_average") val rating: Float?,
     @SerialName("name") val name: String?,
     @SerialName("still_path") val stillPath: String?,
-    @SerialName("overview") val overview: String?
+    @SerialName("overview") val overview: String?,
+    @SerialName("episode_number") val number: Int?
 ) {
     fun toInternal(): Episode = Episode(
         id = id.orZero(),
         name = name.orEmpty(),
         overview = overview.orEmpty(),
         stillUrl = stillPath.toImagePath(ImageSize.Still.Big),
-        rating = rating.orZero()
+        rating = rating.orZero(),
+        number = number.orZero()
     )
 }

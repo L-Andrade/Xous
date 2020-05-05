@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.format
+import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.Episode
@@ -18,7 +19,11 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(episode: Episode) {
         poster.loadWithFade(episode.stillUrl)
-        name.text = episode.name
+        name.text = itemView.context.getHtmlSpannedString(
+            R.string.episode_with_number,
+            episode.name,
+            episode.number
+        )
         overview.text = episode.overview
         rating.text = episode.rating.format()
     }

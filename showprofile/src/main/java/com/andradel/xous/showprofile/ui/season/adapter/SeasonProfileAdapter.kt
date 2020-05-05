@@ -8,10 +8,10 @@ import com.andradel.xous.core.util.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.SeasonDetails
-import com.andradel.xous.showprofile.ui.adapter.viewholders.OverviewViewHolder
 
-class SeasonProfileAdapter :
-    ListAdapter<SeasonItem, RecyclerView.ViewHolder>(ItemDiffUtils<SeasonItem>()) {
+class SeasonProfileAdapter(
+    private val goToGallery: (String?) -> Unit
+) : ListAdapter<SeasonItem, RecyclerView.ViewHolder>(ItemDiffUtils<SeasonItem>()) {
 
     override fun getItemViewType(position: Int): Int = when (getItem(position)) {
         is SeasonItem.Overview -> OVERVIEW
@@ -21,7 +21,7 @@ class SeasonProfileAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = parent.context.inflate(viewType, parent)
         return when (viewType) {
-            OVERVIEW -> OverviewViewHolder(view)
+            OVERVIEW -> SeasonOverviewViewHolder(view)
             EPISODE -> EpisodeViewHolder(view)
             else -> throw IllegalArgumentException("Unknown viewtype")
         }
@@ -30,7 +30,7 @@ class SeasonProfileAdapter :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         when (holder) {
-            is OverviewViewHolder -> holder.bind(item as SeasonItem.Overview)
+            is SeasonOverviewViewHolder -> holder.bind(item as SeasonItem.Overview, goToGallery)
             is EpisodeViewHolder -> holder.bind((item as SeasonItem.EpisodeItem).episode)
         }
     }
@@ -46,7 +46,7 @@ class SeasonProfileAdapter :
     }
 
     companion object {
-        private val OVERVIEW = R.layout.overview_viewholder
+        private val OVERVIEW = R.layout.season_overview_viewholder
         private val EPISODE = R.layout.episode_viewholder
     }
 }

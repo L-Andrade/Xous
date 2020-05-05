@@ -1,7 +1,7 @@
 package com.andradel.xous.showprofile.ui
 
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.profile_fragment.view.*
+import kotlinx.android.synthetic.main.show_profile_fragment.view.*
 
 object ProfileAppBarOffsetListener : AppBarLayout.OnOffsetChangedListener {
 

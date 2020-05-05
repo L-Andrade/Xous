@@ -20,7 +20,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:ellipsize="end"
         android:maxWidth="@dimen/default_show_width"
-        android:singleLine="true"
+        android:maxLines="1"
         android:textSize="@dimen/small_text_size"
         tools:text="Season name" />
 </FrameLayout>

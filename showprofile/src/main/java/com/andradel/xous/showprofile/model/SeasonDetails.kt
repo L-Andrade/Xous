@@ -11,5 +11,6 @@ data class Episode(
     val name: String,
     val overview: String,
     val stillUrl: String?,
-    val rating: Float
+    val rating: Float,
+    val number: Int
 )

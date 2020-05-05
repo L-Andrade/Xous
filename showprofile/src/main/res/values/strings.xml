@@ -3,6 +3,8 @@
     <string name="number_of_seasons"><![CDATA[<b>%d</b> seasons]]></string>
     <string name="number_of_episodes"><![CDATA[<b>%d</b> episodes]]></string>
     <string name="first_aired"><![CDATA[Aired in <b>%s</b>]]></string>
+    <string name="episode_average"><![CDATA[Episode average <b>%s</b>]]></string>
+    <string name="episode_with_number"><![CDATA[<b>%s</b> (%d)]]></string>
     <string name="overview">Overview</string>
     <string name="empty_overview">No overview available.</string>
     <string name="creators_and_crew">Creators &amp; crew</string>

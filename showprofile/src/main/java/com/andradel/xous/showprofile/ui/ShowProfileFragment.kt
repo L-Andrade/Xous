@@ -25,10 +25,10 @@ import com.andradel.xous.showprofile.model.FullShow
 import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
 import com.andradel.xous.showprofile.ui.adapter.BackdropParallax
 import com.andradel.xous.showprofile.ui.adapter.ProfileViewAdapter
-import kotlinx.android.synthetic.main.profile_fragment.*
+import kotlinx.android.synthetic.main.show_profile_fragment.*
 import javax.inject.Inject
 
-class ShowProfileFragment : Fragment(R.layout.profile_fragment) {
+class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory

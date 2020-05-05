@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/material_single_spacing">
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="@dimen/default_show_width"
+        android:layout_height="@dimen/default_show_height"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/firstAired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/material_half_spacing"
+        app:layout_constraintStart_toEndOf="@id/poster"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Aired in 10-10-2010" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/material_half_spacing"
+        android:drawableEnd="@drawable/ic_stars_black_24dp"
+        android:drawablePadding="@dimen/material_quarter_spacing"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/poster"
+        app:layout_constraintTop_toBottomOf="@id/numberOfEpisodes"
+        tools:text="Episode average 7.8"
+        tools:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/numberOfEpisodes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/material_half_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/poster"
+        app:layout_constraintTop_toBottomOf="@id/firstAired"
+        tools:text="10 episodes" />
+
+    <TextView
+        android:id="@+id/overviewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/material_single_spacing"
+        android:text="@string/overview"
+        android:textSize="@dimen/not_as_big_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/poster" />
+
+    <com.andradel.xous.commonui.views.ExpandingTextView
+        android:id="@+id/overview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/overviewTitle"
+        app:layout_constraintTop_toBottomOf="@id/overviewTitle"
+        app:maxLines="3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

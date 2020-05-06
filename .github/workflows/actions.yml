@@ -23,5 +23,11 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
+    
+    # ktlint
     - name: Kotlin Linter
       uses: vroy/gha-kotlin-linter@v2
+    
+    # detekt
+    - name: Detekt all
+      uses: natiginfo/action-detekt-all@1.8.0

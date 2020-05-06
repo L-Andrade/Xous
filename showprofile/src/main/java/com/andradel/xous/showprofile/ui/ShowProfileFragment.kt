@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.commonmodels.internal.BaseShow
 import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonui.ViewPager2ParallaxPage
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
@@ -23,7 +24,6 @@ import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
 import com.andradel.xous.showprofile.model.FullShow
 import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
-import com.andradel.xous.showprofile.ui.adapter.BackdropParallax
 import com.andradel.xous.showprofile.ui.adapter.ProfileViewAdapter
 import kotlinx.android.synthetic.main.show_profile_fragment.*
 import javax.inject.Inject
@@ -69,7 +69,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
         backdropPager.apply {
             adapter = backdropAdapter
-            setPageTransformer(BackdropParallax)
+            setPageTransformer(ViewPager2ParallaxPage(R.id.backdrop))
         }
 
         indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)

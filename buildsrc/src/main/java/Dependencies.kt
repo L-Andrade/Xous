@@ -22,6 +22,7 @@ object Versions {
     const val androidXfragment = "1.2.4"
     const val viewPager2 = "1.0.0"
     const val indicator = "2.1.4"
+    const val photoView = "2.0.0"
 }
 
 object Modules {
@@ -90,6 +91,8 @@ object Libraries {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
 
     const val indicator = "me.relex:circleindicator:${Versions.indicator}"
+
+    const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
 }
 
 object Classpaths {

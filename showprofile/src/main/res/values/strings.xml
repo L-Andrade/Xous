@@ -12,4 +12,8 @@
     <string name="creator">Creator</string>
     <string name="seasons">Seasons</string>
     <string name="cast">Cast</string>
+    <string name="want_to_download">Do you want to download this image?</string>
+    <string name="yes">Yes</string>
+    <string name="successfully_downloaded_image">Imaged downloaded successfully.</string>
+    <string name="image_download_unavailable">Image download is only supported for Android 10 :(</string>
 </resources>

@@ -3,4 +3,5 @@
     <string name="home">Home</string>
     <string name="generic_network_error">An error occurred while processing your request.</string>
     <string name="no_network_error">An error occurred. Are you connected to the internet?</string>
+    <string name="failed_image_download">Could not download image.</string>
 </resources>

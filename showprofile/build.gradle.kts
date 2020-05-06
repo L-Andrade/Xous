@@ -22,6 +22,7 @@ dependencies {
     implementation(project(Modules.commonUi))
     implementation(project(Modules.commonModels))
     implementation(project(Modules.db))
+    implementation(Libraries.photoView)
     testImplementation(Libraries.Testing.junit)
     androidTestImplementation(Libraries.Testing.androidXjunit)
     androidTestImplementation(Libraries.Testing.espresso)

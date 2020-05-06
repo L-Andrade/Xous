@@ -48,11 +48,13 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         guestStars.apply {
             adapter = castAdapter.also { it.submitList(episode.guestStars) }
             layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+            setHasFixedSize(true)
         }
 
         crew.apply {
             adapter = crewAdapter.also { it.submitList(episode.crew) }
             layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+            setHasFixedSize(true)
         }
     }
 

@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/material_single_spacing"
-    android:layout_marginVertical="@dimen/material_half_spacing">
+    android:layout_marginVertical="@dimen/material_half_spacing"
+    android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground">
@@ -18,7 +20,7 @@
             android:layout_height="0dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/overview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,17 +31,17 @@
             android:layout_height="0dp"
             android:alpha=".85"
             android:background="?android:attr/colorPrimaryDark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/poster"
+            app:layout_constraintEnd_toEndOf="@id/poster"
+            app:layout_constraintStart_toStartOf="@id/poster"
+            app:layout_constraintTop_toTopOf="@id/poster"
             tools:background="#333333" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/material_single_spacing"
+            android:padding="@dimen/material_single_spacing"
             android:textColor="@color/colorPrimaryLight"
             android:textSize="@dimen/not_as_big_text_size"
             app:layout_constraintEnd_toStartOf="@id/rating"
@@ -51,7 +53,7 @@
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/material_single_spacing"
+            android:padding="@dimen/material_single_spacing"
             android:drawableEnd="@drawable/ic_stars_black_24dp"
             android:drawablePadding="@dimen/material_half_spacing"
             android:drawableTint="@color/colorPrimaryLight"
@@ -66,15 +68,52 @@
             android:id="@+id/overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/material_single_spacing"
+            android:padding="@dimen/material_single_spacing"
             android:ellipsize="end"
-            android:maxLines="5"
+            android:maxLines="@integer/episode_max_lines"
             android:textColor="@color/colorPrimaryLight"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name"
             tools:text="@tools:sample/lorem/random" />
+
+        <LinearLayout
+            android:id="@+id/extraInfoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/overview">
+
+            <TextView
+                android:id="@+id/guestStarsHeader"
+                style="@style/HeaderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guest_stars" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/guestStars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_half_spacing"
+                tools:itemCount="1"
+                tools:listitem="@layout/person_viewholder" />
+
+            <TextView
+                android:id="@+id/crewHeader"
+                style="@style/HeaderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/crew" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/crew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_half_spacing"
+                tools:itemCount="1"
+                tools:listitem="@layout/person_viewholder" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

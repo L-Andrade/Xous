@@ -25,7 +25,12 @@ class SeasonFragment : Fragment(R.layout.season_fragment) {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val seasonProfileAdapter by lazy { SeasonProfileAdapter(::goToGallery) }
+    private val seasonProfileAdapter by lazy {
+        SeasonProfileAdapter(
+            ::goToGallery,
+            viewModel::expandEpisode
+        )
+    }
 
     private val viewModel: SeasonViewModel by viewModels { viewModelFactory }
 

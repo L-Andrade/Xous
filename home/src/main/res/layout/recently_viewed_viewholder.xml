@@ -3,20 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/material_half_spacing">
+    android:orientation="vertical">
 
     <TextView
+        style="@style/HeaderTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recently_viewed"
-        android:paddingVertical="@dimen/material_half_spacing"
-        android:textSize="@dimen/big_text_size" />
+        android:text="@string/recently_viewed" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_show_height"
+        android:padding="@dimen/material_half_spacing"
         tools:listitem="@layout/show_viewholder" />
 
 </LinearLayout>

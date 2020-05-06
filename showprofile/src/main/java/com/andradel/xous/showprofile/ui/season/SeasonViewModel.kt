@@ -8,6 +8,7 @@ import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
+import com.andradel.xous.showprofile.model.Episode
 import com.andradel.xous.showprofile.model.SeasonDetails
 import com.andradel.xous.showprofile.repo.ShowProfileRepository
 import kotlinx.coroutines.launch
@@ -33,5 +34,12 @@ class SeasonViewModel @Inject constructor(
                 is Resource.Error -> _message.value = details.error.message
             }
         }
+    }
+
+    fun expandEpisode(episode: Episode) {
+        val seasonDetails = _details.value ?: return
+        _details.value = seasonDetails.copy(episodes = seasonDetails.episodes.map {
+            if (it.id == episode.id) it.invertExpanded() else it
+        })
     }
 }

@@ -1,23 +1,35 @@
 package com.andradel.xous.showprofile.ui.season.adapter
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionManager.beginDelayedTransition
 import com.andradel.xous.commonmodels.format
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.Episode
+import com.andradel.xous.showprofile.ui.adapter.subadapters.PersonAdapter
 
 class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+    private val parentView: ViewGroup = itemView.findViewById(R.id.parentView)
     private val poster: ImageView = itemView.findViewById(R.id.poster)
     private val name: TextView = itemView.findViewById(R.id.name)
     private val overview: TextView = itemView.findViewById(R.id.overview)
     private val rating: TextView = itemView.findViewById(R.id.rating)
+    private val guestStars: RecyclerView = itemView.findViewById(R.id.guestStars)
+    private val crew: RecyclerView = itemView.findViewById(R.id.crew)
+    private val extraInfoContainer: ViewGroup = itemView.findViewById(R.id.extraInfoContainer)
 
-    fun bind(episode: Episode) {
+    private val crewAdapter = PersonAdapter()
+    private val castAdapter = PersonAdapter()
+
+    fun bind(episode: Episode, onClick: (Episode) -> Unit) {
         poster.loadWithFade(episode.stillUrl)
         name.text = itemView.context.getHtmlSpannedString(
             R.string.episode_with_number,
@@ -26,5 +38,34 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         )
         overview.text = episode.overview
         rating.text = episode.rating.format()
+
+        itemView.setOnClickListener {
+            onClick(episode)
+        }
+
+        expandedState(episode.expanded)
+
+        guestStars.apply {
+            adapter = castAdapter.also { it.submitList(episode.guestStars) }
+            layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+        }
+
+        crew.apply {
+            adapter = crewAdapter.also { it.submitList(episode.crew) }
+            layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+        }
+    }
+
+    fun payloadBind(episode: Episode) {
+        expandedState(episode.expanded)
+    }
+
+    private fun expandedState(expanded: Boolean) {
+        extraInfoContainer.isVisible = expanded
+        beginDelayedTransition(parentView)
+        overview.maxLines = if (expanded)
+            Int.MAX_VALUE
+        else
+            itemView.resources.getInteger(R.integer.episode_max_lines)
     }
 }

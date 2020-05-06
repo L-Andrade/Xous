@@ -22,16 +22,12 @@ class SeasonOverviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
     private val firstAired: TextView = itemView.findViewById(R.id.firstAired)
 
     fun bind(item: SeasonItem.Overview, goToGallery: (String?) -> Unit) {
-        val season = item.season
-        val details = item.details
-        bind(season, goToGallery)
-        if (details != null) {
-            rating.isVisible = true
-            rating.text = itemView.context.getHtmlSpannedString(
-                R.string.episode_average,
-                details.episodeAverage.format()
-            )
-        }
+        bind(item.season, goToGallery)
+        rating.isVisible = item.episodeAverage != null
+        rating.text = itemView.context.getHtmlSpannedString(
+            R.string.episode_average,
+            item.episodeAverage?.format().orEmpty()
+        )
     }
 
     private fun bind(season: Season, goToGallery: (String?) -> Unit) {

@@ -11,6 +11,8 @@
         <item name="toolbarStyle">@style/XousToolbar</item>
     </style>
 
+    <!-- TODO: Move to :commonui-->
+
     <style name="CollapsingToolbarLayoutTextStyle" parent="AppTheme">
         <item name="android:textColor">@android:color/transparent</item>
     </style>
@@ -23,5 +25,11 @@
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="titleTextColor">?android:attr/colorForegroundInverse</item>
         <item name="android:background">?android:attr/colorPrimary</item>
+    </style>
+
+    <style name="HeaderTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:padding">@dimen/material_single_spacing</item>
+        <item name="android:textSize">@dimen/not_as_big_text_size</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

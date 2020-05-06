@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:padding="@dimen/material_half_spacing"
+        android:paddingBottom="@dimen/material_half_spacing"
         tools:itemCount="6"
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/show_viewholder"

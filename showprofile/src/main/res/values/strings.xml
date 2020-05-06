@@ -16,4 +16,6 @@
     <string name="yes">Yes</string>
     <string name="successfully_downloaded_image">Imaged downloaded successfully.</string>
     <string name="image_download_unavailable">Image download is only supported for Android 10 :(</string>
+    <string name="guest_stars">Guest stars</string>
+    <string name="crew">Crew</string>
 </resources>

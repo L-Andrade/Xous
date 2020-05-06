@@ -15,7 +15,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_show_height"
-        android:padding="@dimen/material_half_spacing"
+        android:paddingHorizontal="@dimen/material_half_spacing"
+        android:layout_marginVertical="@dimen/material_half_spacing"
         tools:listitem="@layout/show_viewholder" />
 
 </LinearLayout>

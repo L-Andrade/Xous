@@ -20,7 +20,7 @@ class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(person: Person) {
         title.text = when {
             person is CrewMember && person.isCreator -> itemView.getString(R.string.creator)
-            person is CrewMember -> person.job
+            person is CrewMember -> person.job ?: person.department
             person is CastMember -> person.character
             else -> ""
         }

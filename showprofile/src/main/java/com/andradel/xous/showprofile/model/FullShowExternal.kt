@@ -3,6 +3,7 @@ package com.andradel.xous.showprofile.model
 import com.andradel.xous.commonmodels.ImageSize
 import com.andradel.xous.commonmodels.external.GeneralShowsResponseExternal
 import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonmodels.nullIfBlank
 import com.andradel.xous.commonmodels.orFalse
 import com.andradel.xous.commonmodels.orZero
 import com.andradel.xous.commonmodels.toImagePath
@@ -78,6 +79,7 @@ data class CreatorExternal(
             id = id.orZero(),
             name = name.orEmpty(),
             job = null,
+            department = null,
             profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium),
             isCreator = true
         )
@@ -88,13 +90,15 @@ data class CrewMemberExternal(
     @SerialName("id") val id: Int?,
     @SerialName("name") val name: String?,
     @SerialName("profile_path") val profilePath: String?,
-    @SerialName("job") val job: String?
+    @SerialName("job") val job: String?,
+    @SerialName("department") val department: String?
 ) {
     fun toInternal(): CrewMember =
         CrewMember(
             id = id.orZero(),
             name = name.orEmpty(),
-            job = job.orEmpty(),
+            job = job.nullIfBlank(),
+            department = department,
             profileUrl = profilePath.toImagePath(ImageSize.Profile.Medium),
             isCreator = false
         )

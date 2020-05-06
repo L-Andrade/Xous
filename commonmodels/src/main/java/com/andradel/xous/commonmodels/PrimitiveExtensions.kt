@@ -10,3 +10,5 @@ fun Boolean?.orFalse() = this ?: false
 fun Float?.orZero() = this ?: 0f
 
 fun Float.format(decimals: Int = 1): String = "%.${decimals}f".format(this)
+
+fun String?.nullIfBlank(): String? = if (this != null && isNotBlank()) this else null

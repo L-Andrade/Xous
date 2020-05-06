@@ -39,7 +39,7 @@
         </fragment>
         <fragment
             android:id="@+id/galleryFragment"
-            android:name="com.andradel.xous.showprofile.ui.gallery.ImageGalleryFragment"
+            android:name="com.andradel.xous.showprofile.ui.gallery.GalleryFragment"
             android:label="gallery_fragment">
             <argument
                 android:name="images"

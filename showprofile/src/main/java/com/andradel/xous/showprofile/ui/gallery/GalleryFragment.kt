@@ -20,9 +20,9 @@ import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import kotlinx.android.synthetic.main.image_gallery_fragment.*
 import java.io.OutputStream
 
-class ImageGalleryFragment : Fragment(R.layout.image_gallery_fragment) {
+class GalleryFragment : Fragment(R.layout.image_gallery_fragment) {
 
-    private val args: ImageGalleryFragmentArgs by navArgs()
+    private val args: GalleryFragmentArgs by navArgs()
     private val imageAdapter by lazy { ImageAdapter(::askToSaveImage) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,7 +93,6 @@ class ImageGalleryFragment : Fragment(R.layout.image_gallery_fragment) {
         } catch (e: IllegalStateException) {
             onError()
         }
-
     }
 
     private suspend fun writeImage(image: String, outputStream: OutputStream?) {

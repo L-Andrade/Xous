@@ -30,4 +30,4 @@ jobs:
     
     # detekt
     - name: Detekt all
-      uses: natiginfo/action-detekt-all@1.8.0
+      uses: L-Andrade/action-detekt-all@1.8.1

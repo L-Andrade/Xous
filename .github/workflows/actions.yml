@@ -30,4 +30,4 @@ jobs:
     
     # detekt
     - name: Detekt all
-      uses: L-Andrade/action-detekt-all@1.8.1
+      uses: L-Andrade/action-detekt-all@1.8.2

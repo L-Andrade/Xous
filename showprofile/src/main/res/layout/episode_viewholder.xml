@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/material_single_spacing"
     android:layout_marginVertical="@dimen/material_half_spacing"
+    android:clipToPadding="false"
     android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,11 +54,11 @@
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/material_single_spacing"
             android:drawableEnd="@drawable/ic_stars_black_24dp"
             android:drawablePadding="@dimen/material_half_spacing"
             android:drawableTint="@color/colorPrimaryLight"
             android:gravity="center"
+            android:padding="@dimen/material_single_spacing"
             android:textColor="@color/colorPrimaryLight"
             app:layout_constraintBaseline_toBaselineOf="@id/name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,9 +69,9 @@
             android:id="@+id/overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/material_single_spacing"
             android:ellipsize="end"
             android:maxLines="@integer/episode_max_lines"
+            android:padding="@dimen/material_single_spacing"
             android:textColor="@color/colorPrimaryLight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

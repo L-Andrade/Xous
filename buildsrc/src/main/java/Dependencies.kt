@@ -35,6 +35,7 @@ object Modules {
     // Features
     const val home = ":home"
     const val showProfile = ":showprofile"
+    const val search = ":search"
 }
 
 object Libraries {

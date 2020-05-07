@@ -17,4 +17,5 @@ dependencies {
     implementation(Libraries.kotlin)
     implementation(project(Modules.home))
     implementation(project(Modules.showProfile))
+    implementation(project(Modules.search))
 }

@@ -19,6 +19,6 @@ sealed class SearchState {
     data class Items(
         override val query: String,
         override val popularShows: List<Show>,
-        val queriedShows: List<Show> = emptyList()
+        val queriedShows: List<Show>? = null
     ) : SearchState()
 }

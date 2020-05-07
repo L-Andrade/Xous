@@ -1,9 +1,10 @@
 package com.andradel.xous.home.ui.model
 
+import com.andradel.xous.commonmodels.Item
 import com.andradel.xous.commonmodels.internal.Show
-import com.andradel.xous.core.util.diffs.Item
 
-sealed class ShowItem(override val id: String) : Item {
+sealed class ShowItem(override val id: String) :
+    Item {
 
     data class Header(val title: String) : ShowItem(title)
 

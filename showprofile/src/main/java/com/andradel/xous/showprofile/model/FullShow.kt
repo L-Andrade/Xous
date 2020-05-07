@@ -1,9 +1,9 @@
 package com.andradel.xous.showprofile.model
 
+import com.andradel.xous.commonmodels.Item
 import com.andradel.xous.commonmodels.internal.BaseShow
 import com.andradel.xous.commonmodels.internal.GeneralShowsResponse
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.core.util.diffs.Item
 
 data class FullShow(
     override val id: Int,

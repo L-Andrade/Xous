@@ -22,6 +22,7 @@ dependencies {
     kapt(Libraries.daggerAnnotations)
     implementation(project(Modules.core))
     implementation(project(Modules.commonModels))
+    implementation(project(Modules.commonUi))
     implementation(project(Modules.db))
     testImplementation(Libraries.Testing.junit)
     androidTestImplementation(Libraries.Testing.androidXjunit)

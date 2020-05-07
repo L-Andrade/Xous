@@ -1,16 +1,17 @@
 package com.andradel.xous.showprofile.ui.adapter
 
 import androidx.recyclerview.widget.ListAdapter
+import com.andradel.xous.commonmodels.Item
 import com.andradel.xous.commonmodels.internal.BaseShow
 import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.Show
-import com.andradel.xous.core.util.diffs.Item
 import com.andradel.xous.showprofile.model.Person
 import com.andradel.xous.showprofile.ui.adapter.subadapters.PersonAdapter
 import com.andradel.xous.showprofile.ui.adapter.subadapters.SeasonAdapter
 import com.andradel.xous.showprofile.ui.adapter.subadapters.SimilarShowAdapter
 
-sealed class ProfileItem(override val id: String) : Item {
+sealed class ProfileItem(override val id: String) :
+    Item {
     data class Overview(val show: BaseShow) : ProfileItem(show.id.toString())
 
     sealed class Content(title: String, val adapter: ListAdapter<*, *>) : ProfileItem(title) {

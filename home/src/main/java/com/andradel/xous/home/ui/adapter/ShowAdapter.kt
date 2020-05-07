@@ -4,7 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.internal.Show
-import com.andradel.xous.core.util.diffs.ItemDiffUtils
+import com.andradel.xous.commonui.diffs.ItemDiffUtils
+import com.andradel.xous.commonui.viewholders.ShowViewHolder
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.home.R
 import com.andradel.xous.home.ui.model.ShowItem

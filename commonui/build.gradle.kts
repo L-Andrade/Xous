@@ -12,5 +12,8 @@ dependencies {
     implementation(Libraries.Android.appCompat)
     implementation(Libraries.Android.core)
     implementation(Libraries.Android.material)
+    implementation(Libraries.glide)
+    implementation(Libraries.coroutines)
+    implementation(project(Modules.commonModels))
     api(Libraries.indicator)
 }

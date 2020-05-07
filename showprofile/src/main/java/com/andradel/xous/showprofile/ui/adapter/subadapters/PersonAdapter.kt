@@ -2,7 +2,7 @@ package com.andradel.xous.showprofile.ui.adapter.subadapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.andradel.xous.core.util.diffs.ItemDiffUtils
+import com.andradel.xous.commonui.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.Person

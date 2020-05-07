@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.core.util.diffs.ItemDiffUtils
+import com.andradel.xous.commonui.diffs.ItemDiffUtils
 import com.andradel.xous.core.util.extensions.inflate
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.Episode

@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="bottom_navigation_height">56dp</dimen>
-    <!-- Font sizes -->
-    <dimen name="small_text_size">12sp</dimen>
-    <dimen name="not_as_big_text_size">16sp</dimen>
-    <dimen name="big_text_size">20sp</dimen>
-
-    <!-- Spacings (margins/padding) -->
-    <dimen name="material_quarter_spacing">2dp</dimen>
-    <dimen name="material_half_spacing">4dp</dimen>
-    <dimen name="material_single_spacing">8dp</dimen>
-    <dimen name="material_double_spacing">16dp</dimen>
-    <dimen name="default_show_width">96dp</dimen>
-    <dimen name="default_show_height">144dp</dimen>
-
-    <!-- Default loader sizes -->
-    <dimen name="loading_size">48dp</dimen>
 </resources>

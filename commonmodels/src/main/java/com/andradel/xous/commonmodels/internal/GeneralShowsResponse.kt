@@ -1,6 +1,7 @@
 package com.andradel.xous.commonmodels.internal
 
 import android.os.Parcelable
+import com.andradel.xous.commonmodels.Item
 import kotlinx.android.parcel.Parcelize
 
 data class GeneralShowsResponse(
@@ -21,8 +22,7 @@ data class Show(
     override val rating: Float
 ) : BaseShow, Parcelable
 
-interface BaseShow {
-    val id: Int
+interface BaseShow : Item {
     val name: String
     val posterUrl: String?
     val backdropUrl: String?

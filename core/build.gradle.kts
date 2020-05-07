@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.Properties
 
 plugins {
     libDefault()
@@ -40,7 +40,6 @@ dependencies {
     implementation(Libraries.Network.okHttpInterceptor)
     implementation(Libraries.dagger)
     kapt(Libraries.daggerAnnotations)
-    implementation(Libraries.glide)
     implementation(project(Modules.db))
     // Unfortunately, :core needs to know about models too, to generate SafeArgs
     implementation(project(Modules.commonModels))

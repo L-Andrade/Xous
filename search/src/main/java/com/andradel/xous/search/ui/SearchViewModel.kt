@@ -21,8 +21,22 @@ class SearchViewModel @Inject constructor(
         set(value) {
             field = value
             viewModelScope.launch {
-                // TODO
-                searchDataSource.searchShows(value)
+                when (val resource = searchDataSource.searchShows(value)) {
+                    is Resource.Success -> setState(
+                        SearchState.Items(
+                            query = query,
+                            popularShows = currentState.popularShows,
+                            queriedShows = resource.data.items
+                        )
+                    )
+                    is Resource.Error -> setState(
+                        SearchState.Empty(
+                            query = query,
+                            popularShows = currentState.popularShows
+                        ),
+                        resource.error.message
+                    )
+                }
             }
         }
 

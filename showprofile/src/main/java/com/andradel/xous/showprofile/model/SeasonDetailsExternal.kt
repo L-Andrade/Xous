@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SeasonDetailsExternal(
-    @SerialName("episodes") val episodes: List<EpisodeExternal>?
+    @SerialName("episodes") val episodes: List<EpisodeExternal>? = null
 ) {
     fun toInternal(): SeasonDetails = SeasonDetails(
         episodes = episodes.orEmpty().map { it.toInternal() },
@@ -18,14 +18,14 @@ data class SeasonDetailsExternal(
 
 @Serializable
 data class EpisodeExternal(
-    @SerialName("id") val id: Int?,
-    @SerialName("vote_average") val rating: Float?,
-    @SerialName("name") val name: String?,
-    @SerialName("still_path") val stillPath: String?,
-    @SerialName("overview") val overview: String?,
-    @SerialName("episode_number") val number: Int?,
-    @SerialName("guest_stars") val guestStars: List<CastMemberExternal>?,
-    @SerialName("crew") val crew: List<CrewMemberExternal>?
+    @SerialName("id") val id: Int? = null,
+    @SerialName("vote_average") val rating: Float? = null,
+    @SerialName("name") val name: String? = null,
+    @SerialName("still_path") val stillPath: String? = null,
+    @SerialName("overview") val overview: String? = null,
+    @SerialName("episode_number") val number: Int? = null,
+    @SerialName("guest_stars") val guestStars: List<CastMemberExternal>? = null,
+    @SerialName("crew") val crew: List<CrewMemberExternal>? = null
 ) {
     fun toInternal(): Episode = Episode(
         id = id.orZero(),

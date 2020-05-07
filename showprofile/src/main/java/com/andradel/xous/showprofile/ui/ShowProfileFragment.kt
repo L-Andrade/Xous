@@ -13,11 +13,11 @@ import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.Show
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
+import com.andradel.xous.commonui.loadWithFade
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.extensions.goTo
-import com.andradel.xous.core.util.extensions.loadWithFade
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.showprofile.R

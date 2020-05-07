@@ -18,4 +18,5 @@ dependencies {
     implementation(Libraries.Network.serialization)
     implementation(project(Modules.core))
     implementation(project(Modules.commonModels))
+    implementation(project(Modules.commonUi))
 }

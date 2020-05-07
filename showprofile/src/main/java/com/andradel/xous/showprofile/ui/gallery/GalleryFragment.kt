@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
+import com.andradel.xous.commonui.downloadImage
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
-import com.andradel.xous.core.util.extensions.downloadImage
 import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.ui.gallery.adapter.ImageAdapter

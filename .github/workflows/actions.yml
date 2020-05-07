@@ -29,5 +29,5 @@ jobs:
       uses: vroy/gha-kotlin-linter@v2
     
     # detekt
-    - name: Detekt all
-      uses: natiginfo/action-detekt-all@1.8.0
+    #- name: Detekt all
+    #  uses: L-Andrade/action-detekt-all@1.8.3

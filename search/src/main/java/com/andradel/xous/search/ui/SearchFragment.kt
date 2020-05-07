@@ -28,6 +28,7 @@ class SearchFragment : BaseSearchFragment(R.layout.fragment_search) {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
+                // TODO: Don't query every change, query if no changes to text in 300ms or something
                 viewModel.query = newText
                 return true
             }

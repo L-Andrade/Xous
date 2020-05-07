@@ -8,7 +8,8 @@ sealed class SearchState {
     // abstract val popularPeople: List<Person>
 
     data class Loading(
-        override val query: String = "", override val popularShows: List<Show> = emptyList()
+        override val query: String = "",
+        override val popularShows: List<Show> = emptyList()
     ) : SearchState()
 
     data class Empty(

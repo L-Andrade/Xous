@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_navigation_height"
         android:layout_gravity="bottom"
-        android:elevation="@dimen/material_single_spacing"
+        android:elevation="@dimen/bottom_navigation_elevation"
         app:itemIconTint="?android:attr/colorControlNormal"
         app:itemTextColor="?android:attr/colorControlNormal"
         app:menu="@menu/bottom_navigation_menu" />

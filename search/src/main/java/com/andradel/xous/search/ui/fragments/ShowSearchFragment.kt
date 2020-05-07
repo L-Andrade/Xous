@@ -8,6 +8,7 @@ import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.search.R
 import com.andradel.xous.search.ui.BaseSearchFragment
+import com.andradel.xous.search.ui.SearchFragmentDirections
 import com.andradel.xous.search.ui.adapter.SearchItemAdapter
 import com.andradel.xous.search.ui.state.ViewSearchState
 import kotlinx.android.synthetic.main.fragment_show_search.*
@@ -38,6 +39,7 @@ class ShowSearchFragment : BaseSearchFragment(R.layout.fragment_show_search) {
     }
 
     private fun goToShow(show: Show) {
-        goTo(ShowSearchFragmentDirections.searchToShowProfile(show))
+        // Apparently navigating from a VP to other places is weird... what a pain!
+        parentFragment?.goTo(SearchFragmentDirections.searchToShowProfile(show))
     }
 }

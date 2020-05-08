@@ -1,6 +1,6 @@
 package com.andradel.xous.commonmodels.external.show
 
-import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
+import com.andradel.xous.commonmodels.internal.show.ShowsResponse
 import com.andradel.xous.commonmodels.orZero
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,8 +12,8 @@ data class GeneralShowsResponseExternal(
     @SerialName("total_pages") val totalPages: Int? = null,
     @SerialName("results") val items: List<ShowExternal>? = null
 ) {
-    fun toInternal(): GeneralShowsResponse {
-        return GeneralShowsResponse(
+    fun toInternal(): ShowsResponse {
+        return ShowsResponse(
             page = page.orZero(),
             totalPages = totalPages.orZero(),
             totalResults = totalResults.orZero(),

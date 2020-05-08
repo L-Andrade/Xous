@@ -4,7 +4,7 @@ import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.person.CastMember
 import com.andradel.xous.commonmodels.internal.person.CrewMember
 import com.andradel.xous.commonmodels.internal.show.BaseShow
-import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
+import com.andradel.xous.commonmodels.internal.show.ShowsResponse
 
 data class FullShow(
     override val id: Int,
@@ -22,7 +22,7 @@ data class FullShow(
     val numberOfSeasons: Int,
     val status: String,
     val type: String,
-    val similarShows: GeneralShowsResponse,
+    val similarShows: ShowsResponse,
     val seasons: List<Season>,
     val backdrops: List<String>,
     val allImages: List<String>

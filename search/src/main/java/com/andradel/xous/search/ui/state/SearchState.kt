@@ -28,10 +28,11 @@ sealed class SearchState {
         val queriedShows: List<Show>? = null,
         val queriedPeople: List<RegularPerson>? = null
     ) : SearchState() {
+        constructor(state: SearchState) : this(state.popularShows, state.popularPeople)
         constructor(
             state: SearchState,
-            queriedShows: List<Show>? = null,
-            queriedPeople: List<RegularPerson>? = null
+            queriedShows: List<Show>? = (state as? Items)?.queriedShows,
+            queriedPeople: List<RegularPerson>? = (state as? Items)?.queriedPeople
         ) : this(state.popularShows, state.popularPeople, queriedShows, queriedPeople)
     }
 }

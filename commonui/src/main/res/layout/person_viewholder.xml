@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginVertical="@dimen/material_half_spacing"
     android:layout_marginHorizontal="@dimen/material_single_spacing"
+    android:layout_marginVertical="@dimen/material_half_spacing"
     android:orientation="vertical">
 
     <ImageView
@@ -22,12 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginVertical="@dimen/material_quarter_spacing"
-        android:textStyle="bold"
+        android:layout_marginTop="@dimen/material_quarter_spacing"
         android:ellipsize="end"
         android:maxWidth="@dimen/max_creator_width"
         android:maxLines="1"
         android:textSize="@dimen/small_text_size"
+        android:textStyle="bold"
         tools:text="Creator name" />
 
     <TextView
@@ -35,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/material_quarter_spacing"
         android:ellipsize="end"
         android:maxWidth="@dimen/max_creator_width"
         android:maxLines="1"

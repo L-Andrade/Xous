@@ -1,7 +1,7 @@
 package com.andradel.xous.home.repo
 
-import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
 import com.andradel.xous.commonmodels.internal.show.Show
+import com.andradel.xous.commonmodels.internal.show.ShowsResponse
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.database.datasources.RecentlyViewedDataSource
@@ -22,7 +22,7 @@ class HomeRepository @Inject constructor(
     fun getRecentlyViewedShows(): Flow<List<Show>> =
         recentlyViewedDataSource.getRecentlyViewedShows()
 
-    fun getAllShows(): Flow<Pair<Resource<GeneralShowsResponse>, String>> = flow {
+    fun getAllShows(): Flow<Pair<Resource<ShowsResponse>, String>> = flow {
         supervisorScope {
             val popular = async {
                 generalDataSource.getPopular() to stringResolver[R.string.popular]

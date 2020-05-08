@@ -1,7 +1,7 @@
 package com.andradel.xous.search.ui
 
 import androidx.lifecycle.viewModelScope
-import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
+import com.andradel.xous.commonmodels.internal.show.ShowsResponse
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.viewstate.ViewStateViewModel
 import com.andradel.xous.search.model.PeopleResponse
@@ -12,7 +12,6 @@ import com.andradel.xous.search.ui.state.ViewSearchState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
@@ -41,19 +40,7 @@ class SearchViewModel @Inject constructor(
                 setState(SearchState.Items(currentState))
                 return
             }
-            setState(SearchState.Loading(currentState))
-            searchJob = viewModelScope.launch {
-                initJob?.join()
-                when (val resource = repository.searchShows(value)) {
-                    is Resource.Success -> setState(
-                        SearchState.Items(currentState, resource.data.items)
-                    )
-                    is Resource.Error -> setState(
-                        SearchState.Empty(currentState),
-                        resource.error.message
-                    )
-                }
-            }
+            search()
         }
 
     init {
@@ -61,7 +48,7 @@ class SearchViewModel @Inject constructor(
             initJob = repository.getPopular().onEach { resource ->
                 when (resource) {
                     is Resource.Success -> when (val data = resource.data) {
-                        is GeneralShowsResponse -> setState(
+                        is ShowsResponse -> setState(
                             SearchState.Items(
                                 popularShows = data.items,
                                 popularPeople = currentState.popularPeople
@@ -81,5 +68,37 @@ class SearchViewModel @Inject constructor(
                 }
             }.launchIn(viewModelScope)
         }
+    }
+
+    private fun search() {
+        // For now, we're querying all sections concurrently.
+        // In the future, I'd like to query only the visible fragment!
+
+        setState(SearchState.Loading(currentState))
+
+        searchJob = repository.search(query).onEach { resource ->
+            initJob?.join()
+
+            when (resource) {
+                is Resource.Success -> when (val data = resource.data) {
+                    is PeopleResponse -> setState(
+                        SearchState.Items(
+                            currentState,
+                            queriedPeople = data.results
+                        )
+                    )
+                    is ShowsResponse -> setState(
+                        SearchState.Items(
+                            currentState,
+                            queriedShows = data.items
+                        )
+                    )
+                }
+                is Resource.Error -> setState(
+                    SearchState.Empty(currentState),
+                    resource.error.message
+                )
+            }
+        }.launchIn(viewModelScope)
     }
 }

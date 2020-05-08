@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager.beginDelayedTransition
 import com.andradel.xous.commonmodels.format
-import com.andradel.xous.commonui.loadWithFade
+import com.andradel.xous.commonui.extensions.loadWithFade
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.Episode

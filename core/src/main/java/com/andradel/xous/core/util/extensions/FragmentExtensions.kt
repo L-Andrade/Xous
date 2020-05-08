@@ -1,6 +1,9 @@
 package com.andradel.xous.core.util.extensions
 
+import android.content.Context
 import android.text.Spanned
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -31,3 +34,11 @@ inline fun Fragment.showSnackbar(
 
 fun Fragment.getHtmlSpannedString(@StringRes id: Int, vararg args: Any): Spanned =
     getString(id, *args).toHtmlSpan()
+
+fun Fragment.hideKeyboard() {
+    val activity = requireActivity()
+    val inputMethodManager =
+        activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val focusView = activity.currentFocus ?: View(activity)
+    inputMethodManager.hideSoftInputFromWindow(focusView.windowToken, 0)
+}

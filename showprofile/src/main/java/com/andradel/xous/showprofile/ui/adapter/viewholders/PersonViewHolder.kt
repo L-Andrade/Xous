@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.commonui.loadCircleWithFade
+import com.andradel.xous.commonui.extensions.loadCircleWithFade
 import com.andradel.xous.core.util.extensions.getString
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.CastMember

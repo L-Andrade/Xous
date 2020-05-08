@@ -3,7 +3,7 @@ package com.andradel.xous.showprofile.ui.adapter.viewholders
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.commonui.loadWithFade
+import com.andradel.xous.commonui.extensions.loadWithFade
 import com.andradel.xous.showprofile.R
 
 class BackdropViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,4 +1,4 @@
-package com.andradel.xous.commonui
+package com.andradel.xous.commonui.extensions
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable

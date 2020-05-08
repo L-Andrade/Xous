@@ -6,10 +6,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonui.extensions.animateIn
+import com.andradel.xous.commonui.extensions.animateOut
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
-import com.andradel.xous.core.util.extensions.animateIn
-import com.andradel.xous.core.util.extensions.animateOut
 import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
@@ -65,7 +65,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private fun onLoading(state: Boolean) {
         if (state) {
             emptyState.animateOut()
-            loading.animateIn()
+            loading.hide()
         } else loading.animateOut()
     }
 

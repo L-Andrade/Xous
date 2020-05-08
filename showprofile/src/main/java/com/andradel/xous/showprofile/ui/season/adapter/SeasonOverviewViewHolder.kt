@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.format
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.commonui.loadWithFade
+import com.andradel.xous.commonui.extensions.loadWithFade
 import com.andradel.xous.commonui.views.ExpandingTextView
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.core.util.extensions.getString

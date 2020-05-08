@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.andradel.xous.core.coroutine.BehaviorSubjectChannel
 import com.andradel.xous.core.util.LiveEvent
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
@@ -75,14 +76,14 @@ abstract class ViewStateViewModel<State : Any, ViewState : Any>(
     protected inline fun <reified T : State> launchWhen(
         context: CoroutineContext = EmptyCoroutineContext,
         crossinline block: suspend (T) -> Unit
-    ) {
+    ): Job {
         val state = currentState
         if (state !is T) {
             val message =
                 "${this::class.java.name} wanted ${T::class.java.simpleName} but was ${state::class.java.simpleName}"
             throw IllegalStateException(message)
         }
-        viewModelScope.launch(context + Dispatchers.Main) {
+        return viewModelScope.launch(context + Dispatchers.Main) {
             block(state)
         }
     }

@@ -17,14 +17,10 @@
         tools:listitem="@layout/show_viewholder"
         tools:spanCount="3" />
 
-    <ProgressBar
+    <com.andradel.xous.commonui.views.LoadingBar
         android:id="@+id/loading"
-        android:layout_width="@dimen/loading_size"
-        android:layout_height="@dimen/loading_size"
-        android:layout_gravity="center"
-        android:indeterminate="true"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/emptyState"

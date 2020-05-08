@@ -65,8 +65,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private fun onLoading(state: Boolean) {
         if (state) {
             emptyState.animateOut()
-            loading.hide()
-        } else loading.animateOut()
+            loading.show()
+        } else loading.hide()
     }
 
     private fun setupRecyclerView() {

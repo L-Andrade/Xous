@@ -5,8 +5,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:padding="@dimen/material_half_spacing"
-        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="@dimen/material_half_spacing" />
 </FrameLayout>

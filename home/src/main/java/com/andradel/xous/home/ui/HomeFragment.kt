@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.extensions.animateIn
 import com.andradel.xous.commonui.extensions.animateOut
 import com.andradel.xous.core.coreComponent

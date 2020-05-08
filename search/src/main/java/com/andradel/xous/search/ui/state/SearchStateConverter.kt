@@ -20,6 +20,7 @@ class SearchStateConverter @Inject constructor(
 
     private fun mapItems(state: SearchState.Items): ViewSearchState.Items {
         val shows = (state.queriedShows ?: state.popularShows).map { SearchItem.ShowItem(it) }
-        return ViewSearchState.Items(items = shows)
+        val people = (state.popularPeople).map { SearchItem.PersonItem(it) }
+        return ViewSearchState.Items(shows = shows, people = people)
     }
 }

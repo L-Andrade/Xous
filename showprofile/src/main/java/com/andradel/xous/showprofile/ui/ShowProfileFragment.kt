@@ -8,9 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.andradel.xous.commonmodels.internal.BaseShow
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.BaseShow
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
 import com.andradel.xous.commonui.extensions.loadWithFade
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter

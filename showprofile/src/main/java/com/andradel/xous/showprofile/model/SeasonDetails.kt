@@ -1,5 +1,8 @@
 package com.andradel.xous.showprofile.model
 
+import com.andradel.xous.commonmodels.internal.person.CastMember
+import com.andradel.xous.commonmodels.internal.person.CrewMember
+
 data class SeasonDetails(
     val episodes: List<Episode>,
     val episodeAverage: Float

@@ -3,7 +3,7 @@ package com.andradel.xous.commonui.viewholders
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.R
 import com.andradel.xous.commonui.extensions.loadWithFade
 

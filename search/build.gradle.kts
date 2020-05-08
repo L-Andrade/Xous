@@ -1,6 +1,7 @@
 plugins {
     libDefault()
     kotlin(Plugins.kapt)
+    id(Plugins.serialization)
 }
 
 android {

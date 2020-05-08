@@ -1,18 +1,22 @@
 package com.andradel.xous.search.ui
 
 import androidx.lifecycle.viewModelScope
+import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.viewstate.ViewStateViewModel
-import com.andradel.xous.search.network.SearchDataSource
+import com.andradel.xous.search.model.PeopleResponse
+import com.andradel.xous.search.repo.SearchRepository
 import com.andradel.xous.search.ui.state.SearchState
 import com.andradel.xous.search.ui.state.SearchStateConverter
 import com.andradel.xous.search.ui.state.ViewSearchState
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val searchDataSource: SearchDataSource,
+    private val repository: SearchRepository,
     searchStateConverter: SearchStateConverter
 ) : ViewStateViewModel<SearchState, ViewSearchState>(
     initialData = SearchState.Loading(),
@@ -23,27 +27,29 @@ class SearchViewModel @Inject constructor(
             field?.cancel()
             field = value
         }
+    private var initJob: Job? = null
+        set(value) {
+            field?.cancel()
+            field = value
+        }
 
     var query: String = ""
         set(value) {
+            if (value == field) return
             field = value
             if (value.isBlank()) {
-                setState(SearchState.Items(currentState.popularShows))
+                setState(SearchState.Items(currentState))
                 return
             }
-            setState(SearchState.Loading(popularShows = currentState.popularShows))
+            setState(SearchState.Loading(currentState))
             searchJob = viewModelScope.launch {
-                when (val resource = searchDataSource.searchShows(value)) {
+                initJob?.join()
+                when (val resource = repository.searchShows(value)) {
                     is Resource.Success -> setState(
-                        SearchState.Items(
-                            popularShows = currentState.popularShows,
-                            queriedShows = resource.data.items
-                        )
+                        SearchState.Items(currentState, resource.data.items)
                     )
                     is Resource.Error -> setState(
-                        SearchState.Empty(
-                            popularShows = currentState.popularShows
-                        ),
+                        SearchState.Empty(currentState),
                         resource.error.message
                     )
                 }
@@ -51,11 +57,29 @@ class SearchViewModel @Inject constructor(
         }
 
     init {
-        searchJob = launchWhen<SearchState.Loading> {
-            when (val resource = searchDataSource.getPopularShows()) {
-                is Resource.Success -> setState(SearchState.Items(resource.data.items))
-                is Resource.Error -> setState(SearchState.Empty(), resource.error.message)
-            }
+        runWhen<SearchState.Loading> {
+            initJob = repository.getPopular().onEach { resource ->
+                when (resource) {
+                    is Resource.Success -> when (val data = resource.data) {
+                        is GeneralShowsResponse -> setState(
+                            SearchState.Items(
+                                popularShows = data.items,
+                                popularPeople = currentState.popularPeople
+                            )
+                        )
+                        is PeopleResponse -> setState(
+                            SearchState.Items(
+                                popularShows = currentState.popularShows,
+                                popularPeople = data.results
+                            )
+                        )
+                    }
+                    is Resource.Error -> setState(
+                        SearchState.Empty(currentState),
+                        resource.error.message
+                    )
+                }
+            }.launchIn(viewModelScope)
         }
     }
 }

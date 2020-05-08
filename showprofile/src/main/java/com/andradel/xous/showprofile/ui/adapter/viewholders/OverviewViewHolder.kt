@@ -4,10 +4,10 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.format
-import com.andradel.xous.commonmodels.internal.BaseShow
+import com.andradel.xous.commonmodels.internal.show.BaseShow
+import com.andradel.xous.commonui.extensions.getString
 import com.andradel.xous.commonui.views.ExpandingTextView
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
-import com.andradel.xous.core.util.extensions.getString
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.FullShow
 

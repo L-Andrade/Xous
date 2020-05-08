@@ -1,6 +1,6 @@
 package com.andradel.xous.database.datasources
 
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.database.daos.ShowsDao
 import com.andradel.xous.database.models.ShowType
 import com.andradel.xous.database.models.toDomain

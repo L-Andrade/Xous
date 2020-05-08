@@ -2,7 +2,7 @@ package com.andradel.xous.database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.Show
 import java.util.Date
 
 @Entity(tableName = "shows")

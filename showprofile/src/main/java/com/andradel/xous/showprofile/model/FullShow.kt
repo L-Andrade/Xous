@@ -1,9 +1,10 @@
 package com.andradel.xous.showprofile.model
 
-import com.andradel.xous.commonmodels.Item
-import com.andradel.xous.commonmodels.internal.BaseShow
-import com.andradel.xous.commonmodels.internal.GeneralShowsResponse
 import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonmodels.internal.person.CastMember
+import com.andradel.xous.commonmodels.internal.person.CrewMember
+import com.andradel.xous.commonmodels.internal.show.BaseShow
+import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
 
 data class FullShow(
     override val id: Int,
@@ -26,25 +27,3 @@ data class FullShow(
     val backdrops: List<String>,
     val allImages: List<String>
 ) : BaseShow
-
-data class CrewMember(
-    override val id: Int,
-    override val name: String,
-    override val profileUrl: String?,
-    val job: String?,
-    val department: String?,
-    val isCreator: Boolean
-) : Person
-
-data class CastMember(
-    override val id: Int,
-    override val name: String,
-    override val profileUrl: String?,
-    val character: String
-) : Person
-
-interface Person : Item {
-    override val id: Int
-    val name: String
-    val profileUrl: String?
-}

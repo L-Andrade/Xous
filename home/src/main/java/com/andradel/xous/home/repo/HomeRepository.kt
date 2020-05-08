@@ -1,7 +1,7 @@
 package com.andradel.xous.home.repo
 
-import com.andradel.xous.commonmodels.internal.GeneralShowsResponse
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.GeneralShowsResponse
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.database.datasources.RecentlyViewedDataSource

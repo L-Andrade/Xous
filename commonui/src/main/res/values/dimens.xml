@@ -15,4 +15,7 @@
 
     <!-- Default loader sizes -->
     <dimen name="loading_size">48dp</dimen>
+
+    <dimen name="person_default">60dp</dimen>
+    <dimen name="max_creator_width">90dp</dimen>
 </resources>

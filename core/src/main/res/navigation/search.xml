@@ -13,7 +13,7 @@
             app:destination="@id/show_profile">
             <argument
                 android:name="show"
-                app:argType="com.andradel.xous.commonmodels.internal.Show" />
+                app:argType="com.andradel.xous.commonmodels.internal.show.Show" />
         </action>
     </fragment>
     <include app:graph="@navigation/show_profile" />

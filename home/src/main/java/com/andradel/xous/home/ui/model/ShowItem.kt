@@ -1,7 +1,7 @@
 package com.andradel.xous.home.ui.model
 
 import com.andradel.xous.commonmodels.Item
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.Show
 
 sealed class ShowItem(override val id: String) :
     Item {

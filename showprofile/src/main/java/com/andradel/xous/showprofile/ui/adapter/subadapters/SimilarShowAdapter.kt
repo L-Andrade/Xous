@@ -2,7 +2,7 @@ package com.andradel.xous.showprofile.ui.adapter.subadapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.andradel.xous.commonmodels.internal.Show
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.diffs.ItemDiffUtils
 import com.andradel.xous.commonui.viewholders.ShowViewHolder
 import com.andradel.xous.core.util.extensions.inflate

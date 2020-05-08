@@ -1,8 +1,10 @@
 package com.andradel.xous.showprofile.model
 
 import com.andradel.xous.commonmodels.ImageSize
-import com.andradel.xous.commonmodels.external.GeneralShowsResponseExternal
+import com.andradel.xous.commonmodels.external.show.GeneralShowsResponseExternal
 import com.andradel.xous.commonmodels.internal.Season
+import com.andradel.xous.commonmodels.internal.person.CastMember
+import com.andradel.xous.commonmodels.internal.person.CrewMember
 import com.andradel.xous.commonmodels.nullIfBlank
 import com.andradel.xous.commonmodels.orFalse
 import com.andradel.xous.commonmodels.orZero

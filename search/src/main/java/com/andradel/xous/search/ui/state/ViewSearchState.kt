@@ -8,5 +8,8 @@ sealed class ViewSearchState {
 
     object Empty : ViewSearchState()
 
-    data class Items(val items: List<SearchItem>) : ViewSearchState()
+    data class Items(
+        val shows: List<SearchItem.ShowItem>,
+        val people: List<SearchItem.PersonItem>
+    ) : ViewSearchState()
 }

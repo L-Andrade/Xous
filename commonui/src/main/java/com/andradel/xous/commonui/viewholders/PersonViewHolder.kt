@@ -1,15 +1,16 @@
-package com.andradel.xous.showprofile.ui.adapter.viewholders
+package com.andradel.xous.commonui.viewholders
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.andradel.xous.commonmodels.internal.person.CastMember
+import com.andradel.xous.commonmodels.internal.person.CrewMember
+import com.andradel.xous.commonmodels.internal.person.Person
+import com.andradel.xous.commonmodels.internal.person.RegularPerson
+import com.andradel.xous.commonui.R
+import com.andradel.xous.commonui.extensions.getString
 import com.andradel.xous.commonui.extensions.loadCircleWithFade
-import com.andradel.xous.core.util.extensions.getString
-import com.andradel.xous.showprofile.R
-import com.andradel.xous.showprofile.model.CastMember
-import com.andradel.xous.showprofile.model.CrewMember
-import com.andradel.xous.showprofile.model.Person
 
 class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -22,6 +23,7 @@ class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             person is CrewMember && person.isCreator -> itemView.getString(R.string.creator)
             person is CrewMember -> person.job ?: person.department
             person is CastMember -> person.character
+            person is RegularPerson -> person.department
             else -> ""
         }
         name.text = person.name

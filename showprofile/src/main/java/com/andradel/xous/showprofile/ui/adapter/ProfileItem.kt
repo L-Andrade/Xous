@@ -2,10 +2,10 @@ package com.andradel.xous.showprofile.ui.adapter
 
 import androidx.recyclerview.widget.ListAdapter
 import com.andradel.xous.commonmodels.Item
-import com.andradel.xous.commonmodels.internal.BaseShow
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.commonmodels.internal.Show
-import com.andradel.xous.showprofile.model.Person
+import com.andradel.xous.commonmodels.internal.person.Person
+import com.andradel.xous.commonmodels.internal.show.BaseShow
+import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.showprofile.ui.adapter.subadapters.PersonAdapter
 import com.andradel.xous.showprofile.ui.adapter.subadapters.SeasonAdapter
 import com.andradel.xous.showprofile.ui.adapter.subadapters.SimilarShowAdapter

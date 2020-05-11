@@ -1,15 +1,14 @@
 package com.andradel.xous.core.viewstate
 
-import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andradel.xous.core.coroutine.BehaviorSubjectChannel
 import com.andradel.xous.core.util.LiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
@@ -22,7 +21,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 abstract class ViewStateViewModel<State : Any, ViewState : Any>(
     initialData: State,
     stateConverter: StateConverter<State, ViewState>,
-    private val _state: BehaviorSubjectChannel<State> = BehaviorSubjectChannel(initialData)
+    private val _state: MutableStateFlow<State> = MutableStateFlow(initialData)
 ) : ViewModel() {
 
     private val _viewState = MutableLiveData<ViewState>()
@@ -32,7 +31,7 @@ abstract class ViewStateViewModel<State : Any, ViewState : Any>(
         get() = _message
 
     init {
-        flowState
+        _state
             .map { stateConverter.convertToViewState(it) }
             .distinctUntilChanged()
             .flowOn(Dispatchers.Default)
@@ -45,22 +44,14 @@ abstract class ViewStateViewModel<State : Any, ViewState : Any>(
         get() = _viewState
 
     protected val currentState: State
-        get() = _state.value
+        get() = state.value
 
-    protected val flowState: Flow<State>
-        get() = _state.asFlow()
+    protected val state: StateFlow<State>
+        get() = _state
 
     protected fun setState(state: State, message: String? = null) {
-        if (!_state.isClosedForSend) {
-            _state.offer(state)
-        }
+        _state.value = state
         if (message != null) _message.value = message
-    }
-
-    @CallSuper
-    override fun onCleared() {
-        super.onCleared()
-        _state.close()
     }
 
     protected inline fun <reified T : State> runWhen(block: (T) -> Unit) {

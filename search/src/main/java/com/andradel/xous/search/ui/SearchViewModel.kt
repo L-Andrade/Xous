@@ -44,7 +44,7 @@ class SearchViewModel @Inject constructor(
         }
 
     init {
-        runWhen<SearchState.Loading> {
+        if (initJob == null || initJob?.isCancelled == true) {
             initJob = repository.getPopular().onEach { resource ->
                 when (resource) {
                     is Resource.Success -> when (val data = resource.data) {

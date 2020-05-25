@@ -40,7 +40,7 @@ fun ImageView.loadCircleWithFade(
 }
 
 suspend fun Fragment.downloadImage(image: String): Bitmap = suspendCancellableCoroutine { cont ->
-    Glide.with(this).asBitmap().load(image).into(object : CustomTarget<Bitmap>() {
+    val target = object : CustomTarget<Bitmap>() {
         override fun onLoadCleared(placeholder: Drawable?) {
             cont.cancel(IllegalStateException())
         }
@@ -52,5 +52,12 @@ suspend fun Fragment.downloadImage(image: String): Bitmap = suspendCancellableCo
         override fun onLoadFailed(errorDrawable: Drawable?) {
             cont.cancel(IllegalStateException())
         }
-    })
+    }
+
+    val manager = Glide.with(this)
+    manager.asBitmap().load(image).into(target)
+
+    cont.invokeOnCancellation {
+        manager.clear(target)
+    }
 }

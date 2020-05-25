@@ -20,10 +20,10 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class ViewStateViewModel<State : Any, ViewState : Any>(
     initialData: State,
-    stateConverter: StateConverter<State, ViewState>,
-    private val _state: MutableStateFlow<State> = MutableStateFlow(initialData)
+    stateConverter: StateConverter<State, ViewState>
 ) : ViewModel() {
 
+    private val _state: MutableStateFlow<State> = MutableStateFlow(initialData)
     private val _viewState = MutableLiveData<ViewState>()
 
     private val _message = LiveEvent<String>()

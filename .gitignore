@@ -8,3 +8,4 @@
 .externalNativeBuild
 .cxx
 release.keystore
+/app/google-services.json

@@ -9,6 +9,8 @@ object ProfileAppBarOffsetListener : AppBarLayout.OnOffsetChangedListener {
         val totalScroll = appBarLayout.totalScrollRange.toFloat()
         val alpha = (totalScroll + verticalOffset) / totalScroll
         appBarLayout.posterCard?.alpha = alpha
-        appBarLayout.toolbar?.navigationIcon?.alpha = ((1 - alpha) * 255).toInt()
+        appBarLayout.toolbar?.navigationIcon?.alpha = ((1 - alpha) * MAX_ALPHA).toInt()
     }
+
+    private const val MAX_ALPHA = 255
 }

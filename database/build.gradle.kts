@@ -27,7 +27,7 @@ dependencies {
     implementation(Libraries.kotlin)
     implementation(Libraries.Android.appCompat)
     implementation(Libraries.Android.core)
-    api(Libraries.Room.room)
+    api(Libraries.Room.core)
     implementation(Libraries.Room.extensions)
     kapt(Libraries.Room.annotations)
     implementation(Libraries.dagger)

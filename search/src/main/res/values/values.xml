@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="number_people_grid">4</integer>
+    <integer name="number_show_grid">4</integer>
+</resources>

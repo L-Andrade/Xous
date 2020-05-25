@@ -14,5 +14,6 @@ fun Context.inflate(
     attachToRoot: Boolean = false
 ): View = LayoutInflater.from(this).inflate(layoutId, viewGroup, attachToRoot)
 
+@Suppress("SpreadOperator")
 fun Context.getHtmlSpannedString(@StringRes id: Int, vararg args: Any): Spanned =
     getString(id, *args).toHtmlSpan()

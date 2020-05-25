@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     defaultPlugins()
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -33,4 +35,6 @@ dependencies {
     implementation(project(Modules.home))
     implementation(project(Modules.showProfile))
     implementation(project(Modules.search))
+    implementation(Libraries.Firebase.analytics)
+    implementation(Libraries.Firebase.crashlytics)
 }

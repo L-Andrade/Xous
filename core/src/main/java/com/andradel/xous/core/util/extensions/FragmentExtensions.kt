@@ -32,6 +32,7 @@ inline fun Fragment.showSnackbar(
     snackbar.show()
 }
 
+@Suppress("SpreadOperator")
 fun Fragment.getHtmlSpannedString(@StringRes id: Int, vararg args: Any): Spanned =
     getString(id, *args).toHtmlSpan()
 

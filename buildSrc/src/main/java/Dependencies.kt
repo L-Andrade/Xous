@@ -23,6 +23,13 @@ object Versions {
     const val viewPager2 = "1.0.0"
     const val indicator = "2.1.4"
     const val photoView = "2.0.0"
+    const val google = "4.3.3"
+    const val crashlytics = "2.1.1"
+
+    object Firebase {
+        const val analytics = "17.4.2"
+        const val crashlytics = "17.0.0"
+    }
 }
 
 object Modules {
@@ -63,7 +70,7 @@ object Libraries {
     }
 
     object Room {
-        const val room = "androidx.room:room-runtime:${Versions.room}"
+        const val core = "androidx.room:room-runtime:${Versions.room}"
         const val annotations = "androidx.room:room-compiler:${Versions.room}"
         const val extensions = "androidx.room:room-ktx:${Versions.room}"
         const val testing = "androidx.room:room-testing:${Versions.room}"
@@ -77,6 +84,13 @@ object Libraries {
             "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.serializationAdapter}"
         const val okHttpInterceptor =
             "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpInterceptor}"
+    }
+
+    object Firebase {
+        const val analytics =
+            "com.google.firebase:firebase-analytics:${Versions.Firebase.analytics}"
+        const val crashlytics =
+            "com.google.firebase:firebase-crashlytics:${Versions.Firebase.crashlytics}"
     }
 
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
@@ -101,6 +115,9 @@ object Classpaths {
     const val gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val serialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav}"
+    const val googleServices = "com.google.gms:google-services:${Versions.google}"
+    const val crashlytics =
+        "com.google.firebase:firebase-crashlytics-gradle:${Versions.crashlytics}"
 }
 
 object Plugins {

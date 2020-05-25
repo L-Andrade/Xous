@@ -15,7 +15,10 @@ class PersonSearchFragment : BaseSearchFragment(R.layout.fragment_media_search) 
     override fun setupView() {
         recyclerView.apply {
             adapter = searchItemAdapter
-            layoutManager = GridLayoutManager(requireContext(), 4)
+            layoutManager = GridLayoutManager(
+                requireContext(),
+                resources.getInteger(R.integer.number_show_grid)
+            )
         }
     }
 

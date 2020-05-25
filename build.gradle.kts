@@ -13,7 +13,8 @@ buildscript {
         classpath(Classpaths.gradle)
         classpath(Classpaths.serialization)
         classpath(Classpaths.safeArgs)
-
+        classpath(Classpaths.googleServices)
+        classpath(Classpaths.crashlytics)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files
     }

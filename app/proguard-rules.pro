@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+### Navigation
+-keepnames class androidx.navigation.fragment.NavHostFragment
+
+### Navigation models
+-keepnames class com.andradel.xous.commonmodels.internal.**
+
+### Kotlin Serialization
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.SerializationKt
+-keep,includedescriptorclasses class com.andradel.xous.**$$serializer { *; }
+-keepclassmembers class com.andradel.xous.** {
+    *** Companion;
+}
+-keepclasseswithmembers class com.andradel.xous.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}

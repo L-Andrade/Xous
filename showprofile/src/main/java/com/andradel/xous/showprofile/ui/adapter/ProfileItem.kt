@@ -1,35 +1,27 @@
 package com.andradel.xous.showprofile.ui.adapter
 
-import androidx.recyclerview.widget.ListAdapter
+import androidx.annotation.StringRes
 import com.andradel.xous.commonmodels.Item
 import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.person.Person
 import com.andradel.xous.commonmodels.internal.show.BaseShow
 import com.andradel.xous.commonmodels.internal.show.Show
-import com.andradel.xous.showprofile.ui.adapter.subadapters.PersonAdapter
-import com.andradel.xous.showprofile.ui.adapter.subadapters.SeasonAdapter
-import com.andradel.xous.showprofile.ui.adapter.subadapters.SimilarShowAdapter
 
-sealed class ProfileItem(override val id: String) :
-    Item {
-    data class Overview(val show: BaseShow) : ProfileItem(show.id.toString())
+sealed class ProfileItem(override val id: Int) : Item {
+    data class Overview(val show: BaseShow) : ProfileItem(show.id as Int)
 
-    sealed class Content(title: String, val adapter: ListAdapter<*, *>) : ProfileItem(title) {
-        abstract val title: String
+    // TODO: This can probably be improved. Dislike the wildcard here!
+    sealed class Content(title: Int) : ProfileItem(title) {
+        abstract val title: Int
+        abstract val list: List<*>
 
-        data class SimilarShows(
-            override val title: String,
-            val shows: List<Show>,
-            val goToShow: (Show) -> Unit
-        ) : Content(title, SimilarShowAdapter(goToShow).also { it.submitList(shows) })
+        data class SimilarShows(@StringRes override val title: Int, override val list: List<Show>) :
+            Content(title)
 
-        data class People<T : Person>(override val title: String, val people: List<T>) :
-            Content(title, PersonAdapter().also { it.submitList(people) })
+        data class People<T : Person>(@StringRes override val title: Int, override val list: List<T>) :
+            Content(title)
 
-        data class Seasons(
-            override val title: String,
-            val seasons: List<Season>,
-            val goToSeason: (Season) -> Unit
-        ) : Content(title, SeasonAdapter(goToSeason).also { it.submitList(seasons) })
+        data class Seasons(@StringRes override val title: Int, override val list: List<Season>) :
+            Content(title)
     }
 }

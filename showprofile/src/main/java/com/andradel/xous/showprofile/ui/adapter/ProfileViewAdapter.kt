@@ -15,29 +15,9 @@ import com.andradel.xous.showprofile.ui.adapter.viewholders.ListViewHolder
 import com.andradel.xous.showprofile.ui.adapter.viewholders.OverviewViewHolder
 
 class ProfileViewAdapter(
-    private val resolver: StringResolver,
     private val goToShow: (Show) -> Unit,
     private val goToSeason: (Season) -> Unit
 ) : ListAdapter<ProfileItem, RecyclerView.ViewHolder>(ItemDiffUtils<ProfileItem>()) {
-
-    fun setShow(show: BaseShow) {
-        val list = when (show) {
-            is Show -> listOf(ProfileItem.Overview(show))
-            is FullShow -> listOf(
-                ProfileItem.Overview(show),
-                ProfileItem.Content.People(resolver[R.string.creators_and_crew], show.crew),
-                ProfileItem.Content.People(resolver[R.string.cast], show.cast),
-                ProfileItem.Content.Seasons(resolver[R.string.seasons], show.seasons, goToSeason),
-                ProfileItem.Content.SimilarShows(
-                    resolver[R.string.similar_shows],
-                    show.similarShows.items,
-                    goToShow
-                )
-            )
-            else -> throw IllegalArgumentException("Unknown show type")
-        }
-        submitList(list)
-    }
 
     override fun getItemViewType(position: Int): Int = when (getItem(position)) {
         is ProfileItem.Overview -> OVERVIEW
@@ -57,10 +37,12 @@ class ProfileViewAdapter(
         val item = getItem(position)
         when {
             holder is OverviewViewHolder -> holder.bind((item as ProfileItem.Overview).show)
-            holder is ListViewHolder && item is ProfileItem.Content -> holder.bind(
-                item.title,
-                item.adapter
-            )
+            holder is ListViewHolder && item is ProfileItem.Content.SimilarShows ->
+                holder.bind(item, goToShow)
+            holder is ListViewHolder && item is ProfileItem.Content.People<*> ->
+                holder.bind(item) {}
+            holder is ListViewHolder && item is ProfileItem.Content.Seasons ->
+                holder.bind(item, goToSeason)
         }
     }
 

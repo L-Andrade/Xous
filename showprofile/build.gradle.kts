@@ -14,6 +14,7 @@ dependencies {
     implementation(Libraries.Android.constraintLayout)
     implementation(Libraries.Android.fragment)
     implementation(Libraries.Android.viewModel)
+    // implementation(Libraries.Android.recyclerView)
     implementation(Libraries.dagger)
     kapt(Libraries.daggerAnnotations)
     implementation(Libraries.Network.retrofit)

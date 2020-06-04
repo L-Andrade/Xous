@@ -1,6 +1,6 @@
 object Versions {
     const val kotlin = "1.3.72"
-    const val gradle = "3.6.3"
+    const val gradle = "4.0.0"
     const val appCompat = "1.1.0"
     const val androidX = "1.0.2"
     const val constraintLayout = "1.1.3"
@@ -18,13 +18,14 @@ object Versions {
     const val okHttpInterceptor = "4.4.0"
     const val glide = "4.11.0"
     const val flexbox = "2.0.1"
-    const val coroutines = "1.3.6"
+    const val coroutines = "1.3.7"
     const val androidXfragment = "1.2.4"
     const val viewPager2 = "1.0.0"
     const val indicator = "2.1.4"
     const val photoView = "2.0.0"
     const val google = "4.3.3"
     const val crashlytics = "2.1.1"
+    const val recyclerView = "1.2.0-alpha03"
 
     object Firebase {
         const val analytics = "17.4.2"
@@ -61,6 +62,7 @@ object Libraries {
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav}"
         const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.nav}"
         const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
+        const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     }
 
     object Testing {

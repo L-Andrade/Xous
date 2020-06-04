@@ -9,14 +9,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.commonmodels.internal.show.BaseShow
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
 import com.andradel.xous.commonui.extensions.loadWithFade
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
-import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
@@ -33,9 +31,6 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    @Inject
-    lateinit var stringResolver: StringResolver
-
     private val viewModel: ShowProfileViewModel by viewModels { viewModelFactory }
 
     private val backdropAdapter by lazy { BackdropAdapter(::goToGallery) }
@@ -43,7 +38,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     private val args: ShowProfileFragmentArgs by navArgs()
 
     private val profileAdapter by lazy {
-        ProfileViewAdapter(stringResolver, ::goToShow, ::goToSeason)
+        ProfileViewAdapter(::goToShow, ::goToSeason)
     }
 
     override fun onAttach(context: Context) {
@@ -74,22 +69,23 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
         indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)
 
+        // profileAdapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
         recyclerView.apply {
             adapter = profileAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
-    private fun setupShow(show: BaseShow) {
-        profileAdapter.setShow(show)
-        poster.loadWithFade(show.posterUrl)
-        toolbar.title = show.name
-        poster.setOnClickListener { goToGallery(show.posterUrl.orEmpty()) }
+    private fun setupShow(state: ProfileState) {
+        profileAdapter.submitList(state.items)
+        poster.loadWithFade(state.show.posterUrl)
+        toolbar.title = state.show.name
+        poster.setOnClickListener { goToGallery(state.show.posterUrl.orEmpty()) }
 
         when {
-            show is Show && show.backdropUrl != null ->
-                backdropAdapter.submitList(listOf(show.backdropUrl))
-            show is FullShow -> backdropAdapter.submitList(show.backdrops)
+            state.show is Show && state.show.backdropUrl != null ->
+                backdropAdapter.submitList(listOf(state.show.backdropUrl))
+            state.show is FullShow -> backdropAdapter.submitList(state.show.backdrops)
         }
     }
 

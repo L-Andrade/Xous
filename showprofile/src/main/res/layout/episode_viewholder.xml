@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/material_single_spacing"
     android:layout_marginVertical="@dimen/material_half_spacing"
-    android:clipToPadding="false"
-    android:foreground="?attr/selectableItemBackground">
+    android:clipToPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parentView"
@@ -20,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@null"
+            android:foreground="?attr/selectableItemBackground"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@id/overview"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,12 +54,12 @@
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_stars_black_24dp"
             android:drawablePadding="@dimen/material_half_spacing"
-            android:drawableTint="@color/colorPrimaryLight"
             android:gravity="center"
             android:padding="@dimen/material_single_spacing"
             android:textColor="@color/colorPrimaryLight"
+            app:drawableEndCompat="@drawable/ic_stars_black_24dp"
+            app:drawableTint="@color/colorPrimaryLight"
             app:layout_constraintBaseline_toBaselineOf="@id/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +96,7 @@
                 android:id="@+id/guestStars"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_half_spacing"
+                android:paddingHorizontal="@dimen/material_half_spacing"
                 tools:itemCount="1"
                 tools:listitem="@layout/person_viewholder" />
 
@@ -111,7 +111,7 @@
                 android:id="@+id/crew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_half_spacing"
+                android:paddingHorizontal="@dimen/material_half_spacing"
                 tools:itemCount="1"
                 tools:listitem="@layout/person_viewholder" />
         </LinearLayout>

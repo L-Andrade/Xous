@@ -25,6 +25,8 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val guestStars: RecyclerView = itemView.findViewById(R.id.guestStars)
     private val crew: RecyclerView = itemView.findViewById(R.id.crew)
     private val extraInfoContainer: ViewGroup = itemView.findViewById(R.id.extraInfoContainer)
+    private val guestStarsHeader: TextView = itemView.findViewById(R.id.guestStarsHeader)
+    private val crewHeader: TextView = itemView.findViewById(R.id.crewHeader)
 
     private val crewAdapter = PersonAdapter()
     private val castAdapter = PersonAdapter()
@@ -39,18 +41,20 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         overview.text = episode.overview
         rating.text = episode.rating.format()
 
-        itemView.setOnClickListener {
+        poster.setOnClickListener {
             onClick(episode)
         }
 
         expandedState(episode.expanded)
 
+        guestStarsHeader.isVisible = episode.guestStars.isNotEmpty()
         guestStars.apply {
             adapter = castAdapter.also { it.submitList(episode.guestStars) }
             layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
             setHasFixedSize(true)
         }
 
+        crewHeader.isVisible = episode.crew.isNotEmpty()
         crew.apply {
             adapter = crewAdapter.also { it.submitList(episode.crew) }
             layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)

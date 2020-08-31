@@ -18,7 +18,6 @@ class NetworkModule {
     @Provides
     @Singleton
     @IntoSet
-    // TODO: This could be injected just for debug
     fun provideOkHttpInterceptor(): Interceptor {
         val level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
         return HttpLoggingInterceptor().setLevel(level)
@@ -30,7 +29,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(interceptors: MutableSet<Interceptor>): OkHttpClient {
+    fun provideOkHttpClient(interceptors: @JvmSuppressWildcards Set<Interceptor>): OkHttpClient {
         val builder = OkHttpClient.Builder()
         interceptors.forEach { builder.addInterceptor(it) }
         return builder.build()

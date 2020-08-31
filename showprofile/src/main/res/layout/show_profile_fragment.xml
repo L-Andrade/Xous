@@ -29,6 +29,7 @@
                 android:layout_marginHorizontal="@dimen/material_double_spacing"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardCornerRadius="@dimen/material_half_spacing"
+                app:layout_collapseMode="parallax"
                 app:layout_scrollFlags="scroll">
 
                 <ImageView
@@ -67,9 +68,9 @@
                     android:id="@+id/toolbarTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/colorForegroundInverse"
                     android:textSize="@dimen/big_text_size"
-                    tools:text="Title"
-                    android:textColor="?android:attr/colorForegroundInverse" />
+                    tools:text="Title" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

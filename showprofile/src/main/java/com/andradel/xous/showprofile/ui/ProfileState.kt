@@ -5,5 +5,6 @@ import com.andradel.xous.showprofile.ui.adapter.ProfileItem
 
 data class ProfileState(
     val items: List<ProfileItem>,
-    val show: BaseShow
+    val show: BaseShow,
+    val backdrops: List<String>
 )

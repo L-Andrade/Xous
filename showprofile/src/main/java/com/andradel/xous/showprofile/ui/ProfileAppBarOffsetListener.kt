@@ -15,7 +15,7 @@ object ProfileAppBarOffsetListener : AppBarLayout.OnOffsetChangedListener {
         val disappearingAlpha = calculateAlphaForEndHeight(verticalOffset, endHeightPoster)
 
         appBarLayout.toolbarTitle?.alpha = appearingAlpha
-        appBarLayout.posterCard?.alpha = disappearingAlpha
+        appBarLayout.poster?.alpha = disappearingAlpha
         appBarLayout.toolbar?.navigationIcon?.alpha = (appearingAlpha * MAX_ALPHA).toInt()
     }
 

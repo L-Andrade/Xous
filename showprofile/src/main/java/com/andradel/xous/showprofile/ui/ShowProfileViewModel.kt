@@ -28,7 +28,8 @@ class ShowProfileViewModel @Inject constructor(
 
     fun getDetails(show: Show) {
         if (_show.value != null) return
-        _show.value = ProfileState(listOf(ProfileItem.Overview(show)), show)
+
+        _show.value = ProfileState(listOf(ProfileItem.Overview(show)), show, listOfNotNull(show.backdropUrl))
         viewModelScope.launch {
             when (val details = repository.getDetails(show)) {
                 is Resource.Success -> _show.value = mapDetails(details.data)
@@ -46,7 +47,8 @@ class ShowProfileViewModel @Inject constructor(
                 ProfileItem.Content.Seasons(R.string.seasons, data.seasons),
                 ProfileItem.Content.SimilarShows(R.string.similar_shows, data.similarShows.items)
             ),
-            show = data
+            show = data,
+            backdrops = data.backdrops
         )
     }
 

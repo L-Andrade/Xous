@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
@@ -20,7 +19,6 @@ import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
-import com.andradel.xous.showprofile.model.FullShow
 import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
 import com.andradel.xous.showprofile.ui.adapter.ProfileViewAdapter
 import kotlinx.android.synthetic.main.show_profile_fragment.*
@@ -49,9 +47,8 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val show = args.show
         setupView()
-        viewModel.getDetails(show)
+        viewModel.getDetails(args.show)
 
         observe(viewModel.show) { setupShow(it) }
 
@@ -70,10 +67,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         indicator.setViewPagerAndAdapter(backdropPager, backdropAdapter)
 
         // profileAdapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
-        recyclerView.apply {
-            adapter = profileAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+        recyclerView.adapter = profileAdapter
     }
 
     override fun onDestroyView() {
@@ -83,15 +77,10 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     private fun setupShow(state: ProfileState) {
         profileAdapter.submitList(state.items)
-        poster.load(state.show.posterUrl)
+        poster.load(state.show.posterUrl, R.color.colorPrimary, R.color.colorAccent, false)
         toolbarTitle.text = state.show.name
         poster.setOnClickListener { goToGallery(state.show.posterUrl.orEmpty()) }
-
-        when {
-            state.show is Show && state.show.backdropUrl != null ->
-                backdropAdapter.submitList(listOf(state.show.backdropUrl))
-            state.show is FullShow -> backdropAdapter.submitList(state.show.backdrops)
-        }
+        backdropAdapter.submitList(state.backdrops)
     }
 
     private fun goToShow(show: Show) {
@@ -100,8 +89,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
 
     private fun goToGallery(clickedImage: String) {
         val images = viewModel.images
-        if (images.isNotEmpty())
-            goTo(ShowProfileFragmentDirections.showProfileToGallery(images, clickedImage))
+        if (images.isNotEmpty()) goTo(ShowProfileFragmentDirections.showProfileToGallery(images, clickedImage))
     }
 
     private fun goToSeason(season: Season) {

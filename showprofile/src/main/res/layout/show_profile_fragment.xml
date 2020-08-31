@@ -21,25 +21,19 @@
             app:contentScrim="?android:attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/posterCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/poster"
+                android:layout_width="@dimen/default_show_width"
+                android:layout_height="@dimen/default_show_height"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/material_double_spacing"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="@dimen/material_half_spacing"
+                android:contentDescription="@null"
+                android:elevation="@dimen/material_quarter_spacing"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                app:layout_scrollFlags="scroll">
-
-                <ImageView
-                    android:id="@+id/poster"
-                    android:layout_width="@dimen/default_show_width"
-                    android:layout_height="@dimen/default_show_height"
-                    android:contentDescription="@null"
-                    android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-            </androidx.cardview.widget.CardView>
+                app:layout_scrollFlags="scroll"
+                app:shapeAppearance="@style/CornerImageView"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <me.relex.circleindicator.CircleIndicator3
                 android:id="@+id/indicator"
@@ -80,6 +74,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:itemCount="1"
         tools:listitem="@layout/overview_viewholder" />

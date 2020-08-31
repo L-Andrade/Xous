@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.format
 import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonui.extensions.getString
-import com.andradel.xous.commonui.extensions.loadWithFade
+import com.andradel.xous.commonui.extensions.load
 import com.andradel.xous.commonui.views.ExpandingTextView
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.showprofile.R
@@ -32,7 +32,7 @@ class SeasonOverviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
 
     private fun bind(season: Season, goToGallery: (String?) -> Unit) {
         val c = itemView.context
-        poster.loadWithFade(season.posterUrl)
+        poster.load(season.posterUrl)
         poster.setOnClickListener { goToGallery(season.posterUrl) }
         firstAired.text = c.getHtmlSpannedString(R.string.first_aired, season.firstAired)
         overview.text = if (season.overview.isNotEmpty())

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.commonmodels.internal.Season
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
-import com.andradel.xous.commonui.extensions.loadWithFade
+import com.andradel.xous.commonui.extensions.load
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
 import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
@@ -76,10 +76,15 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
         }
     }
 
+    override fun onDestroyView() {
+        appBar.removeOnOffsetChangedListener(ProfileAppBarOffsetListener)
+        super.onDestroyView()
+    }
+
     private fun setupShow(state: ProfileState) {
         profileAdapter.submitList(state.items)
-        poster.loadWithFade(state.show.posterUrl)
-        toolbar.title = state.show.name
+        poster.load(state.show.posterUrl)
+        toolbarTitle.text = state.show.name
         poster.setOnClickListener { goToGallery(state.show.posterUrl.orEmpty()) }
 
         when {

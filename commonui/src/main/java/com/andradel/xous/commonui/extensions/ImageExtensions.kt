@@ -7,42 +7,33 @@ import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
-import com.bumptech.glide.request.RequestOptions.circleCropTransform
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-// Image loading could be better
-fun ImageView.loadWithFade(
+// Not the best, but suffices for now
+fun ImageView.load(
     url: String?,
     @DrawableRes placeholder: Int = 0,
-    @DrawableRes error: Int = placeholder
+    @DrawableRes error: Int = 0,
+    fade: Boolean = true
 ) {
-    Glide.with(this).load(url)
+    val request = Glide.with(this).load(url)
         .placeholder(placeholder)
         .error(error)
-        .transition(withCrossFade())
-        .into(this)
-}
 
-fun ImageView.loadCircleWithFade(
-    url: String?,
-    @DrawableRes placeholder: Int = 0,
-    @DrawableRes error: Int = placeholder
-) {
-    Glide.with(this).load(url)
-        .placeholder(placeholder)
-        .error(error)
-        .transition(withCrossFade())
-        .apply(circleCropTransform())
-        .into(this)
+    if (fade) {
+        request.transition(withCrossFade()).into(this)
+    } else {
+        request.into(this)
+    }
 }
 
 suspend fun Fragment.downloadImage(image: String): Bitmap = suspendCancellableCoroutine { cont ->
     val target = object : CustomTarget<Bitmap>() {
         override fun onLoadCleared(placeholder: Drawable?) {
-            cont.cancel(IllegalStateException())
+            cont.cancel()
         }
 
         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
@@ -50,7 +41,7 @@ suspend fun Fragment.downloadImage(image: String): Bitmap = suspendCancellableCo
         }
 
         override fun onLoadFailed(errorDrawable: Drawable?) {
-            cont.cancel(IllegalStateException())
+            cont.cancel()
         }
     }
 

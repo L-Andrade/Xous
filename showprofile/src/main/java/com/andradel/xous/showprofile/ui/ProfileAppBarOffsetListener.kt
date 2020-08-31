@@ -7,10 +7,33 @@ object ProfileAppBarOffsetListener : AppBarLayout.OnOffsetChangedListener {
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
         val totalScroll = appBarLayout.totalScrollRange.toFloat()
-        val alpha = (totalScroll + verticalOffset) / totalScroll
-        appBarLayout.posterCard?.alpha = alpha
-        appBarLayout.toolbar?.navigationIcon?.alpha = ((1 - alpha) * MAX_ALPHA).toInt()
+
+        val startHeight = totalScroll * VIEW_START_PERCENTAGE
+        val appearingAlpha = calculateAlphaForStartHeight(verticalOffset, startHeight, totalScroll)
+
+        val endHeightPoster = totalScroll * VIEW_END_PERCENTAGE_POSTER
+        val disappearingAlpha = calculateAlphaForEndHeight(verticalOffset, endHeightPoster)
+
+        appBarLayout.toolbarTitle?.alpha = appearingAlpha
+        appBarLayout.posterCard?.alpha = disappearingAlpha
+        appBarLayout.toolbar?.navigationIcon?.alpha = (appearingAlpha * MAX_ALPHA).toInt()
+    }
+
+    private fun calculateAlphaForStartHeight(verticalOffset: Int, startHeight: Float, totalScroll: Float): Float {
+        return if (-verticalOffset >= startHeight) {
+            val toScroll = totalScroll - startHeight
+            val scrolledFromStart = -verticalOffset - startHeight
+            1 - (toScroll - scrolledFromStart) / toScroll
+        } else 0f
+    }
+
+    private fun calculateAlphaForEndHeight(verticalOffset: Int, endHeight: Float): Float {
+        return if (-verticalOffset <= endHeight) {
+            (endHeight + verticalOffset) / endHeight
+        } else 0f
     }
 
     private const val MAX_ALPHA = 255
+    private const val VIEW_START_PERCENTAGE = 0.9f
+    private const val VIEW_END_PERCENTAGE_POSTER = 0.5f
 }

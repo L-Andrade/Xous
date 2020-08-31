@@ -1,15 +1,14 @@
 package com.andradel.xous.core.di
 
 import com.andradel.xous.core.BuildConfig
+import com.andradel.xous.core.network.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Converter
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -19,22 +18,15 @@ class NetworkModule {
     @Provides
     @Singleton
     @IntoSet
-    fun provideOkHttpInterceptor(): Interceptor = HttpLoggingInterceptor()
-        .setLevel(HttpLoggingInterceptor.Level.BODY)
+    // TODO: This could be injected just for debug
+    fun provideOkHttpInterceptor(): Interceptor {
+        val level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
+        return HttpLoggingInterceptor().setLevel(level)
+    }
 
     @Provides
-    @Singleton
     @IntoSet
-    fun provideOkHttpAPIKeyInterceptor(): Interceptor = object : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val original: Request = chain.request()
-            val url: HttpUrl = original.url.newBuilder()
-                .addQueryParameter(API_KEY, BuildConfig.API_KEY)
-                .build()
-            val requestBuilder: Request.Builder = original.newBuilder().url(url)
-            return chain.proceed(requestBuilder.build())
-        }
-    }
+    fun provideOkHttpAPIKeyInterceptor(): Interceptor = ApiKeyInterceptor
 
     @Provides
     @Singleton
@@ -55,7 +47,6 @@ class NetworkModule {
         .addConverterFactory(converterFactory).build()
 
     companion object {
-        private const val API_KEY = "api_key"
         private const val TMDB_BASE_URL = "https://api.themoviedb.org/"
     }
 }

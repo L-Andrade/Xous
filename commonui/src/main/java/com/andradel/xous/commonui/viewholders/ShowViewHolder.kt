@@ -5,7 +5,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.R
-import com.andradel.xous.commonui.extensions.loadWithFade
+import com.andradel.xous.commonui.extensions.load
 
 class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val poster: ImageView = itemView.findViewById(R.id.imageView)
@@ -14,6 +14,6 @@ class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         poster.setOnClickListener {
             onClick(show)
         }
-        poster.loadWithFade(show.posterUrl)
+        poster.load(show.posterUrl)
     }
 }

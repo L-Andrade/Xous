@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.ShowProfileFragment">
 
+    <!-- tools:theme because it screws the preview without it -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -18,9 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/backdrop_height"
             app:contentScrim="?android:attr/colorPrimary"
-            app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutTextStyle"
-            app:collapsedTitleTextAppearance="@style/ExpandedToolbarLayoutTextStyle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/posterCard"
@@ -62,8 +61,16 @@
                 android:background="@null"
                 android:elevation="@dimen/material_single_spacing"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_arrow_back_24dp"
-                tools:title="Title" />
+                app:navigationIcon="@drawable/ic_arrow_back_24dp">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/big_text_size"
+                    tools:text="Title"
+                    android:textColor="?android:attr/colorForegroundInverse" />
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

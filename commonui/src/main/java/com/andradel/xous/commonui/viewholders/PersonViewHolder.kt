@@ -10,7 +10,7 @@ import com.andradel.xous.commonmodels.internal.person.Person
 import com.andradel.xous.commonmodels.internal.person.RegularPerson
 import com.andradel.xous.commonui.R
 import com.andradel.xous.commonui.extensions.getString
-import com.andradel.xous.commonui.extensions.loadCircleWithFade
+import com.andradel.xous.commonui.extensions.load
 
 class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -27,6 +27,6 @@ class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             else -> ""
         }
         name.text = person.name
-        image.loadCircleWithFade(person.profileUrl, R.drawable.ic_account_circle_24dp)
+        image.load(person.profileUrl, R.drawable.ic_account_circle_24dp)
     }
 }

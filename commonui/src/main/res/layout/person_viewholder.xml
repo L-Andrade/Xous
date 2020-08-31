@@ -8,12 +8,14 @@
     android:layout_marginVertical="@dimen/material_half_spacing"
     android:orientation="vertical">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image"
         android:layout_width="@dimen/person_default"
         android:layout_height="@dimen/person_default"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/CircleImageView"
         app:srcCompat="@drawable/ic_account_circle_24dp"
         tools:srcCompat="@tools:sample/avatars" />
 

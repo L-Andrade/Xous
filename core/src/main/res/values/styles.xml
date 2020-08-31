@@ -12,15 +12,6 @@
     </style>
 
     <!-- TODO: Move to :commonui-->
-
-    <style name="CollapsingToolbarLayoutTextStyle" parent="AppTheme">
-        <item name="android:textColor">@android:color/transparent</item>
-    </style>
-
-    <style name="ExpandedToolbarLayoutTextStyle" parent="AppTheme">
-        <item name="android:textColor">?android:attr/colorForegroundInverse</item>
-    </style>
-
     <style name="XousToolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="titleTextColor">?android:attr/colorForegroundInverse</item>

@@ -1,35 +1,34 @@
 object Versions {
-    const val kotlin = "1.3.72"
-    const val gradle = "4.0.0"
-    const val appCompat = "1.1.0"
-    const val androidX = "1.0.2"
-    const val constraintLayout = "1.1.3"
+    const val kotlin = "1.4.0"
+    const val gradle = "4.0.1"
+    const val appCompat = "1.2.0"
+    const val androidX = "1.5.0-alpha02"
+    const val constraintLayout = "2.0.1"
     const val junit = "4.12"
     const val androidXjunit = "1.1.1"
     const val espresso = "3.2.0"
-    const val nav = "2.3.0-alpha06"
-    const val material = "1.1.0"
+    const val nav = "2.3.0"
+    const val material = "1.2.0"
     const val room = "2.2.5"
-    const val retrofit = "2.7.2"
-    const val serialization = "0.20.0"
-    const val serializationAdapter = "0.5.0"
-    const val dagger = "2.27"
+    const val retrofit = "2.9.0"
+    const val serialization = "1.0.0-RC"
+    const val serializationAdapter = "0.6.0"
+    const val dagger = "2.28"
     const val viewModel = "2.2.0"
-    const val okHttpInterceptor = "4.4.0"
+    const val okHttpInterceptor = "4.8.1"
     const val glide = "4.11.0"
     const val flexbox = "2.0.1"
-    const val coroutines = "1.3.7"
+    const val coroutines = "1.3.8"
     const val androidXfragment = "1.2.4"
-    const val viewPager2 = "1.0.0"
     const val indicator = "2.1.4"
     const val photoView = "2.0.0"
     const val google = "4.3.3"
-    const val crashlytics = "2.1.1"
     const val recyclerView = "1.2.0-alpha03"
+    const val crashlytics = "2.2.1"
 
     object Firebase {
-        const val analytics = "17.4.2"
-        const val crashlytics = "17.0.0"
+        const val analytics = "17.5.0"
+        const val crashlytics = "17.2.1"
     }
 }
 
@@ -61,7 +60,8 @@ object Libraries {
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModel}"
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav}"
         const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.nav}"
-        const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
+
+        // const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
         const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     }
 
@@ -81,7 +81,7 @@ object Libraries {
     object Network {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val serialization =
-            "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.serialization}"
+            "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}"
         const val serializationAdapter =
             "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.serializationAdapter}"
         const val okHttpInterceptor =

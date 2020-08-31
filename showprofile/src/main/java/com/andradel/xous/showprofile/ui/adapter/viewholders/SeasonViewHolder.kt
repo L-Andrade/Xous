@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.commonui.extensions.loadWithFade
+import com.andradel.xous.commonui.extensions.load
 import com.andradel.xous.showprofile.R
 
 class SeasonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,6 +18,6 @@ class SeasonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             goToSeason(season)
         }
         seasonName.text = season.name
-        seasonPoster.loadWithFade(season.posterUrl)
+        seasonPoster.load(season.posterUrl)
     }
 }

@@ -11,7 +11,6 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Converter
 import javax.inject.Singleton
@@ -24,8 +23,9 @@ class CoreModule {
 
     @Provides
     @Singleton
-    fun provideKotlinSerializer(): Json =
-        Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
+    fun provideKotlinSerializer(): Json = Json {
+        ignoreUnknownKeys = true
+    }
 
     @Provides
     @Singleton

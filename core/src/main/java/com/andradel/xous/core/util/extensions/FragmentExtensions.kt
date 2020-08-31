@@ -7,12 +7,11 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 inline fun <T> Fragment.observe(liveData: LiveData<T>, crossinline onChanged: (T) -> Unit) =
-    liveData.observe(viewLifecycleOwner, Observer { onChanged(it) })
+    liveData.observe(viewLifecycleOwner) { onChanged(it) }
 
 inline fun Fragment.showSnackbar(
     @StringRes message: Int,

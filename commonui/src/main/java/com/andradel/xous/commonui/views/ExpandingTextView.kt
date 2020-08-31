@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.withStyledAttributes
-import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
 import androidx.transition.TransitionManager.beginDelayedTransition
 import com.andradel.xous.commonui.R
@@ -55,11 +54,11 @@ class ExpandingTextView : LinearLayout {
 
     var text: String = ""
         set(value) {
-            doOnLayout {
-                expandableText.text = value
+            expandableText.text = value
+            field = value
+            post {
                 showMoreOrLess.isVisible = expandableText.isEllipsized
             }
-            field = value
         }
 
     companion object {
@@ -67,5 +66,5 @@ class ExpandingTextView : LinearLayout {
     }
 }
 
-private val TextView.isEllipsized: Boolean
-    get() = layout.getEllipsisCount(expandableText.lineCount - 1) > 0
+private inline val TextView.isEllipsized: Boolean
+    get() = layout.getEllipsisCount(lineCount - 1) > 0

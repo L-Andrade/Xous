@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager.beginDelayedTransition
 import com.andradel.xous.commonmodels.format
-import com.andradel.xous.commonui.extensions.loadWithFade
+import com.andradel.xous.commonui.extensions.load
 import com.andradel.xous.core.util.extensions.getHtmlSpannedString
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.Episode
@@ -30,7 +30,7 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val castAdapter = PersonAdapter()
 
     fun bind(episode: Episode, onClick: (Episode) -> Unit) {
-        poster.loadWithFade(episode.stillUrl)
+        poster.load(episode.stillUrl)
         name.text = itemView.context.getHtmlSpannedString(
             R.string.episode_with_number,
             episode.name,

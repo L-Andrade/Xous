@@ -19,6 +19,7 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val parentView: ViewGroup = itemView.findViewById(R.id.parentView)
     private val poster: ImageView = itemView.findViewById(R.id.poster)
+    private val posterTop: View = itemView.findViewById(R.id.posterTop)
     private val name: TextView = itemView.findViewById(R.id.name)
     private val overview: TextView = itemView.findViewById(R.id.overview)
     private val rating: TextView = itemView.findViewById(R.id.rating)
@@ -41,7 +42,8 @@ class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         overview.text = episode.overview
         rating.text = episode.rating.format()
 
-        poster.setOnClickListener {
+        // Put it on top because it's more visible than the poster itself
+        posterTop.setOnClickListener {
             onClick(episode)
         }
 

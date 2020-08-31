@@ -21,7 +21,7 @@ object Versions {
     const val coroutines = "1.3.8"
     const val androidXfragment = "1.2.4"
     const val indicator = "2.1.4"
-    const val photoView = "2.0.0"
+    const val photoView = "2.3.0"
     const val google = "4.3.3"
     const val recyclerView = "1.2.0-alpha03"
     const val crashlytics = "2.2.1"

@@ -3,7 +3,6 @@ package com.andradel.xous.home.repo
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonmodels.internal.show.ShowsResponse
 import com.andradel.xous.core.models.Resource
-import com.andradel.xous.core.stringresolver.StringResolver
 import com.andradel.xous.database.datasources.RecentlyViewedDataSource
 import com.andradel.xous.home.R
 import com.andradel.xous.home.network.GeneralDataSource
@@ -16,22 +15,21 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
     private val generalDataSource: GeneralDataSource,
-    private val recentlyViewedDataSource: RecentlyViewedDataSource,
-    private val stringResolver: StringResolver
+    private val recentlyViewedDataSource: RecentlyViewedDataSource
 ) {
     fun getRecentlyViewedShows(): Flow<List<Show>> =
         recentlyViewedDataSource.getRecentlyViewedShows()
 
-    fun getAllShows(): Flow<Pair<Resource<ShowsResponse>, String>> = flow {
+    fun getAllShows(): Flow<Pair<Resource<ShowsResponse>, Int>> = flow {
         supervisorScope {
             val popular = async {
-                generalDataSource.getPopular() to stringResolver[R.string.popular]
+                generalDataSource.getPopular() to R.string.popular
             }
             val onTheAir = async {
-                generalDataSource.getOnTheAir() to stringResolver[R.string.on_the_air]
+                generalDataSource.getOnTheAir() to R.string.on_the_air
             }
             val topRated = async {
-                generalDataSource.getTopRated() to stringResolver[R.string.top_rated]
+                generalDataSource.getTopRated() to R.string.top_rated
             }
             awaitAll(popular, onTheAir, topRated).forEach { emit(it) }
         }

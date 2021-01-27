@@ -31,8 +31,8 @@ class HomeViewModel @Inject constructor(
     val showEmpty: LiveData<Boolean>
         get() = _showEmpty
 
-    private val _message = LiveEvent<String>()
-    val message: LiveData<String>
+    private val _message = LiveEvent<Int>()
+    val message: LiveData<Int>
         get() = _message
 
     val recentlyViewed: LiveData<List<Show>> = repository.getRecentlyViewedShows().onEach {

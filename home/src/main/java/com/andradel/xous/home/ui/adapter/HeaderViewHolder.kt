@@ -10,6 +10,6 @@ class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     // TODO LayoutContainer
     private val textView: TextView = itemView.findViewById(R.id.title)
     fun bind(header: ShowItem.Header) {
-        textView.text = header.title
+        textView.text = itemView.context.getString(header.title)
     }
 }

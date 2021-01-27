@@ -22,8 +22,8 @@ class SeasonViewModel @Inject constructor(
     val details: LiveData<SeasonDetails>
         get() = _details
 
-    private val _message = LiveEvent<String>()
-    val message: LiveData<String>
+    private val _message = LiveEvent<Int>()
+    val message: LiveData<Int>
         get() = _message
 
     fun getDetails(show: Show, season: Season) {

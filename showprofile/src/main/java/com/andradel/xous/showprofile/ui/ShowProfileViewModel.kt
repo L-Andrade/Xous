@@ -22,8 +22,8 @@ class ShowProfileViewModel @Inject constructor(
     val show: LiveData<ProfileState>
         get() = _show
 
-    private val _message = LiveEvent<String>()
-    val message: LiveData<String>
+    private val _message = LiveEvent<Int>()
+    val message: LiveData<Int>
         get() = _message
 
     fun getDetails(show: Show) {

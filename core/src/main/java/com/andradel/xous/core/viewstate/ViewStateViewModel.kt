@@ -26,8 +26,8 @@ abstract class ViewStateViewModel<State : Any, ViewState : Any>(
     private val _state: MutableStateFlow<State> = MutableStateFlow(initialData)
     private val _viewState = MutableLiveData<ViewState>()
 
-    private val _message = LiveEvent<String>()
-    val message: LiveData<String>
+    private val _message = LiveEvent<Int>()
+    val message: LiveData<Int>
         get() = _message
 
     init {
@@ -49,7 +49,7 @@ abstract class ViewStateViewModel<State : Any, ViewState : Any>(
     protected val state: StateFlow<State>
         get() = _state
 
-    protected fun setState(state: State, message: String? = null) {
+    protected fun setState(state: State, message: Int? = null) {
         _state.value = state
         if (message != null) _message.value = message
     }

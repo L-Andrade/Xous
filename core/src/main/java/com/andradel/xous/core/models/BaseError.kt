@@ -1,5 +1,8 @@
 package com.andradel.xous.core.models
 
+import androidx.annotation.StringRes
+
 interface BaseError {
-    val message: String
+    @get:StringRes
+    val message: Int
 }

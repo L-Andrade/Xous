@@ -4,8 +4,6 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.andradel.xous.core.models.Schedulers
-import com.andradel.xous.core.stringresolver.StringResolver
-import com.andradel.xous.core.stringresolver.StringResolverImpl
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -39,9 +37,6 @@ class CoreModule {
 
     @Provides
     fun provideContext(application: Application): Context = application
-
-    @Provides
-    fun provideStringResolver(impl: StringResolverImpl): StringResolver = impl
 
     companion object {
         private const val MEDIA_TYPE = "application/json"

@@ -9,7 +9,7 @@ import com.andradel.xous.showprofile.model.SeasonDetails
 import com.andradel.xous.showprofile.network.ShowProfileDataSource
 import javax.inject.Inject
 
-class ShowProfileRepository @Inject constructor(
+class ShowProfileUseCase @Inject constructor(
     private val showProfileDataSource: ShowProfileDataSource,
     private val recentlyViewedDataSource: RecentlyViewedDataSource
 ) {

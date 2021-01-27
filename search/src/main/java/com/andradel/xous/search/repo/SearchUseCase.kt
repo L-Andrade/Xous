@@ -1,17 +1,17 @@
 package com.andradel.xous.search.repo
 
+import com.andradel.xous.core.models.Resource
 import com.andradel.xous.search.network.SearchDataSource
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
-class SearchRepository @Inject constructor(
+class SearchUseCase @Inject constructor(
     private val searchDataSource: SearchDataSource
 ) {
-    fun getPopular() = flow {
-        supervisorScope {
+    suspend fun getPopular(): List<Resource<Any>> {
+        return supervisorScope {
             val popularShows = async {
                 searchDataSource.getPopularShows()
             }
@@ -23,19 +23,19 @@ class SearchRepository @Inject constructor(
                 searchDataSource.getPopularMovies()
             }
              */
-            awaitAll(popularShows, popularPeople).forEach { emit(it) }
+            awaitAll(popularShows, popularPeople)
         }
     }
 
-    fun search(query: String) = flow {
-        supervisorScope {
+    suspend fun search(query: String): List<Resource<Any>> {
+        return supervisorScope {
             val queriedShows = async {
                 searchDataSource.searchShows(query)
             }
             val queriedPeople = async {
                 searchDataSource.searchPeople(query)
             }
-            awaitAll(queriedShows, queriedPeople).forEach { emit(it) }
+            awaitAll(queriedShows, queriedPeople)
         }
     }
 }

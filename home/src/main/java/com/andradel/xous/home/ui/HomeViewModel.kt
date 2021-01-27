@@ -8,15 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
-import com.andradel.xous.home.repo.HomeRepository
+import com.andradel.xous.home.repo.HomeUseCase
 import com.andradel.xous.home.ui.model.ShowItem
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val repository: HomeRepository
+    private val useCase: HomeUseCase
 ) : ViewModel() {
 
     private val _shows = MutableLiveData<List<ShowItem>>()
@@ -35,7 +34,7 @@ class HomeViewModel @Inject constructor(
     val message: LiveData<Int>
         get() = _message
 
-    val recentlyViewed: LiveData<List<Show>> = repository.getRecentlyViewedShows().onEach {
+    val recentlyViewed: LiveData<List<Show>> = useCase.getRecentlyViewedShows().onEach {
         if (it.isNotEmpty() && !currentItems.contains(ShowItem.RecentlyViewedList))
             addItemsToState(listOf(ShowItem.RecentlyViewedList), true)
     }.asLiveData()
@@ -49,19 +48,21 @@ class HomeViewModel @Inject constructor(
 
     fun getAllShows() {
         _loading.value = true
-        repository.getAllShows().onEach {
-            val (resource, title) = it
-            when (resource) {
-                is Resource.Success -> {
-                    val items = resource.data.items.map { show -> ShowItem.Item(title, show) }
-                    addItemsToState(listOf(ShowItem.Header(title)) + items, false)
+        viewModelScope.launch {
+            useCase.getAllShows().forEach {
+                val (resource, title) = it
+                when (resource) {
+                    is Resource.Success -> {
+                        val items = resource.data.items.map { show -> ShowItem.Item(title, show) }
+                        addItemsToState(listOf(ShowItem.Header(title)) + items, false)
+                    }
+                    is Resource.Error -> _message.value = resource.error.message
                 }
-                is Resource.Error -> _message.value = resource.error.message
             }
-        }.onCompletion {
+
             _loading.value = false
             _showEmpty.value = currentItems.size <= 1
-        }.launchIn(viewModelScope)
+        }
     }
 
     private fun addItemsToState(items: List<ShowItem>, startOfItemList: Boolean) {

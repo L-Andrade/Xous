@@ -99,7 +99,7 @@ class GalleryFragment : Fragment(R.layout.image_gallery_fragment) {
         if (outputStream == null)
             onError()
         else
-            downloadImage(image).compress(Bitmap.CompressFormat.JPEG, MAX_QUALITY, outputStream)
+            requireContext().downloadImage(image).compress(Bitmap.CompressFormat.JPEG, MAX_QUALITY, outputStream)
     }
 
     private fun onError() {

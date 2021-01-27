@@ -5,6 +5,7 @@
     <color name="colorPrimaryLight">#cfd8dc</color>
     <color name="colorAccent">#9e9e9e</color>
     <color name="white">#FFFFFF</color>
+    <color name="errorRed">#DD1818</color>
     <color name="textColorPrimary">#212121</color>
     <color name="textColorSecondary">#757575</color>
     <color name="dividerColor">#BDBDBD</color>

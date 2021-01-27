@@ -1,10 +1,11 @@
 package com.andradel.xous.commonui.extensions
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
-import androidx.fragment.app.Fragment
+import com.andradel.xous.commonui.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.target.CustomTarget
@@ -15,8 +16,8 @@ import kotlin.coroutines.resume
 // Not the best, but suffices for now
 fun ImageView.load(
     url: String?,
-    @DrawableRes placeholder: Int = 0,
-    @DrawableRes error: Int = 0,
+    @DrawableRes placeholder: Int = R.color.colorAccent,
+    @DrawableRes error: Int = R.color.colorAccent,
     fade: Boolean = true
 ) {
     val request = Glide.with(this).load(url)
@@ -30,7 +31,7 @@ fun ImageView.load(
     }
 }
 
-suspend fun Fragment.downloadImage(image: String): Bitmap = suspendCancellableCoroutine { cont ->
+suspend fun Context.downloadImage(image: String): Bitmap = suspendCancellableCoroutine { cont ->
     val target = object : CustomTarget<Bitmap>() {
         override fun onLoadCleared(placeholder: Drawable?) {
             cont.cancel()

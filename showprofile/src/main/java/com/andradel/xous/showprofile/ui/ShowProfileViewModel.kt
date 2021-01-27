@@ -9,13 +9,13 @@ import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
 import com.andradel.xous.showprofile.R
 import com.andradel.xous.showprofile.model.FullShow
-import com.andradel.xous.showprofile.repo.ShowProfileRepository
+import com.andradel.xous.showprofile.repo.ShowProfileUseCase
 import com.andradel.xous.showprofile.ui.adapter.ProfileItem
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ShowProfileViewModel @Inject constructor(
-    private val repository: ShowProfileRepository
+    private val useCase: ShowProfileUseCase
 ) : ViewModel() {
 
     private val _show = MutableLiveData<ProfileState>()
@@ -31,7 +31,7 @@ class ShowProfileViewModel @Inject constructor(
 
         _show.value = ProfileState(listOf(ProfileItem.Overview(show)), show, listOfNotNull(show.backdropUrl))
         viewModelScope.launch {
-            when (val details = repository.getDetails(show)) {
+            when (val details = useCase.getDetails(show)) {
                 is Resource.Success -> _show.value = mapDetails(details.data)
                 is Resource.Error -> _message.value = details.error.message
             }

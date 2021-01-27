@@ -10,12 +10,12 @@ import com.andradel.xous.core.models.Resource
 import com.andradel.xous.core.util.LiveEvent
 import com.andradel.xous.showprofile.model.Episode
 import com.andradel.xous.showprofile.model.SeasonDetails
-import com.andradel.xous.showprofile.repo.ShowProfileRepository
+import com.andradel.xous.showprofile.repo.ShowProfileUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SeasonViewModel @Inject constructor(
-    private val repository: ShowProfileRepository
+    private val useCase: ShowProfileUseCase
 ) : ViewModel() {
 
     private val _details = MutableLiveData<SeasonDetails>()
@@ -29,7 +29,7 @@ class SeasonViewModel @Inject constructor(
     fun getDetails(show: Show, season: Season) {
         if (_details.value != null) return
         viewModelScope.launch {
-            when (val details = repository.getSeasonDetails(show, season)) {
+            when (val details = useCase.getSeasonDetails(show, season)) {
                 is Resource.Success -> _details.value = details.data
                 is Resource.Error -> _message.value = details.error.message
             }

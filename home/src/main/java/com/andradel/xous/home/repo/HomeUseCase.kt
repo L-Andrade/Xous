@@ -9,19 +9,18 @@ import com.andradel.xous.home.network.GeneralDataSource
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
-class HomeRepository @Inject constructor(
+class HomeUseCase @Inject constructor(
     private val generalDataSource: GeneralDataSource,
     private val recentlyViewedDataSource: RecentlyViewedDataSource
 ) {
     fun getRecentlyViewedShows(): Flow<List<Show>> =
         recentlyViewedDataSource.getRecentlyViewedShows()
 
-    fun getAllShows(): Flow<Pair<Resource<ShowsResponse>, Int>> = flow {
-        supervisorScope {
+    suspend fun getAllShows(): List<Pair<Resource<ShowsResponse>, Int>> {
+        return supervisorScope {
             val popular = async {
                 generalDataSource.getPopular() to R.string.popular
             }
@@ -31,7 +30,7 @@ class HomeRepository @Inject constructor(
             val topRated = async {
                 generalDataSource.getTopRated() to R.string.top_rated
             }
-            awaitAll(popular, onTheAir, topRated).forEach { emit(it) }
+            awaitAll(popular, onTheAir, topRated)
         }
     }
 }

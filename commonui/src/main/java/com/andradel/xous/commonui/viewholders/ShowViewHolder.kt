@@ -14,6 +14,6 @@ class ShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         poster.setOnClickListener {
             onClick(show)
         }
-        poster.load(show.posterUrl, R.color.design_default_color_background)
+        poster.load(show.posterUrl)
     }
 }

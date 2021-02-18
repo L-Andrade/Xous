@@ -9,6 +9,6 @@ import com.andradel.xous.database.models.ShowDomain
 
 @TypeConverters(Converters::class)
 @Database(entities = [ShowDomain::class], version = 1)
-internal abstract class AppDatabase : RoomDatabase() {
-    internal abstract fun showsDao(): ShowsDao
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun showsDao(): ShowsDao
 }

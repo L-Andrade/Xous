@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.4.30"
     const val gradle = "4.0.1"
     const val appCompat = "1.2.0"
     const val androidX = "1.3.0"
@@ -25,6 +25,7 @@ object Versions {
     const val google = "4.3.3"
     const val recyclerView = "1.2.0-alpha03"
     const val crashlytics = "2.2.1"
+    const val anvil = "2.1.0"
 
     object Firebase {
         const val analytics = "17.5.0"
@@ -38,6 +39,7 @@ object Modules {
     const val commonModels = ":commonmodels"
     const val commonUi = ":commonui"
     const val db = ":database"
+    const val scopes = ":scopes"
 
     // Features
     const val home = ":home"
@@ -101,7 +103,6 @@ object Libraries {
     const val daggerAnnotations = "com.google.dagger:dagger-compiler:${Versions.dagger}"
 
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val glideAnnotations = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     const val flexbox = "com.google.android:flexbox:${Versions.flexbox}"
 
@@ -126,4 +127,5 @@ object Plugins {
     const val kapt = "kapt"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
     const val serialization = "kotlinx-serialization"
+    const val anvil = "com.squareup.anvil"
 }

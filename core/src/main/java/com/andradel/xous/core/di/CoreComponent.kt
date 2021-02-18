@@ -3,22 +3,20 @@ package com.andradel.xous.core.di
 import android.app.Application
 import com.andradel.xous.core.models.Schedulers
 import com.andradel.xous.database.datasources.RecentlyViewedDataSource
-import com.andradel.xous.database.di.DatabaseModule
+import com.andradel.xous.scopes.AppScope
+import com.andradel.xous.scopes.SingleIn
+import com.squareup.anvil.annotations.MergeComponent
 import dagger.BindsInstance
 import dagger.Component
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
-@Component(modules = [CoreModule::class, NetworkModule::class, DatabaseModule::class])
-@Singleton
+@SingleIn(AppScope::class)
+@MergeComponent(scope = AppScope::class)
 interface CoreComponent {
 
-    @Component.Builder
-    interface Builder {
-        fun build(): CoreComponent
-
-        @BindsInstance
-        fun application(application: Application): Builder
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance application: Application): CoreComponent
     }
 
     fun provideViewModelFactory(factory: ViewModelFactory): ViewModelFactory

@@ -9,7 +9,7 @@ import com.andradel.xous.database.models.ShowType
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-internal interface ShowsDao {
+interface ShowsDao {
     @Query("SELECT * FROM shows WHERE type = :type ORDER BY createdAt DESC LIMIT 20")
     fun getShowsByType(type: ShowType): Flow<List<ShowDomain>>
 

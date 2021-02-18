@@ -9,13 +9,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andradel.xous.commonmodels.internal.Season
-import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
+import com.andradel.xous.scopes.ComponentHolder
 import com.andradel.xous.showprofile.R
-import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
+import com.andradel.xous.showprofile.di.ShowProfileComponent
 import com.andradel.xous.showprofile.ui.season.adapter.SeasonProfileAdapter
 import kotlinx.android.synthetic.main.season_fragment.*
 import javax.inject.Inject
@@ -37,7 +37,7 @@ class SeasonFragment : Fragment(R.layout.season_fragment) {
     private val args: SeasonFragmentArgs by navArgs()
 
     override fun onAttach(context: Context) {
-        DaggerShowProfileComponent.builder().coreComponent(coreComponent).build().inject(this)
+        ComponentHolder.component<ShowProfileComponent>().inject(this)
         super.onAttach(context)
     }
 

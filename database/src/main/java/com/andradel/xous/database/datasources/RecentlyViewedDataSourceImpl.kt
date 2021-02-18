@@ -4,11 +4,12 @@ import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.database.daos.ShowsDao
 import com.andradel.xous.database.models.ShowType
 import com.andradel.xous.database.models.toDomain
+import com.andradel.xous.database.models.toInternal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-internal class RecentlyViewedDataSourceImpl @Inject constructor(
+class RecentlyViewedDataSourceImpl @Inject constructor(
     private val showsDao: ShowsDao
 ) : RecentlyViewedDataSource {
 

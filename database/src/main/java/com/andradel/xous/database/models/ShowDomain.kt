@@ -6,7 +6,7 @@ import com.andradel.xous.commonmodels.internal.show.Show
 import java.util.Date
 
 @Entity(tableName = "shows")
-internal data class ShowDomain(
+data class ShowDomain(
     @PrimaryKey
     val id: Int,
     val name: String,
@@ -17,18 +17,18 @@ internal data class ShowDomain(
     val overview: String,
     val type: ShowType,
     val createdAt: Long = Date().time
-) {
-    internal fun toInternal(): Show =
-        Show(
-            id = id,
-            name = name,
-            posterUrl = posterUrl,
-            rating = rating,
-            backdropUrl = backdropUrl,
-            firstAired = firstAired,
-            overview = overview
-        )
-}
+)
+
+internal fun ShowDomain.toInternal(): Show =
+    Show(
+        id = id,
+        name = name,
+        posterUrl = posterUrl,
+        rating = rating,
+        backdropUrl = backdropUrl,
+        firstAired = firstAired,
+        overview = overview
+    )
 
 internal fun Show.toDomain(type: ShowType) =
     ShowDomain(
@@ -42,6 +42,6 @@ internal fun Show.toDomain(type: ShowType) =
         type = type
     )
 
-internal enum class ShowType {
+enum class ShowType {
     RECENTLY_VIEWED
 }

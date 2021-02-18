@@ -8,14 +8,14 @@ import androidx.fragment.app.viewModels
 import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.extensions.animateIn
 import com.andradel.xous.commonui.extensions.animateOut
-import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
 import com.andradel.xous.home.R
-import com.andradel.xous.home.di.DaggerHomeComponent
+import com.andradel.xous.home.di.HomeComponent
 import com.andradel.xous.home.ui.adapter.ShowAdapter
+import com.andradel.xous.scopes.ComponentHolder
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import kotlinx.android.synthetic.main.home_fragment.*
@@ -29,7 +29,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private val showAdapter: ShowAdapter by lazy { ShowAdapter(::goToShow) }
 
     override fun onAttach(context: Context) {
-        DaggerHomeComponent.builder().coreComponent(coreComponent).build().inject(this)
+        ComponentHolder.component<HomeComponent>().inject(this)
         super.onAttach(context)
     }
 

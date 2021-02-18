@@ -7,5 +7,6 @@ include(
     ":commonmodels",
     ":database",
     ":commonui",
-    ":search"
+    ":search",
+    ":scopes"
 )

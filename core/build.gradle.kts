@@ -4,6 +4,7 @@ plugins {
     libDefault()
     kotlin(Plugins.kapt)
     id(Plugins.safeArgs)
+    id(Plugins.anvil) version Versions.anvil
 }
 
 val localProperties = Properties()
@@ -13,7 +14,7 @@ if (localPropertiesFile.exists()) {
 }
 
 android {
-    default()
+    xous()
 
     buildTypes {
         getByName(Config.debug) {
@@ -34,6 +35,7 @@ dependencies {
     api(Libraries.Android.material)
     api(Libraries.Android.navigation)
     api(Libraries.Android.navigationFragment)
+    api(project(Modules.scopes))
     implementation(Libraries.Network.retrofit)
     implementation(Libraries.Network.serialization)
     implementation(Libraries.Network.serializationAdapter)

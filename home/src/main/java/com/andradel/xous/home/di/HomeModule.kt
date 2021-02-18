@@ -5,12 +5,15 @@ import com.andradel.xous.core.di.FeatureScope
 import com.andradel.xous.core.di.ViewModelKey
 import com.andradel.xous.home.network.GeneralAPI
 import com.andradel.xous.home.ui.HomeViewModel
+import com.andradel.xous.scopes.AppScope
+import com.squareup.anvil.annotations.ContributesTo
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import retrofit2.Retrofit
 
 @Module
+@ContributesTo(AppScope::class)
 class HomeModule {
     @Provides
     @FeatureScope

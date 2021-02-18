@@ -2,10 +2,11 @@ plugins {
     libDefault()
     kotlin(Plugins.kapt)
     id(Plugins.serialization)
+    id(Plugins.anvil) version Versions.anvil
 }
 
 android {
-    default()
+    xous()
 }
 
 dependencies {
@@ -16,7 +17,6 @@ dependencies {
     implementation(Libraries.Android.viewModel)
     // implementation(Libraries.Android.recyclerView)
     implementation(Libraries.dagger)
-    kapt(Libraries.daggerAnnotations)
     implementation(Libraries.Network.retrofit)
     implementation(Libraries.Network.serialization)
     implementation(project(Modules.core))
@@ -27,4 +27,8 @@ dependencies {
     testImplementation(Libraries.Testing.junit)
     androidTestImplementation(Libraries.Testing.androidXjunit)
     androidTestImplementation(Libraries.Testing.espresso)
+}
+
+anvil {
+    generateDaggerFactories = true // default is false
 }

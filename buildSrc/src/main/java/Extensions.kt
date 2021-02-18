@@ -4,11 +4,11 @@ import org.gradle.api.JavaVersion
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.plugin.use.PluginDependenciesSpec
 
-fun BaseExtension.default() {
+fun BaseExtension.xous() {
     compileSdkVersion(Config.compileSdk)
 
     defaultConfig {
-        this@defaultConfig.default()
+        this@defaultConfig.xous()
     }
 
     enableJava8()
@@ -24,7 +24,7 @@ fun BaseExtension.default() {
     }
 }
 
-private fun DefaultConfig.default() {
+private fun DefaultConfig.xous() {
     minSdkVersion(Config.minSdk)
     targetSdkVersion(Config.targetSdk)
     versionCode = Config.Version.code
@@ -47,5 +47,6 @@ fun PluginDependenciesSpec.libDefault() {
 
 fun PluginDependenciesSpec.defaultPlugins() {
     kotlin("android")
+    // TODO: Synthetics to VB
     kotlin("android.extensions")
 }

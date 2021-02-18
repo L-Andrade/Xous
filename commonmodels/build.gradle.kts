@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    default()
+    xous()
 }
 
 dependencies {

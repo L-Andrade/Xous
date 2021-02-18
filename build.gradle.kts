@@ -6,6 +6,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -25,6 +26,7 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://jitpack.io")
+        mavenCentral()
     }
 
     gradle.projectsEvaluated {

@@ -2,6 +2,9 @@ package com.andradel.xous.core.di
 
 import com.andradel.xous.core.BuildConfig
 import com.andradel.xous.core.network.ApiKeyInterceptor
+import com.andradel.xous.scopes.AppScope
+import com.andradel.xous.scopes.SingleIn
+import com.squareup.anvil.annotations.ContributesTo
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
@@ -11,12 +14,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Converter
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
+@ContributesTo(AppScope::class)
 class NetworkModule {
+
     @Provides
-    @Singleton
+    @SingleIn(AppScope::class)
     @IntoSet
     fun provideOkHttpInterceptor(): Interceptor {
         val level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
@@ -28,7 +32,7 @@ class NetworkModule {
     fun provideOkHttpAPIKeyInterceptor(): Interceptor = ApiKeyInterceptor
 
     @Provides
-    @Singleton
+    @SingleIn(AppScope::class)
     fun provideOkHttpClient(interceptors: @JvmSuppressWildcards Set<Interceptor>): OkHttpClient {
         val builder = OkHttpClient.Builder()
         interceptors.forEach { builder.addInterceptor(it) }
@@ -36,7 +40,7 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @SingleIn(AppScope::class)
     fun provideTMDBRetrofit(
         okHttpClient: OkHttpClient,
         converterFactory: Converter.Factory

@@ -6,11 +6,11 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
-import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.observe
+import com.andradel.xous.scopes.ComponentHolder
 import com.andradel.xous.search.R
-import com.andradel.xous.search.di.DaggerSearchComponent
+import com.andradel.xous.search.di.SearchComponent
 import com.andradel.xous.search.ui.state.ViewSearchState
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ abstract class BaseSearchFragment(@LayoutRes layoutId: Int) : Fragment(layoutId)
     protected val viewModel: SearchViewModel by navGraphViewModels(R.id.search) { viewModelFactory }
 
     override fun onAttach(context: Context) {
-        DaggerSearchComponent.builder().coreComponent(coreComponent).build().inject(this)
+        ComponentHolder.component<SearchComponent>().inject(this)
         super.onAttach(context)
     }
 

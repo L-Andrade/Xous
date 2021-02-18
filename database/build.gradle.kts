@@ -1,10 +1,11 @@
 plugins {
     libDefault()
     kotlin(Plugins.kapt)
+    id(Plugins.anvil) version Versions.anvil
 }
 
 android {
-    default()
+    xous()
 
     defaultConfig {
         javaCompileOptions {
@@ -31,10 +32,14 @@ dependencies {
     implementation(Libraries.Room.extensions)
     kapt(Libraries.Room.annotations)
     implementation(Libraries.dagger)
-    kapt(Libraries.daggerAnnotations)
+    implementation(project(Modules.scopes))
     implementation(Libraries.coroutines)
     implementation(project(Modules.commonModels))
     testImplementation(Libraries.Testing.junit)
     androidTestImplementation(Libraries.Testing.androidXjunit)
     androidTestImplementation(Libraries.Room.testing)
+}
+
+anvil {
+    generateDaggerFactories = true // default is false
 }

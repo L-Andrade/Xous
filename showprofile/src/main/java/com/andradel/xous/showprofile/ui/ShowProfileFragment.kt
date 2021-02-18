@@ -12,13 +12,13 @@ import com.andradel.xous.commonmodels.internal.show.Show
 import com.andradel.xous.commonui.ViewPager2ParallaxPage
 import com.andradel.xous.commonui.extensions.load
 import com.andradel.xous.commonui.indicator.setViewPagerAndAdapter
-import com.andradel.xous.core.coreComponent
 import com.andradel.xous.core.di.ViewModelFactory
 import com.andradel.xous.core.util.extensions.goTo
 import com.andradel.xous.core.util.extensions.observe
 import com.andradel.xous.core.util.extensions.showSnackbar
+import com.andradel.xous.scopes.ComponentHolder
 import com.andradel.xous.showprofile.R
-import com.andradel.xous.showprofile.di.DaggerShowProfileComponent
+import com.andradel.xous.showprofile.di.ShowProfileComponent
 import com.andradel.xous.showprofile.ui.adapter.BackdropAdapter
 import com.andradel.xous.showprofile.ui.adapter.ProfileViewAdapter
 import kotlinx.android.synthetic.main.show_profile_fragment.*
@@ -40,7 +40,7 @@ class ShowProfileFragment : Fragment(R.layout.show_profile_fragment) {
     }
 
     override fun onAttach(context: Context) {
-        DaggerShowProfileComponent.builder().coreComponent(coreComponent).build().inject(this)
+        ComponentHolder.component<ShowProfileComponent>().inject(this)
         super.onAttach(context)
     }
 

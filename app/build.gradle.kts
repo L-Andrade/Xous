@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    default()
+    xous()
 
     defaultConfig {
         applicationId = "com.andradel.xous"

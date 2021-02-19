@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.andradel.xous.database.AppDatabase
 import com.andradel.xous.database.daos.ShowsDao
-import com.andradel.xous.database.datasources.RecentlyViewedDataSource
-import com.andradel.xous.database.datasources.RecentlyViewedDataSourceImpl
 import com.andradel.xous.scopes.AppScope
 import com.andradel.xous.scopes.SingleIn
 import com.squareup.anvil.annotations.ContributesTo
@@ -23,9 +21,6 @@ class DatabaseModule {
 
     @Provides
     fun provideShowDao(appDatabase: AppDatabase): ShowsDao = appDatabase.showsDao()
-
-    @Provides
-    fun provideRecentlyViewedDataSource(impl: RecentlyViewedDataSourceImpl): RecentlyViewedDataSource = impl
 
     companion object {
         const val DATABASE_NAME = "xous_database"

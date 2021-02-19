@@ -11,7 +11,7 @@ import dagger.Component
 import retrofit2.Retrofit
 
 @SingleIn(AppScope::class)
-@MergeComponent(scope = AppScope::class)
+@MergeComponent(AppScope::class)
 interface CoreComponent {
 
     @Component.Factory

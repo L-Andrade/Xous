@@ -26,7 +26,6 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: HomeViewModel by viewModels { viewModelFactory }
-    private val showAdapter: ShowAdapter by lazy { ShowAdapter(::goToShow) }
 
     override fun onAttach(context: Context) {
         ComponentHolder.component<HomeComponent>().inject(this)
@@ -35,16 +34,16 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-
+        val showAdapter = ShowAdapter(::goToShow)
+        setupRecyclerView(showAdapter)
         refresh.setOnClickListener {
             viewModel.getAllShows()
         }
 
-        setupObservers()
+        setupObservers(showAdapter)
     }
 
-    private fun setupObservers() {
+    private fun setupObservers(showAdapter: ShowAdapter) {
         observe(viewModel.loading) {
             onLoading(it)
         }
@@ -69,7 +68,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         } else loading.hide()
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerView(showAdapter: ShowAdapter) {
         shows.apply {
             adapter = showAdapter
             layoutManager = FlexboxLayoutManager(requireContext()).also {

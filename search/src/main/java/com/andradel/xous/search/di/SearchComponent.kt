@@ -4,7 +4,7 @@ import com.andradel.xous.scopes.AppScope
 import com.andradel.xous.search.ui.BaseSearchFragment
 import com.squareup.anvil.annotations.ContributesTo
 
-@ContributesTo(scope = AppScope::class)
+@ContributesTo(AppScope::class)
 interface SearchComponent {
     fun inject(fragment: BaseSearchFragment)
 }

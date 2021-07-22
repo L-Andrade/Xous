@@ -26,7 +26,7 @@ jobs:
     
     # ktlint
     - name: Kotlin Linter
-      uses: vroy/gha-kotlin-linter@v2
+      uses: vroy/gha-kotlin-linter@v3
     
     # detekt
     - name: detekt

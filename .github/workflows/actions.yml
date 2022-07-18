@@ -30,6 +30,6 @@ jobs:
     
     # detekt
     - name: detekt
-      uses: natiginfo/action-detekt-all@1.15.0
+      uses: natiginfo/action-detekt-all@1.21.0
       with:
         args: --config detekt.yml
